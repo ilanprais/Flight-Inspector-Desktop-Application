@@ -22,6 +22,7 @@ namespace ex1.Model
         public double Yaw { get; set; }
 
         public void ConnectToFG(string ip, int port);
+        public void DisconnectToFG();
         public void Render();
     }
 }

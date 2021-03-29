@@ -82,6 +82,11 @@ namespace ex1.Model
             throw new NotImplementedException();
         }
 
+        public void DisconnectToFG()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Render()
         {
             throw new NotImplementedException();

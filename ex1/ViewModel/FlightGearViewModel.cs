@@ -19,6 +19,9 @@ namespace ex1.ViewModel
             };
         }
 
+        public bool RenderingStopped { set => _model.RenderingStopped = value; }
+        public int Rate { set => _model.Rate = value; }
+
         public double Altimeter
         {
             get => _model.Altimeter;
