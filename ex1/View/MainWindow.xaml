@@ -16,12 +16,12 @@
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "580" />
-                <ColumnDefinition Width = "*"/>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "200"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height = "350" />
                 <RowDefinition Height = "*" />
+                <RowDefinition Height = "50" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row = "0" Grid.Column = "1">
