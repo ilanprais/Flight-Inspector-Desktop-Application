@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ex1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="120">
+             d:DesignHeight="45" d:DesignWidth="120">
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
-        <Grid>
-
+        <Grid Background="Green">
+            <TextBlock Text="No Anomaly Detected" Foreground="white"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
         </Grid>
     </Border>
 </UserControl>
