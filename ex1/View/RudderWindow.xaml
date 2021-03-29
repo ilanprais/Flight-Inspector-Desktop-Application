@@ -47,7 +47,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Controls:Joystick Margin="10,0,10,0"  Grid.Row="1" Grid.Column="2"/>
+            <Controls:Joystick Width="90"  Grid.Row="1" Grid.Column="2"/>
         </Grid>
     </Border>
 </UserControl>
