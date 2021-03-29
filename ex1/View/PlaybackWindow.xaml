@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ex1.View"
              mc:Ignorable="d" 
              d:DesignWidth="800"
-             d:DesignHeight="65"
+             d:DesignHeight="50"
              >
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
         <Grid>

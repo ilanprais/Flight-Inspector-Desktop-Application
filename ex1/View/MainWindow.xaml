@@ -35,8 +35,8 @@
             </Grid>
 
             <Controls:GraphWindow Grid.Row="0" Grid.Column="0"/>
-            <Controls:PlaybackWindow Grid.Row="1" Grid.Column="0"/>
-            <Controls:StatusWindow Grid.Row="1" Grid.Column="1"/>
+            <Controls:PlaybackWindow Height="45" Grid.Row="1" Grid.Column="0"/>
+            <Controls:StatusWindow Height="45" Grid.Row="1" Grid.Column="1"/>
 
         </Grid>
     </StackPanel>
