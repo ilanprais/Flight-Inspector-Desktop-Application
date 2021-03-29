@@ -29,5 +29,10 @@ namespace ex1
         {
 
         }
+
+        private void GraphWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
