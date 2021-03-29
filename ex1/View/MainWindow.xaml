@@ -7,16 +7,32 @@
         xmlns:local="clr-namespace:ex1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width = "580" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height = "350" />
-            <RowDefinition Height = "*" />
-        </Grid.RowDefinitions>
+    <StackPanel>
+        <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
+            <MenuItem Foreground="White" Background="SlateGray" Header="_Import" Click="MenuItem_Click">
+                <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data"/>
+                <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "580" />
+                <ColumnDefinition Width = "*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "350" />
+                <RowDefinition Height = "*" />
+            </Grid.RowDefinitions>
 
-        <Controls:Statistics Grid.Row = "0" Grid.Column = "1"/>
-    </Grid>
+            <Grid Grid.Row = "0" Grid.Column = "1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height = "*" />
+                    <RowDefinition Height = "*" />
+                </Grid.RowDefinitions>
+
+                <Controls:Statistics Grid.Row="0"/>
+            </Grid>
+        </Grid>
+    </StackPanel>
+    
 </Window>
