@@ -4,30 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ex1.View"
+             xmlns:Controls="clr-namespace:ex1.View"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="220">
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "30"/>
-                <ColumnDefinition Width = "25"/>
+                <ColumnDefinition Width = "20"/>
                 <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "25"/>
+                <ColumnDefinition Width = "30"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height = "*" />
                 <RowDefinition Height = "90" />
                 <RowDefinition Height = "*" />
-                <RowDefinition Height = "*" /> 
+                <RowDefinition Height = "*" />
             </Grid.RowDefinitions>
-            
+
             <Slider Orientation="Vertical" Grid.Row="1" Grid.Column="1" />
-            <Slider Orientation="Horizontal" Grid.Row="2" Grid.Column="2" />
-            <TextBlock Text="Rudder" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="7" Grid.Row="3" Grid.Column="2"/>
-            <TextBlock Text="Throttle" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="7" Grid.Row="1" Grid.Column="0" />
-            <TextBlock Text="Aileron" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="7" Grid.Row="0" Grid.Column="2" />
-            <TextBlock Text="Elevator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="7" Grid.Row="1" Grid.Column="3" />
+            <Slider Orientation="Horizontal" Margin="0,1,0,0" Grid.Row="2" Grid.Column="2" />
+            <TextBlock Text="Rudder" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="3" Grid.Column="2"/>
+            <TextBlock Text="Throttle" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock Text="Aileron" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="0" Grid.Column="2" />
+            <TextBlock Text="Elevator" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="1" Grid.Column="3" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Controls:Joystick Margin="10,0,10,0"  Grid.Row="1" Grid.Column="2"/>
         </Grid>
     </Border>
 </UserControl>
