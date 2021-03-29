@@ -31,7 +31,13 @@
                 </Grid.RowDefinitions>
 
                 <Controls:Statistics Grid.Row="0"/>
+                <Controls:RudderWindow Grid.Row="1"/>
             </Grid>
+
+            <Controls:GraphWindow Grid.Row="0" Grid.Column="0"/>
+            <Controls:PlaybackWindow Grid.Row="1" Grid.Column="0"/>
+            <Controls:StatusWindow Grid.Row="1" Grid.Column="1"/>
+
         </Grid>
     </StackPanel>
     
