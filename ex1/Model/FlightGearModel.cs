@@ -69,7 +69,7 @@ namespace ex1.Model
                 _currentFramePosition = 0;
                 List<string> lines = new List<string>();
                 _frames = new List<Frame>();
-                System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\danbi\\IdeaProjects\\ctf\\src\\reg_flight.csv");
+                System.IO.StreamReader file = new System.IO.StreamReader(FilePath);
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {

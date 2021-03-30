@@ -53,6 +53,7 @@ namespace ex1
         private void start_Click(object sender, RoutedEventArgs e)
         {
             VM.Render();
+            start.Visibility = Visibility.Hidden;
         }
     }
 }
