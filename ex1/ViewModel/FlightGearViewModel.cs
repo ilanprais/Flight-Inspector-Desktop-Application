@@ -19,32 +19,9 @@ namespace ex1.ViewModel
             };
         }
 
-        public int Rate { set => _model.Rate = value; }
+        public Frame CurrentFrame { get => _model.CurrentFrame; }
 
-        public double Altimeter
-        {
-            get => _model.Altimeter;
-        }
-        public double AirSpeed
-        {
-            get => _model.AirSpeed;
-        }
-        public double Direction
-        {
-            get => _model.Direction;
-        }
-        public double Pitch
-        {
-            get => _model.Pitch;
-        }
-        public double Row
-        {
-            get => _model.Row;
-        }
-        public double Yaw
-        {
-            get => _model.Yaw;
-        }
+        public int FrameRate { set => _model.FrameRate = value; }
 
         public void Render()
         {

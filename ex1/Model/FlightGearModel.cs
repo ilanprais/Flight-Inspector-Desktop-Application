@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Text;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Threading;
 
@@ -13,96 +10,44 @@ namespace ex1.Model
     {
         private IFGClient _fgClient;
 
+        private int _currentFramePosition;
+
         private volatile bool _renderingStopped = false;
-        private volatile int _rate;
+        private volatile int _frameRate;
 
-        private double _altimeter;
-        private double _airSpeed;
-        private double _direction;
-        private double _pitch;
-        private double _row;
-        private double _yaw;
+        public List<Frame> Frames { get; set; }
+        public Frame CurrentFrame
+        {
+            get => Frames[_currentFramePosition];
+            set
+            {
+                Frames[_currentFramePosition] = value;
+                NotifyPropertyChanged(nameof(CurrentFrame));
+            }
+        }
 
-        public StreamReader DetailsCSV { get; set; }
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
-        public int Rate { get => _rate; set => _rate = value; }
-
-        public double Altimeter
-        {
-            get => _altimeter;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(Altimeter));
-            }
-        }
-        public double AirSpeed
-        {
-            get => _airSpeed;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(AirSpeed));
-            }
-        }
-        public double Direction
-        {
-            get => _direction;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(Direction));
-            }
-        }
-        public double Pitch
-        {
-            get => _pitch;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(Pitch));
-            }
-        }
-        public double Row
-        {
-            get => _row;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(Row));
-            }
-        }
-        public double Yaw
-        {
-            get => _yaw;
-            set
-            {
-                _altimeter = value;
-                NotifyPropertyChanged(nameof(Yaw));
-            }
-        }
+        public int FrameRate { get => _frameRate; set => _frameRate = value; }
 
         public void ConnectToFG(string ip, int port)
         {
-            throw new NotImplementedException();
+            _fgClient.Connect(ip, port);
         }
 
         public void DisconnectFromFG()
         {
-            throw new NotImplementedException();
+            _fgClient.Disconnect();
         }
 
         public void Render()
         {
-            while (!_renderingStopped)
+            for (var i = _currentFramePosition; !_renderingStopped && _currentFramePosition < Frames.Count; ++i)
             {
-                var line = DetailsCSV.ReadLine();
-                Task.Run(() => _fgClient.Send(line));
-                /**
-                 * parsing the line and assigning to properties
-                 */
+                var frame = Frames[_currentFramePosition];
+                Task.Run(() => _fgClient.Send(frame.ToString()));
+                CurrentFrame = frame;
 
-                Thread.Sleep(1000 / Rate);
+                Thread.Sleep(1000 / FrameRate);
             }
         }
 

@@ -5,7 +5,7 @@ using System.Net.Sockets;
 
 namespace ex1.Model
 {
-    class FGClient : IFGClient
+    class AsyncTcpFGClient : IFGClient
     {
         TcpClient _tcpClient;
 
