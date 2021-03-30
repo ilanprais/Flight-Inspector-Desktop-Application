@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Net.Sockets;
 
 namespace ex1.Model
 {
@@ -10,7 +11,7 @@ namespace ex1.Model
     {
         private IFGClient _fgClient;
 
-        private int _currentFramePosition;
+        private int _currentFramePosition = 0;
 
         private volatile bool _renderingStopped = false;
         private volatile int _frameRate;
@@ -42,14 +43,29 @@ namespace ex1.Model
 
         public void Render()
         {
-            for (var i = _currentFramePosition; !_renderingStopped && _currentFramePosition < Frames.Count; ++i)
+            new Thread(delegate ()
             {
-                var frame = Frames[_currentFramePosition];
-                Task.Run(() => _fgClient.Send(frame.ToString()));
-                CurrentFrame = frame;
+                //IEnumerable<Frame> frames = new List<Frame>();
+                List<string> lines = new List<string>();
+                System.IO.StreamReader file = new System.IO.StreamReader(FilePath);
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    lines.Add(line);
+                }
+                file.Close();
+                TcpClient tcpClient = new TcpClient();
 
-                Thread.Sleep(1000 / FrameRate);
-            }
+                tcpClient.Connect("localhost", 5400);
+
+                for (; !_renderingStopped && _currentFramePosition < lines.Count; ++_currentFramePosition)
+                {
+                    //var frame = Frames[_currentFramePosition];
+                    tcpClient.GetStream().Write(System.Text.Encoding.ASCII.GetBytes(lines[_currentFramePosition]));
+                    //Task.Run(() => _fgClient.Send(frame.ToString()));
+                    Thread.Sleep(100);
+                }
+            }).Start();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

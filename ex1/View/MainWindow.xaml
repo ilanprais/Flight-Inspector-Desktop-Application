@@ -16,6 +16,7 @@
                 </MenuItem>
             </Menu>
             <TextBlock Text="{Binding FilePath}"></TextBlock>
+            <Button x:Name="start" Click="start_Click" Width="100">start</Button>
         </StackPanel>
         
         <Grid>

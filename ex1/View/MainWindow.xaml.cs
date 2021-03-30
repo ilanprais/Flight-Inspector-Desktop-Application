@@ -50,5 +50,10 @@ namespace ex1
                 vm.FilePath = openFileDialog.FileName;
             }
         }
+
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Render();
+        }
     }
 }

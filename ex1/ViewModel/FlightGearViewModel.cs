@@ -54,5 +54,6 @@ namespace ex1.ViewModel
                 NotifyPropertyChanged("FilePath");
             }
         }
+
     }
 }

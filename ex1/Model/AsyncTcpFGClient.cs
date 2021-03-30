@@ -9,9 +9,9 @@ namespace ex1.Model
     {
         TcpClient _tcpClient;
 
-        public async void Connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
-            await _tcpClient.ConnectAsync(ip, port);
+            _tcpClient.ConnectAsync(ip, port);
         }
         public void Disconnect()
         {
