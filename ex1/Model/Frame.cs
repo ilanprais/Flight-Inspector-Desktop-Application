@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ex1.Model
 {
-    class Frame
+    public class Frame
     {
         private string _stringRepresentation;
 

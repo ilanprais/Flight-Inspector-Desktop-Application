@@ -8,12 +8,16 @@
         mc:Ignorable="d"
         Title="Flight Inspector" Height="450" Width="800">
     <StackPanel>
-        <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
-            <MenuItem Foreground="White" Background="SlateGray" Header="_Import" Click="MenuItem_Click">
-                <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data"/>
-                <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
-            </MenuItem>
-        </Menu>
+        <StackPanel Orientation="Horizontal">
+            <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
+                <MenuItem Foreground="White" Background="SlateGray" Header="_Import" Click="MenuItem_Click">
+                    <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data" Click="loadFile_Click"/>
+                    <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
+                </MenuItem>
+            </Menu>
+            <TextBlock Text="{Binding FilePath}"></TextBlock>
+        </StackPanel>
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "*" />

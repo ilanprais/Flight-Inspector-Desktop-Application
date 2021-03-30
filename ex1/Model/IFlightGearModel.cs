@@ -5,10 +5,11 @@ using System.ComponentModel;
 
 namespace ex1.Model
 {
-    interface IFlightGearModel : INotifyPropertyChanged
+    public interface IFlightGearModel : INotifyPropertyChanged
     {
         public List<Frame> Frames { get; set; }
         public Frame CurrentFrame { get; set; }
+        public string FilePath { get; set; }
 
         public bool RenderingStopped { get; set; }
         public int FrameRate { get; set; }

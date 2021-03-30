@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace ex1.Model
 {
-    class FlightGearModel : IFlightGearModel
+    public class FlightGearModel : IFlightGearModel
     {
         private IFGClient _fgClient;
 
@@ -14,6 +14,7 @@ namespace ex1.Model
 
         private volatile bool _renderingStopped = false;
         private volatile int _frameRate;
+        public string FilePath { get; set; }
 
         public List<Frame> Frames { get; set; }
         public Frame CurrentFrame

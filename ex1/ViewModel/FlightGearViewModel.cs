@@ -7,11 +7,10 @@ using ex1.Model;
 
 namespace ex1.ViewModel
 {
-    class FlightGearViewModel : INotifyPropertyChanged
+    public class FlightGearViewModel : INotifyPropertyChanged
     {
         private IFlightGearModel _model;
-
-        FlightGearViewModel(IFlightGearModel model)
+        public FlightGearViewModel(IFlightGearModel model)
         {
             _model = model;
             model.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
@@ -41,6 +40,18 @@ namespace ex1.ViewModel
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public string FilePath
+        {
+            get
+            {
+                return _model.FilePath;
+            }
+            set
+            {
+                _model.FilePath = value;
+                NotifyPropertyChanged("FilePath");
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace ex1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel.FlightGearViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
+            vm = new ViewModel.FlightGearViewModel(new Model.FlightGearModel());
+            DataContext = vm;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -33,6 +37,18 @@ namespace ex1
         private void GraphWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void loadFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            //openFileDialog.Filter = "*.csv";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                vm.FilePath = openFileDialog.FileName;
+            }
         }
     }
 }
