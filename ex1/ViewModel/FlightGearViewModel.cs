@@ -19,7 +19,6 @@ namespace ex1.ViewModel
             };
         }
 
-        public bool RenderingStopped { set => _model.RenderingStopped = value; }
         public int Rate { set => _model.Rate = value; }
 
         public double Altimeter
@@ -49,7 +48,13 @@ namespace ex1.ViewModel
 
         public void Render()
         {
+            _model.RenderingStopped = false;
             _model.Render();
+        }
+
+        public void PauseRendering()
+        {
+            _model.RenderingStopped = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

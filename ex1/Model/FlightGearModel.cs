@@ -4,12 +4,17 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Net.Sockets;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace ex1.Model
 {
     class FlightGearModel : IFlightGearModel
     {
-        private TcpClient _fgClient;
+        private IFGClient _fgClient;
+
+        private volatile bool _renderingStopped = false;
+        private volatile int _rate;
 
         private double _altimeter;
         private double _airSpeed;
@@ -19,8 +24,8 @@ namespace ex1.Model
         private double _yaw;
 
         public StreamReader DetailsCSV { get; set; }
-        public bool RenderingStopped { get; set; }
-        public int Rate { get; set; }
+        public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
+        public int Rate { get => _rate; set => _rate = value; }
 
         public double Altimeter
         {
@@ -82,14 +87,23 @@ namespace ex1.Model
             throw new NotImplementedException();
         }
 
-        public void DisconnectToFG()
+        public void DisconnectFromFG()
         {
             throw new NotImplementedException();
         }
 
         public void Render()
         {
-            throw new NotImplementedException();
+            while (!_renderingStopped)
+            {
+                var line = DetailsCSV.ReadLine();
+                Task.Run(() => _fgClient.Send(line));
+                /**
+                 * parsing the line and assigning to properties
+                 */
+
+                Thread.Sleep(1000 / Rate);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
