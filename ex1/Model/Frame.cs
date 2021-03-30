@@ -6,17 +6,24 @@ namespace ex1.Model
 {
     public class Frame
     {
-        private string _stringRepresentation;
 
-        Frame(string frameString)
+        public Frame(string frameString)
         {
-            _stringRepresentation = frameString;
+            string[] words = frameString.Split(',');
+            Altimeter = Double.Parse(words[16]);
+            AirSpeed = Double.Parse(words[20]);
+
+        }
+        public Frame()
+        {
+            Altimeter = 0;
+            AirSpeed = 0;
+            Direction = 0;
+            Pitch = 0;
+            Row = 0;
+            Yaw = 0;
         }
 
-        public override string ToString()
-        {
-            return _stringRepresentation;
-        }
 
         public double Altimeter { get; set; }
         public double AirSpeed { get; set; }

@@ -20,6 +20,7 @@ namespace ex1.View
     {
         public Statistics()
         {
+            DataContext = MainWindow.VM;
             InitializeComponent();
         }
     }

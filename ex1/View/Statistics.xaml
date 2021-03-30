@@ -29,7 +29,7 @@
         <TextBlock Foreground="White" Grid.Row = "4" Grid.Column = "0" Text="Pitch" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "5" Grid.Column = "0" Text="Roll" TextWrapping="Wrap" FontSize="15"/>
 
-            <TextBlock Text="{Binding VM_Altitude}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Altitude}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
             <TextBlock Text="{Binding VM_Speed}" Padding="2" Foreground="White"  Background="Black" Grid.Row = "1" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
             <TextBlock Text="{Binding VM_Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
             <TextBlock Text="{Binding VM_Yaw}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>

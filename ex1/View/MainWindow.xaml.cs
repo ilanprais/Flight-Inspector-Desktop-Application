@@ -21,12 +21,11 @@ namespace ex1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel.FlightGearViewModel vm;
+        public static ViewModel.FlightGearViewModel VM= new ViewModel.FlightGearViewModel(new Model.FlightGearModel());
         public MainWindow()
         {
             InitializeComponent();
-            vm = new ViewModel.FlightGearViewModel(new Model.FlightGearModel());
-            DataContext = vm;
+            DataContext = VM;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -47,13 +46,13 @@ namespace ex1
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                vm.FilePath = openFileDialog.FileName;
+                VM.FilePath = openFileDialog.FileName;
             }
         }
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            vm.Render();
+            VM.Render();
         }
     }
 }

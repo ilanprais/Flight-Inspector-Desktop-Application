@@ -19,6 +19,7 @@ namespace ex1.ViewModel
         }
 
         public Frame CurrentFrame { get => _model.CurrentFrame; }
+        public string Altitude { get => Math.Round(CurrentFrame.Altimeter,1).ToString(); }
 
         public int FrameRate { set => _model.FrameRate = value; }
 
@@ -54,6 +55,5 @@ namespace ex1.ViewModel
                 NotifyPropertyChanged("FilePath");
             }
         }
-
     }
 }

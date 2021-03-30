@@ -17,13 +17,20 @@ namespace ex1.Model
         private volatile int _frameRate;
         public string FilePath { get; set; }
 
-        public List<Frame> Frames { get; set; }
+        private List<Frame> _frames;
         public Frame CurrentFrame
         {
-            get => Frames[_currentFramePosition];
+            get
+            {
+                if (_frames != null)
+                {
+                    return _frames[_currentFramePosition];
+                }
+                return new Frame();
+            }
             set
             {
-                Frames[_currentFramePosition] = value;
+                _frames[_currentFramePosition] = value;
                 NotifyPropertyChanged(nameof(CurrentFrame));
             }
         }
@@ -40,30 +47,50 @@ namespace ex1.Model
         {
             _fgClient.Disconnect();
         }
+        public double Altitude
+        {
+            get
+            {
+                return CurrentFrame.Altimeter;
+            }
+            set
+            {
+                CurrentFrame.Altimeter = value;
+                NotifyPropertyChanged(nameof(Altitude));
+
+            }
+        }
 
         public void Render()
         {
             new Thread(delegate ()
             {
                 //IEnumerable<Frame> frames = new List<Frame>();
+                _currentFramePosition = 0;
                 List<string> lines = new List<string>();
-                System.IO.StreamReader file = new System.IO.StreamReader(FilePath);
+                _frames = new List<Frame>();
+                System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\danbi\\IdeaProjects\\ctf\\src\\reg_flight.csv");
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
                     lines.Add(line);
+                    _frames.Add(new Frame(line));
                 }
                 file.Close();
                 TcpClient tcpClient = new TcpClient();
 
-                tcpClient.Connect("localhost", 5400);
+                //tcpClient.Connect("localhost", 5400);
 
-                for (; !_renderingStopped && _currentFramePosition < lines.Count; ++_currentFramePosition)
+                for (; !_renderingStopped && _currentFramePosition < _frames.Count-1; )
                 {
+                    Altitude= _frames[_currentFramePosition].Altimeter;
                     //var frame = Frames[_currentFramePosition];
-                    tcpClient.GetStream().Write(System.Text.Encoding.ASCII.GetBytes(lines[_currentFramePosition]));
+                    //tcpClient.GetStream().Write(System.Text.Encoding.ASCII.GetBytes(lines[_currentFramePosition]),0, lines[_currentFramePosition].Length);
                     //Task.Run(() => _fgClient.Send(frame.ToString()));
-                    Thread.Sleep(100);
+                    Thread.Sleep(1);
+                    ++_currentFramePosition;
+
+
                 }
             }).Start();
         }
