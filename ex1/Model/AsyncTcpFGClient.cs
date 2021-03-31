@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace ex1.Model
 {
-    class AsyncTcpFGClient : IFGClient
+    public class AsyncTcpFGClient : IAsyncFGClient
     {
-        TcpClient _tcpClient;
+        readonly TcpClient _tcpClient = new TcpClient();
 
-        public void Connect(string ip, int port)
+        public async Task Connect(string ip, int port)
         {
-            _tcpClient.ConnectAsync(ip, port);
+            await _tcpClient.ConnectAsync(ip, port);
         }
-        public void Disconnect()
+        public async Task Disconnect()
         {
-            _tcpClient.Dispose();
+            await _tcpClient.GetStream().DisposeAsync();
         }
 
-        public async void Send(string message)
+        public async Task Send(string message)
         {
             await _tcpClient.GetStream().WriteAsync(Encoding.ASCII.GetBytes(message));
         }

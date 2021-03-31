@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ex1.ViewModel;
+using ex1.Model;
 
 namespace ex1
 {
@@ -21,11 +23,11 @@ namespace ex1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static ViewModel.FlightGearViewModel VM= new ViewModel.FlightGearViewModel(new Model.FlightGearModel());
+        public static FlightGearViewModel vm = new FlightGearViewModel(new FlightGearModel(new AsyncTcpFGClient()));
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = VM;
+            DataContext = vm;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -42,18 +44,27 @@ namespace ex1
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Multiselect = false;
-            //openFileDialog.Filter = "*.csv";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                VM.FilePath = openFileDialog.FileName;
+                vm.FilePath = openFileDialog.FileName;
             }
         }
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            VM.Render();
+            vm.Render();
             start.Visibility = Visibility.Hidden;
+        }
+
+        private void Statistics_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GraphWindow_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

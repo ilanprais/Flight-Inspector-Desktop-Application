@@ -22,19 +22,19 @@
             <RowDefinition Height = "*" />
         </Grid.RowDefinitions>
 
-        <TextBlock  Foreground="White" Grid.Row = "0" Grid.Column = "0" Text="Altitude" TextWrapping="Wrap" FontSize="15"/>
+        <TextBlock  Foreground="White" Grid.Row = "0" Grid.Column = "0" Text="Altimeter" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock  Foreground="White" Grid.Row = "1" Grid.Column = "0" Text="Speed" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "2" Grid.Column = "0" Text="Direction" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "3" Grid.Column = "0" Text="Yaw" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "4" Grid.Column = "0" Text="Pitch" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "5" Grid.Column = "0" Text="Roll" TextWrapping="Wrap" FontSize="15"/>
 
-            <TextBlock Text="{Binding Altitude}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding VM_Speed}" Padding="2" Foreground="White"  Background="Black" Grid.Row = "1" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding VM_Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding VM_Yaw}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding VM_Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "4" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding VM_Roll}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Altimeter}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding AirSpeed}" Padding="2" Foreground="White"  Background="Black" Grid.Row = "1" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Yaw}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "4" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Roll}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
         </Grid>
     </Border>
 </UserControl>
