@@ -10,18 +10,18 @@ namespace ex1.Model
     {
         readonly TcpClient _tcpClient = new TcpClient();
 
-        public async Task Connect(string ip, int port)
+        public Task Connect(string ip, int port)
         {
-            await _tcpClient.ConnectAsync(ip, port);
+            return _tcpClient.ConnectAsync(ip, port);
         }
-        public async Task Disconnect()
+        public Task Disconnect()
         {
-            await _tcpClient.GetStream().DisposeAsync();
+            return _tcpClient.GetStream().DisposeAsync().AsTask();
         }
 
-        public async Task Send(string message)
+        public Task Send(string message)
         {
-            await _tcpClient.GetStream().WriteAsync(Encoding.ASCII.GetBytes(message));
+            return _tcpClient.GetStream().WriteAsync(Encoding.ASCII.GetBytes(message)).AsTask();
         }
     }
 }

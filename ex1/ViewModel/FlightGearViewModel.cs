@@ -63,7 +63,7 @@ namespace ex1.ViewModel
             await _model.ConnectToFG("127.0.0.1", 8081);
 
             _model.RenderingStopped = false;
-            _model.Render();
+            await _model.Render();
         }
 
         public void PauseRendering()

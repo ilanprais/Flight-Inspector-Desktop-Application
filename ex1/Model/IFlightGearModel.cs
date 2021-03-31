@@ -16,6 +16,6 @@ namespace ex1.Model
 
         public Task ConnectToFG(string ip, int port);
         public Task DisconnectFromFG();
-        public void Render();
+        public Task Render();
     }
 }

@@ -36,9 +36,9 @@ namespace ex1.Model
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
         public int FrameRate { get => _frameRate; set => _frameRate = value; }
 
-        public void Render()
+        public Task Render()
         {
-            Task.Run(() =>
+            return Task.Run(() =>
             {
                 for (; !RenderingStopped && _currentFramePosition < Frames.Count - 1; ++_currentFramePosition)
                 {
