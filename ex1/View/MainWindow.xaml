@@ -16,17 +16,16 @@
                 </MenuItem>
             </Menu>
             <TextBlock Text="{Binding FilePath}"></TextBlock>
-            <Button x:Name="start" Click="start_Click" Width="100">start</Button>
         </StackPanel>
         
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "200"/>
+                <ColumnDefinition Width = "580" />
+                <ColumnDefinition Width = "*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height = "350" />
                 <RowDefinition Height = "*" />
-                <RowDefinition Height = "50" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row = "0" Grid.Column = "1">

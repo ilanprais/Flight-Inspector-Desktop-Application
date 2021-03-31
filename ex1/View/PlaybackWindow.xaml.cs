@@ -22,5 +22,12 @@ namespace ex1.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.start(sender, e);
+            startBtn.IsEnabled = false;
+        }
     }
 }

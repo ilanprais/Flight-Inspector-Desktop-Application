@@ -34,7 +34,7 @@
             <TextBlock Text="{Binding Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
             <TextBlock Text="{Binding Yaw}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
             <TextBlock Text="{Binding Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "4" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding Roll}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Row}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
         </Grid>
     </Border>
 </UserControl>

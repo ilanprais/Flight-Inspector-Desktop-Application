@@ -51,10 +51,9 @@ namespace ex1
             }
         }
 
-        private void start_Click(object sender, RoutedEventArgs e)
+        public void start(object sender, RoutedEventArgs e)
         {
             vm.Render();
-            start.Visibility = Visibility.Hidden;
         }
 
         private void Statistics_Loaded(object sender, RoutedEventArgs e)

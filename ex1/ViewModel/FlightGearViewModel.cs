@@ -14,7 +14,7 @@ namespace ex1.ViewModel
         public FlightGearViewModel(IFlightGearModel model)
         {
             _model = model;
-            model.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
+            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) {
                 if (e.PropertyName == "CurrentFrame")
                 {
                     NotifyPropertyChanged(nameof(Altimeter));
@@ -45,9 +45,16 @@ namespace ex1.ViewModel
                         _model.Frames.Add(new Frame(line));
                     }
                 }
+                this.FilePathName = value;
+            }
+
+            get
+            {
+                return this.FilePathName;  
             }
         }
 
+        private string FilePathName;
         public int FrameRate { set => _model.FrameRate = value; }
 
         public string Altitude { get => Math.Round(_model.CurrentFrame.Altimeter, 1).ToString(); }

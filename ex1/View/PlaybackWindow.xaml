@@ -5,12 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ex1.View"
              mc:Ignorable="d" 
-             d:DesignWidth="800"
+             d:DesignWidth="600"
              d:DesignHeight="50"
              >
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
         <Grid>
-
-        </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "480"/>
+                <ColumnDefinition Width = "*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Height="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height = "*"/>
+                    <RowDefinition Height = "*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="10,0,12,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width = "*"/>
+                        <ColumnDefinition Width = "*"/>
+                        <ColumnDefinition Width = "*"/>
+                        <ColumnDefinition Width = "*"/>
+                        <ColumnDefinition Width = "*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Restart" Grid.Column="0" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="&lt; &lt; Slow" Grid.Column="1" />
+                    <Button Background="Black" Foreground="White" Name="startBtn" VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="2" Click="Button_Click" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Pause" Grid.Column="3" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Fast &gt; &gt;" Grid.Column="4" />
+                </Grid>
+                <Slider Margin="10,0,10,0" Grid.Row="1" />
+            </Grid>
+            <Border Grid.Column="1" Margin="5,5,15,5" Background="black" BorderBrush="black" BorderThickness="2">
+                    <TextBlock Foreground="White" FontSize="22" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="00:00"/>
+             </Border>
+            </Grid>
     </Border>
 </UserControl>
