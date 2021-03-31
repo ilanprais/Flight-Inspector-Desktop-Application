@@ -29,9 +29,9 @@
                     </Grid.ColumnDefinitions>
                     <Button VerticalContentAlignment="Center" FontSize="7" Content="Restart" Grid.Column="0" />
                     <Button VerticalContentAlignment="Center" FontSize="7" Content="&lt; &lt; Slow" Grid.Column="1" />
-                    <Button VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="2" />
-                    <Button VerticalContentAlignment="Center" FontSize="7" Content="Fast &gt; &gt;" Grid.Column="3" />
-                    <Button VerticalContentAlignment="Center" FontSize="7" Content="End" Grid.Column="4" />
+                    <Button Name="startBtn" VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="2" Click="Button_Click" />
+                    <Button VerticalContentAlignment="Center" FontSize="7" Content="Pause" Grid.Column="3" />
+                    <Button VerticalContentAlignment="Center" FontSize="7" Content="Fast &gt; &gt;" Grid.Column="4" />
                 </Grid>
                 <Slider Margin="10,0,10,0" Grid.Row="1" />
             </Grid>
