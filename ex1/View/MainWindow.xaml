@@ -15,7 +15,7 @@
                     <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
                 </MenuItem>
             </Menu>
-            <TextBlock Text="{Binding FilePath}"></TextBlock>
+            <TextBlock Name="filePathTextBox"></TextBlock>
         </StackPanel>
         
         <Grid>

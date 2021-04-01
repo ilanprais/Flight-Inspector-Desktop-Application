@@ -12,7 +12,6 @@ namespace ex1.ViewModel
     {
         private IFlightGearModel _model;
 
-        private string _filePathName;
         private bool _isConnected = false;
 
         public FlightGearViewModel(IFlightGearModel model)
@@ -36,29 +35,6 @@ namespace ex1.ViewModel
                     NotifyPropertyChanged(e.PropertyName);
                 }
             };
-        }
-
-        public string FilePath
-        {
-            get => _filePathName;
-            set
-            {
-                _model.Frames = new List<Frame>();
-
-                using (StreamReader file = new StreamReader(value))
-                {
-                    string line;
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        _model.Frames.Add(new Frame(line));
-                    }
-                }
-
-                NotifyPropertyChanged(nameof(FramesNumber));
-
-                _filePathName = value;
-                NotifyPropertyChanged(nameof(FilePath));
-            }
         }
 
         public int FramesNumber
@@ -113,6 +89,22 @@ namespace ex1.ViewModel
         public double Pitch { get => Math.Round(_model.CurrentFrame.Pitch, 1); }
         public double Row { get => Math.Round(_model.CurrentFrame.Row, 1); }
         public double Yaw { get => Math.Round(_model.CurrentFrame.Yaw, 1); }
+
+        public void LoadFile(string filePath)
+        {
+            _model.Frames = new List<Frame>();
+
+            using (StreamReader file = new StreamReader(filePath))
+            {
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    _model.Frames.Add(new Frame(line));
+                }
+            }
+
+            NotifyPropertyChanged(nameof(FramesNumber));
+        }
 
         public async void Render()
         {

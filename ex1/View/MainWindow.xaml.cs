@@ -48,7 +48,8 @@ namespace ex1
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
             {
-                vm.FilePath = openFileDialog.FileName;
+                vm.LoadFile(openFileDialog.FileName);
+                filePathTextBox.Text = openFileDialog.FileName;
             }
         }
 
