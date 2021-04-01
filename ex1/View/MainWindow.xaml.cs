@@ -31,16 +31,6 @@ namespace ex1
             DataContext = vm;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void GraphWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void loadFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -51,21 +41,6 @@ namespace ex1
                 vm.LoadFile(openFileDialog.FileName);
                 filePathTextBox.Text = openFileDialog.FileName;
             }
-        }
-
-        private void Statistics_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void GraphWindow_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PlaybackWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -28,7 +28,6 @@ namespace ex1.ViewModel
                     NotifyPropertyChanged(nameof(Yaw));
 
                     NotifyPropertyChanged(nameof(CurrentFramePosition));
-                    NotifyPropertyChanged(nameof(CurrentTime));
                 }
                 else
                 {
@@ -51,37 +50,9 @@ namespace ex1.ViewModel
                 }
             }
         }
-        public double Velocity
-        {
-            get => _model.Velocity;
-            set
-            {
-                if (value > 3)
-                {
-                    _model.Velocity = 3;
-                }
-                else if (value < 0)
-                {
-                    _model.Velocity = 0;
-                }
-                else
-                {
-                    _model.Velocity = value;
-                }
-            }
-        }
+
+        public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
         public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
-        public string CurrentTime
-        {
-            get
-            {
-                TimeSpan t = TimeSpan.FromSeconds((double) CurrentFramePosition / _model.FrameRate);
-                return string.Format("{0:D2}:{1:D2}:{2:D1}",
-                    t.Minutes,
-                    t.Seconds,
-                    t.Milliseconds / 10);
-            }
-        }
 
         public double Altimeter { get => Math.Round(_model.CurrentFrame.Altimeter, 1); }
         public double AirSpeed { get => Math.Round(_model.CurrentFrame.AirSpeed, 1); }
@@ -120,18 +91,6 @@ namespace ex1.ViewModel
         public void PauseRendering()
         {
             _model.RenderingStopped = true;
-        }
-
-        public double VideoSpeed
-        {
-            get
-            {
-                return _model.Velocity;
-            }
-            set
-            {
-                _model.Velocity = value;
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

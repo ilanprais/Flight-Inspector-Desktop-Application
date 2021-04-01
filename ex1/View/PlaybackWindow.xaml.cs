@@ -21,8 +21,6 @@ namespace ex1.View
     {
         private bool _isPlaying = false;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public PlaybackWindow()
         {
             InitializeComponent();
@@ -44,16 +42,6 @@ namespace ex1.View
                 playBtn.Content = "Play";
                 _isPlaying = false;
             }
-        }
-
-        private void fast_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.vm.Velocity += 5;
-        }
-
-        private void slow_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.vm.Velocity -= 5;
         }
 
         private void restart_Click(object sender, RoutedEventArgs e)
