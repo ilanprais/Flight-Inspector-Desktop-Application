@@ -13,7 +13,9 @@ namespace ex1.Model
 
         private volatile int _currentFramePosition = 0;
         private volatile bool _renderingStopped = false;
-        private volatile int _frameRate = 20;
+        private double _velocity = 1;
+
+        private readonly int _frameRate = 20;
 
         public FlightGearModel(IAsyncFGClient fgClient)
         {
@@ -45,8 +47,17 @@ namespace ex1.Model
             }
         }
 
-        public int FrameRate { get => _frameRate; set => _frameRate = value; }
+        public double Velocity
+        {
+            get => _velocity;
+            set
+            {
+                _velocity = value;
+                NotifyPropertyChanged(nameof(Velocity));
+            }
+        }
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
+        public int FrameRate { get => _frameRate; }
 
         public Task Render()
         {
@@ -54,7 +65,7 @@ namespace ex1.Model
             {
                 while (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                 {
-                    _fgClient.Send(CurrentFrame.ToString());
+                    //_fgClient.Send(CurrentFrame.ToString());
                     ++CurrentFramePosition;
 
                     await Task.Delay(1000 / FrameRate);
@@ -76,10 +87,7 @@ namespace ex1.Model
 
         private void NotifyPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

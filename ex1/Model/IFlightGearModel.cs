@@ -12,8 +12,9 @@ namespace ex1.Model
         public int CurrentFramePosition { get; set; }
         public Frame CurrentFrame { get; }
 
-        public int FrameRate { get; set; }
+        public double Velocity { get; set; }
         public bool RenderingStopped { get; set; }
+        public int FrameRate { get; }
 
         public Task ConnectToFG(string ip, int port);
         public Task DisconnectFromFG();

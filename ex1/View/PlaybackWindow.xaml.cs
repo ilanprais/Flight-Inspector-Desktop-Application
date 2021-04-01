@@ -18,39 +18,38 @@ namespace ex1.View
     /// </summary>
     public partial class PlaybackWindow : UserControl
     {
+        private bool _isPlaying = false;
+
         public PlaybackWindow()
         {
             InitializeComponent();
             slider.Value = 0;
         }
 
-        private void start_Click(object sender, RoutedEventArgs e)
+        private void play_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.vm.Render();
-            startBtn.IsEnabled = false;
-            pauseBtn.IsEnabled = true;
-        }
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            MainWindow.vm.CurrentFramePosition = (int) e.NewValue;
-        }
-
-        private void pause_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.vm.PauseRendering();
-            pauseBtn.IsEnabled = false;
-            startBtn.IsEnabled = true;
+            if (!_isPlaying)
+            {
+                MainWindow.vm.Render();
+                playBtn.Content = "Pause";
+                _isPlaying = true;
+            }
+            else
+            {
+                MainWindow.vm.PauseRendering();
+                playBtn.Content = "Play";
+                _isPlaying = false;
+            }
         }
 
         private void fast_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.vm.FrameRate += 5;
+            MainWindow.vm.Velocity += 5;
         }
 
         private void slow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.vm.FrameRate -= 5;
+            MainWindow.vm.Velocity -= 5;
         }
 
         private void restart_Click(object sender, RoutedEventArgs e)

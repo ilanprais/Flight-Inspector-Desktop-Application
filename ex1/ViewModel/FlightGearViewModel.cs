@@ -19,7 +19,7 @@ namespace ex1.ViewModel
         {
             _model = model;
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) {
-                if (e.PropertyName == "CurrentFramePosition")
+                if (e.PropertyName == nameof(CurrentFramePosition))
                 {
                     NotifyPropertyChanged(nameof(Altimeter));
                     NotifyPropertyChanged(nameof(AirSpeed));
@@ -27,10 +27,9 @@ namespace ex1.ViewModel
                     NotifyPropertyChanged(nameof(Pitch));
                     NotifyPropertyChanged(nameof(Row));
                     NotifyPropertyChanged(nameof(Yaw));
-                }
-                else if (e.PropertyName == "Frames")
-                {
-                    NotifyPropertyChanged(nameof(FramesNumber));
+
+                    NotifyPropertyChanged(nameof(CurrentFramePosition));
+                    NotifyPropertyChanged(nameof(CurrentTime));
                 }
                 else
                 {
@@ -55,6 +54,8 @@ namespace ex1.ViewModel
                     }
                 }
 
+                NotifyPropertyChanged(nameof(FramesNumber));
+
                 _filePathName = value;
                 NotifyPropertyChanged(nameof(FilePath));
             }
@@ -70,30 +71,41 @@ namespace ex1.ViewModel
                 }
                 else
                 {
-                    return _model.Frames.Count;
+                    return _model.Frames.Count - 1;
                 }
             }
         }
-        public int FrameRate
+        public int Velocity
         {
             get => _model.FrameRate;
             set
             {
-                if (value > 40)
+                if (value > 3)
                 {
-                    _model.FrameRate = 40;
+                    _model.Velocity = 3;
                 }
-                else if (value < 10)
+                else if (value < 0)
                 {
-                    _model.FrameRate = 10;
+                    _model.Velocity = 0;
                 }
                 else
                 {
-                    _model.FrameRate = value;
+                    _model.Velocity = value;
                 }
             }
         }
         public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
+        public string CurrentTime
+        {
+            get
+            {
+                TimeSpan t = TimeSpan.FromSeconds((double) CurrentFramePosition / _model.FrameRate);
+                return string.Format("{0:D2}:{1:D2}:{2:D1}",
+                    t.Minutes,
+                    t.Seconds,
+                    t.Milliseconds / 10);
+            }
+        }
 
         public double Altimeter { get => Math.Round(_model.CurrentFrame.Altimeter, 1); }
         public double AirSpeed { get => Math.Round(_model.CurrentFrame.AirSpeed, 1); }
@@ -105,7 +117,7 @@ namespace ex1.ViewModel
         public async void Render()
         {
             if (!_isConnected) {
-                await _model.ConnectToFG("127.0.0.1", 8081);
+                //await _model.ConnectToFG("127.0.0.1", 8081);
                 _isConnected = true;
             }
 
