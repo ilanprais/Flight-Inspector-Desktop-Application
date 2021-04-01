@@ -34,13 +34,13 @@ namespace ex1.Model
         {
             get
             {
-                try
-                {
-                    return Frames[CurrentFramePosition];
-                }
-                catch (Exception e)
+                if (Frames == null)
                 {
                     return new Frame();
+                }
+                else
+                {
+                    return Frames[CurrentFramePosition];
                 }
             }
         }
