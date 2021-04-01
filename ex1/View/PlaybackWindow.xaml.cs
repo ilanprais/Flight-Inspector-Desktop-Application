@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,10 +21,13 @@ namespace ex1.View
     {
         private bool _isPlaying = false;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public PlaybackWindow()
         {
             InitializeComponent();
             slider.Value = 0;
+            DataContext = MainWindow.vm;
         }
 
         private void play_Click(object sender, RoutedEventArgs e)

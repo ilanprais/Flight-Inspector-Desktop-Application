@@ -32,6 +32,7 @@ namespace ex1.Model
                 NotifyPropertyChanged(nameof(CurrentFramePosition));
             }
         }
+        
         public Frame CurrentFrame
         {
             get
@@ -53,7 +54,6 @@ namespace ex1.Model
             set
             {
                 _velocity = value;
-                NotifyPropertyChanged(nameof(Velocity));
             }
         }
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
@@ -68,7 +68,7 @@ namespace ex1.Model
                     //_fgClient.Send(CurrentFrame.ToString());
                     ++CurrentFramePosition;
 
-                    await Task.Delay(1000 / FrameRate);
+                    await Task.Delay((int)(1000 / ((double)FrameRate*_velocity)));
                 }
             });
         }
