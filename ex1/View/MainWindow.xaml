@@ -17,7 +17,7 @@
             </Menu>
             <TextBlock Text="{Binding FilePath}"></TextBlock>
         </StackPanel>
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "580" />
@@ -37,12 +37,18 @@
                 <Controls:Statistics Grid.Row="0" Loaded="Statistics_Loaded"/>
                 <Controls:RudderWindow Grid.Row="1"/>
             </Grid>
+            <Canvas>
+                <Controls:GraphWindow Grid.Row="0" Grid.Column="0" Loaded="GraphWindow_Loaded_1" Height="350" Width="580"/>
+                
+                
 
-            <Controls:GraphWindow Grid.Row="0" Grid.Column="0" Loaded="GraphWindow_Loaded_1"/>
-            <Controls:PlaybackWindow Height="45" Grid.Row="1" Grid.Column="0" Loaded="PlaybackWindow_Loaded"/>
+            </Canvas>
+            
+            <Controls:PlaybackWindow x:Name="playback" Height="45" Grid.Row="1" Grid.Column="0" Loaded="PlaybackWindow_Loaded"/>
             <Controls:StatusWindow Height="45" Grid.Row="1" Grid.Column="1"/>
+            
 
         </Grid>
     </StackPanel>
-    
+
 </Window>

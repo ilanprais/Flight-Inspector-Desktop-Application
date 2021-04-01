@@ -75,9 +75,9 @@ namespace ex1.ViewModel
                 }
             }
         }
-        public int Velocity
+        public double Velocity
         {
-            get => _model.FrameRate;
+            get => _model.Velocity;
             set
             {
                 if (value > 3)
@@ -128,6 +128,18 @@ namespace ex1.ViewModel
         public void PauseRendering()
         {
             _model.RenderingStopped = true;
+        }
+
+        public double VideoSpeed
+        {
+            get
+            {
+                return _model.Velocity;
+            }
+            set
+            {
+                _model.Velocity = value;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
