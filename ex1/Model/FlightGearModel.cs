@@ -54,7 +54,7 @@ namespace ex1.Model
             {
                 while (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                 {
-                    //_fgClient.Send(CurrentFrame.ToString());
+                    _fgClient.Send(CurrentFrame.ToString());
                     ++CurrentFramePosition;
 
                     await Task.Delay(1000 / FrameRate);

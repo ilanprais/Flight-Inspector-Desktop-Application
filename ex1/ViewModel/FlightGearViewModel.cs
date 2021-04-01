@@ -64,13 +64,13 @@ namespace ex1.ViewModel
         {
             get
             {
-                try
-                {
-                    return _model.Frames.Count;
-                }
-                catch (Exception e)
+                if (_model.Frames == null)
                 {
                     return 0;
+                }
+                else
+                {
+                    return _model.Frames.Count;
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace ex1.ViewModel
         public async void Render()
         {
             if (!_isConnected) {
-                //await _model.ConnectToFG("127.0.0.1", 8081);
+                await _model.ConnectToFG("127.0.0.1", 8081);
                 _isConnected = true;
             }
 
