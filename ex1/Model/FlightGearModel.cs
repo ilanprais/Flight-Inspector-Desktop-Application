@@ -48,14 +48,7 @@ namespace ex1.Model
             }
         }
 
-        public double Velocity
-        {
-            get => _velocity;
-            set
-            {
-                _velocity = value;
-            }
-        }
+        public double Velocity { get => _velocity; set => _velocity = value; }
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
         public int FrameRate { get => _frameRate; }
 
@@ -68,7 +61,7 @@ namespace ex1.Model
                     //_fgClient.Send(CurrentFrame.ToString());
                     ++CurrentFramePosition;
 
-                    await Task.Delay((int)(1000 / ((double)FrameRate*_velocity)));
+                    await Task.Delay((int) (1000 / ((double) FrameRate * _velocity)));
                 }
             });
         }

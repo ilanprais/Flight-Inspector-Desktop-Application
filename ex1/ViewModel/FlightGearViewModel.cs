@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.ComponentModel;
 using ex1.Model;
-using System.Net.Sockets;
 
 namespace ex1.ViewModel
 {
@@ -50,9 +48,10 @@ namespace ex1.ViewModel
                 }
             }
         }
+        public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
 
         public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
-        public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
+        public int FrameRate { get => _model.FrameRate; }
 
         public double Altimeter { get => Math.Round(_model.CurrentFrame.Altimeter, 1); }
         public double AirSpeed { get => Math.Round(_model.CurrentFrame.AirSpeed, 1); }
