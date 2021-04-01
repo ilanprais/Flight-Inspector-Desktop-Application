@@ -27,13 +27,13 @@
                         <ColumnDefinition Width = "*"/>
                         <ColumnDefinition Width = "*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Restart" Grid.Column="0" />
-                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="&lt; &lt; Slow" Grid.Column="1" />
-                    <Button Background="Black" Foreground="White" Name="startBtn" VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="2" Click="Button_Click" />
-                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Pause" Grid.Column="3" />
-                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Fast &gt; &gt;" Grid.Column="4" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Restart" Grid.Column="0" Click="restart_Click" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="&lt; &lt; Slow" Grid.Column="1" Click="slow_Click" />
+                    <Button Background="Black" Foreground="White" Name="startBtn" VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="2" Click="start_Click" />
+                    <Button Name="pauseBtn"  Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Pause" Grid.Column="3" Click="pause_Click" />
+                    <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Fast &gt; &gt;" Grid.Column="4" Click="fast_Click" />
                 </Grid>
-                <Slider Margin="10,0,10,0" Grid.Row="1" />
+                <Slider Name="slider" Value="{Binding CurrentFramePosition}" Maximum="{Binding FramesNumber}" Minimum="0" Margin="10,0,10,0" Grid.Row="1" ValueChanged="Slider_ValueChanged" />
             </Grid>
             <Border Grid.Column="1" Margin="5,5,15,5" Background="black" BorderBrush="black" BorderThickness="2">
                     <TextBlock Foreground="White" FontSize="22" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="00:00"/>

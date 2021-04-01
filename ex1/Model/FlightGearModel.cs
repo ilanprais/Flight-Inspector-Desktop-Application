@@ -11,11 +11,9 @@ namespace ex1.Model
     {
         private IAsyncFGClient _fgClient;
 
-        private Frame _currentFrame = new Frame();
-        private int _currentFramePosition = 0;
-
+        private volatile int _currentFramePosition = 0;
         private volatile bool _renderingStopped = false;
-        private volatile int _frameRate = 10;
+        private volatile int _frameRate = 20;
 
         public FlightGearModel(IAsyncFGClient fgClient)
         {
@@ -23,31 +21,43 @@ namespace ex1.Model
         }
 
         public List<Frame> Frames { get; set; }
-        public Frame CurrentFrame
+        public int CurrentFramePosition
         {
-            get => _currentFrame;
+            get => _currentFramePosition;
             set
             {
-                _currentFrame = value;
-                NotifyPropertyChanged(nameof(CurrentFrame));
+                _currentFramePosition = value;
+                NotifyPropertyChanged(nameof(CurrentFramePosition));
+            }
+        }
+        public Frame CurrentFrame
+        {
+            get
+            {
+                try
+                {
+                    return Frames[CurrentFramePosition];
+                }
+                catch (Exception e)
+                {
+                    return new Frame();
+                }
             }
         }
 
-        public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
         public int FrameRate { get => _frameRate; set => _frameRate = value; }
+        public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
 
         public Task Render()
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
-                for (; !RenderingStopped && _currentFramePosition < Frames.Count - 1; ++_currentFramePosition)
+                while (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                 {
-                    var frame = Frames[_currentFramePosition];
-                    _fgClient.Send(_currentFrame.ToString());
+                    //_fgClient.Send(CurrentFrame.ToString());
+                    ++CurrentFramePosition;
 
-                    CurrentFrame = frame;
-
-                    Thread.Sleep(1000 / FrameRate);
+                    await Task.Delay(1000 / FrameRate);
                 }
             });
         }

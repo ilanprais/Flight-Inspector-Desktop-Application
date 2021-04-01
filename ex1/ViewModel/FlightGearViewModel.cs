@@ -11,11 +11,15 @@ namespace ex1.ViewModel
     public class FlightGearViewModel : INotifyPropertyChanged
     {
         private IFlightGearModel _model;
+
+        private string _filePathName;
+        private bool _isConnected = false;
+
         public FlightGearViewModel(IFlightGearModel model)
         {
             _model = model;
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) {
-                if (e.PropertyName == "CurrentFrame")
+                if (e.PropertyName == "CurrentFramePosition")
                 {
                     NotifyPropertyChanged(nameof(Altimeter));
                     NotifyPropertyChanged(nameof(AirSpeed));
@@ -23,6 +27,10 @@ namespace ex1.ViewModel
                     NotifyPropertyChanged(nameof(Pitch));
                     NotifyPropertyChanged(nameof(Row));
                     NotifyPropertyChanged(nameof(Yaw));
+                }
+                else if (e.PropertyName == "Frames")
+                {
+                    NotifyPropertyChanged(nameof(FramesNumber));
                 }
                 else
                 {
@@ -33,6 +41,7 @@ namespace ex1.ViewModel
 
         public string FilePath
         {
+            get => _filePathName;
             set
             {
                 _model.Frames = new List<Frame>();
@@ -45,19 +54,47 @@ namespace ex1.ViewModel
                         _model.Frames.Add(new Frame(line));
                     }
                 }
-                this.FilePathName = value;
-            }
 
-            get
-            {
-                return this.FilePathName;  
+                _filePathName = value;
+                NotifyPropertyChanged(nameof(FilePath));
             }
         }
 
-        private string FilePathName;
-        public int FrameRate { set => _model.FrameRate = value; }
+        public int FramesNumber
+        {
+            get
+            {
+                try
+                {
+                    return _model.Frames.Count;
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                }
+            }
+        }
+        public int FrameRate
+        {
+            get => _model.FrameRate;
+            set
+            {
+                if (value > 40)
+                {
+                    _model.FrameRate = 40;
+                }
+                else if (value < 10)
+                {
+                    _model.FrameRate = 10;
+                }
+                else
+                {
+                    _model.FrameRate = value;
+                }
+            }
+        }
+        public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
 
-        public string Altitude { get => Math.Round(_model.CurrentFrame.Altimeter, 1).ToString(); }
         public double Altimeter { get => Math.Round(_model.CurrentFrame.Altimeter, 1); }
         public double AirSpeed { get => Math.Round(_model.CurrentFrame.AirSpeed, 1); }
         public double Direction { get => Math.Round(_model.CurrentFrame.Direction, 1); }
@@ -67,10 +104,13 @@ namespace ex1.ViewModel
 
         public async void Render()
         {
-            await _model.ConnectToFG("127.0.0.1", 8081);
+            if (!_isConnected) {
+                //await _model.ConnectToFG("127.0.0.1", 8081);
+                _isConnected = true;
+            }
 
             _model.RenderingStopped = false;
-            await _model.Render();
+            _model.Render();
         }
 
         public void PauseRendering()

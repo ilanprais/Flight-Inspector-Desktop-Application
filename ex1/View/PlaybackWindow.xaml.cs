@@ -21,13 +21,41 @@ namespace ex1.View
         public PlaybackWindow()
         {
             InitializeComponent();
+            slider.Value = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void start_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.start(sender, e);
+            MainWindow.vm.Render();
             startBtn.IsEnabled = false;
+            pauseBtn.IsEnabled = true;
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MainWindow.vm.CurrentFramePosition = (int) e.NewValue;
+        }
+
+        private void pause_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.vm.PauseRendering();
+            pauseBtn.IsEnabled = false;
+            startBtn.IsEnabled = true;
+        }
+
+        private void fast_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.vm.FrameRate += 5;
+        }
+
+        private void slow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.vm.FrameRate -= 5;
+        }
+
+        private void restart_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.vm.CurrentFramePosition = 0;
         }
     }
 }

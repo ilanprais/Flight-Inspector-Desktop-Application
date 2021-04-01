@@ -24,6 +24,7 @@ namespace ex1
     public partial class MainWindow : Window
     {
         public static FlightGearViewModel vm = new FlightGearViewModel(new FlightGearModel(new AsyncTcpFGClient()));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,17 +52,17 @@ namespace ex1
             }
         }
 
-        public void start(object sender, RoutedEventArgs e)
-        {
-            vm.Render();
-        }
-
         private void Statistics_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void GraphWindow_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlaybackWindow_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
