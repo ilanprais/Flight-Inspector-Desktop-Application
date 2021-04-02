@@ -39,7 +39,7 @@
                         </Grid.ColumnDefinitions>
                         <Button Background="Black" Foreground="White" VerticalContentAlignment="Center" FontSize="7" Content="Restart" Grid.Column="0" Click="restart_Click" />
                         <Button Background="Black" Foreground="White" Name="playBtn" VerticalContentAlignment="Center" FontSize="7" Content="Start" Grid.Column="1" Click="play_Click" />
-                        <ToggleButton Background="Black" Foreground="White" Name="speed" VerticalContentAlignment="Center" FontSize="6" Content="speed" Grid.Column="2"/>
+                        <ToggleButton Background="Black" Foreground="White" Name="speed" VerticalContentAlignment="Center" FontSize="6" Content="Speed" Grid.Column="2"/>
                     </Grid>
                     <Slider Name="slider" Value="{Binding CurrentFramePosition}" Maximum="{Binding FramesNumber}" Minimum="0" Margin="10,0,10,0" Grid.Row="1" />
                 </Grid>
