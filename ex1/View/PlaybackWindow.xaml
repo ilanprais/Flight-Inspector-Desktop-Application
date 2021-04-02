@@ -15,9 +15,9 @@
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
         <StackPanel>
             <Popup IsOpen="{Binding ElementName=speed, Path=IsChecked}" StaysOpen="False">
-                <StackPanel Background="White">
-                    <Slider x:Name="speedslider" Value="{Binding Velocity}" Maximum="3" Minimum="0.1" Height="124" Width="323" />
-                    <TextBlock Text="{Binding Value, ElementName=speedslider, StringFormat=N2}" Height="78" Width="209"/>
+                <StackPanel Background="SlateGray" Orientation="Horizontal">
+                    <Slider Foreground="White" x:Name="speedslider" Value="{Binding Velocity}" Maximum="3" Minimum="0.1" Height="20" Width="200" />
+                    <TextBlock Foreground="White" Text="{Binding Value, ElementName=speedslider, StringFormat=N2}" Height="20" Width="30"/>
                 </StackPanel>
             </Popup>
             <Grid>
