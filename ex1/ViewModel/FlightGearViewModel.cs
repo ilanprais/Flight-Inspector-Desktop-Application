@@ -49,7 +49,6 @@ namespace ex1.ViewModel
             }
         }
         public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
-
         public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
         public int FrameRate { get => _model.FrameRate; }
 
