@@ -19,7 +19,7 @@ namespace ex1.View
                 content.Content = "Play";
                 return content;
             }
-            else if (System.Convert.ToInt32(value) == 0)
+            else if (System.Convert.ToInt32(value) == 0 && !PlaybackWindow.Current.IsPlaying)
             {
                 var content = new ContentControl();
                 content.Content = "Start";
