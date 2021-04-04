@@ -57,16 +57,16 @@ namespace ex1.ViewModel
         public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
         public int FrameRate { get => _model.FrameRate; }
 
-        public double Aileron { get => Math.Round(_model.CurrentFrame.Aileron, 1); }
-        public double Elevator { get => Math.Round(_model.CurrentFrame.Elevator, 1); }
-        public double Rudder { get => Math.Round(_model.CurrentFrame.Rudder, 1); }
-        public double Throttle { get => Math.Round(_model.CurrentFrame.Throttle, 1); }
-        public double Altimeter { get => Math.Round(_model.CurrentFrame.Altimeter, 1); }
-        public double AirSpeed { get => Math.Round(_model.CurrentFrame.AirSpeed, 1); }
-        public double Direction { get => Math.Round(_model.CurrentFrame.Direction, 1); }
-        public double Pitch { get => Math.Round(_model.CurrentFrame.Pitch, 1); }
-        public double Roll { get => Math.Round(_model.CurrentFrame.Roll, 1); }
-        public double Yaw { get => Math.Round(_model.CurrentFrame.Yaw, 1); }
+        public double Aileron { get => _model.CurrentFrame.Aileron; }
+        public double Elevator { get => _model.CurrentFrame.Elevator; }
+        public double Rudder { get => _model.CurrentFrame.Rudder; }
+        public double Throttle { get => _model.CurrentFrame.Throttle; }
+        public double Altimeter { get => _model.CurrentFrame.Altimeter; }
+        public double AirSpeed { get => _model.CurrentFrame.AirSpeed; }
+        public double Direction { get => _model.CurrentFrame.Direction; }
+        public double Pitch { get => _model.CurrentFrame.Pitch; }
+        public double Roll { get => _model.CurrentFrame.Roll; }
+        public double Yaw { get => _model.CurrentFrame.Yaw; }
 
         public void LoadFile(string filePath)
         {

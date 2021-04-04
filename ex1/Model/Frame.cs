@@ -15,7 +15,7 @@ namespace ex1.Model
             string[] words = frameString.Split(',');
 
             Aileron = Double.Parse(words[0]);
-            Elevator = Double.Parse(words[2]);
+            Elevator = Double.Parse(words[1]);
             Rudder = Double.Parse(words[3]);
             Throttle = Double.Parse(words[7]) + Double.Parse(words[8]);
 

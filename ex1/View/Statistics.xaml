@@ -29,12 +29,12 @@
         <TextBlock Foreground="White" Grid.Row = "4" Grid.Column = "0" Text="Roll" TextWrapping="Wrap" FontSize="15"/>
         <TextBlock Foreground="White" Grid.Row = "5" Grid.Column = "0" Text="Yaw" TextWrapping="Wrap" FontSize="15"/>
 
-            <TextBlock Text="{Binding Altimeter}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding AirSpeed}" Padding="2" Foreground="White"  Background="Black" Grid.Row = "1" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding Direction}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding Pitch}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding Roll}" Padding="2" Foreground="White" Background="Black" Grid.Row = "4" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
-            <TextBlock Text="{Binding Yaw}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Altimeter, StringFormat=N2}" Padding="2" Foreground="White" Background="Black" Grid.Row = "0" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding AirSpeed, StringFormat=N2}" Padding="2" Foreground="White"  Background="Black" Grid.Row = "1" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Direction, StringFormat=N2}" Padding="2" Foreground="White" Background="Black" Grid.Row = "2" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Pitch, StringFormat=N2}" Padding="2" Foreground="White" Background="Black" Grid.Row = "3" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Roll, StringFormat=N2}" Padding="2" Foreground="White" Background="Black" Grid.Row = "4" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
+            <TextBlock Text="{Binding Yaw, StringFormat=N2}" Padding="2" Foreground="White" Background="Black" Grid.Row = "5" Grid.Column = "1" TextWrapping="Wrap" FontSize="15"/>
         </Grid>
     </Border>
 </UserControl>
