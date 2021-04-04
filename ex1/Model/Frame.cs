@@ -17,7 +17,7 @@ namespace ex1.Model
             Aileron = Double.Parse(words[0]);
             Elevator = Double.Parse(words[1]);
             Rudder = Double.Parse(words[3]);
-            Throttle = Double.Parse(words[7]) + Double.Parse(words[8]);
+            Throttle = Double.Parse(words[6]) + Double.Parse(words[7]);
 
             Altimeter = Double.Parse(words[25]);
             AirSpeed = Double.Parse(words[21]);

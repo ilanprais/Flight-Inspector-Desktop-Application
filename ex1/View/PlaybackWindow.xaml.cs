@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,28 +20,38 @@ namespace ex1.View
     /// </summary>
     public partial class PlaybackWindow : UserControl
     {
-        private bool _isPlaying = false;
+        public static PlaybackWindow Current;
+
+        public bool IsPlaying { get; set; }
 
         public PlaybackWindow()
         {
             InitializeComponent();
-            slider.Value = 0;
             DataContext = MainWindow.vm;
+
+            Current = this;
+
+            playBtn.Content = "Start";
         }
 
         private void play_Click(object sender, RoutedEventArgs e)
         {
-            if (!_isPlaying)
+            if (!IsPlaying)
             {
+                if (slider.Value == slider.Maximum)
+                {
+                    slider.Value = 0;
+                }
+
                 MainWindow.vm.Render();
                 playBtn.Content = "Pause";
-                _isPlaying = true;
+                IsPlaying = true;
             }
             else
             {
                 MainWindow.vm.PauseRendering();
                 playBtn.Content = "Play";
-                _isPlaying = false;
+                IsPlaying = false;
             }
         }
 
