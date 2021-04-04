@@ -11,12 +11,18 @@ namespace ex1.View
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (System.Convert.ToInt32(value) == PlaybackWindow.Current.slider.Maximum - 1)
+            if (System.Convert.ToInt32(value) == PlaybackWindow.Current.slider.Maximum)
             {
                 PlaybackWindow.Current.IsPlaying = false;
 
                 var content = new ContentControl();
                 content.Content = "Play";
+                return content;
+            }
+            else if (System.Convert.ToInt32(value) == 0)
+            {
+                var content = new ContentControl();
+                content.Content = "Start";
                 return content;
             }
 

@@ -30,8 +30,6 @@ namespace ex1.View
             DataContext = MainWindow.vm;
 
             Current = this;
-
-            playBtn.Content = "Start";
         }
 
         private void play_Click(object sender, RoutedEventArgs e)
