@@ -6,10 +6,19 @@
              xmlns:local="clr-namespace:ex1.View"
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="90">
+    <UserControl.Resources>
+        <local:ControllerValuesConverter x:Key="controllerValuesConverter" />
+    </UserControl.Resources>
     <Grid>
         <Ellipse Fill="Black"/>
         <Ellipse Fill="#FF555353" Margin="20"/>
-        <Ellipse Margin="30" RenderTransformOrigin="0.5,0.5" IsEnabled="False" Opacity="0.8">
+        <Ellipse RenderTransformOrigin="0.5,0.5" IsEnabled="False" Opacity="0.8">
+            <Ellipse.Margin>
+                <MultiBinding Converter="{StaticResource controllerValuesConverter}">
+                    <Binding Path="Aileron"/>
+                    <Binding Path="Elevator"/>
+                </MultiBinding>
+            </Ellipse.Margin>
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

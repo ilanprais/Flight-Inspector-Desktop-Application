@@ -23,8 +23,8 @@
                 <RowDefinition Height = "*" />
             </Grid.RowDefinitions>
 
-            <Slider Orientation="Vertical" Grid.Row="1" Grid.Column="1" />
-            <Slider Orientation="Horizontal" Margin="0,1,0,0" Grid.Row="2" Grid.Column="2" />
+            <Slider Value="{Binding Rudder, Mode=OneWay}" IsEnabled="False" Orientation="Horizontal" Margin="0,1,0,0" Grid.Row="2" Grid.Column="2" />
+            <Slider Value="{Binding Throttle, Mode=OneWay}" IsEnabled="False" Orientation="Vertical" Grid.Row="1" Grid.Column="1" />
             <TextBlock Text="Rudder" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="3" Grid.Column="2"/>
             <TextBlock Text="Throttle" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="9" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5" >
                 <TextBlock.RenderTransform>
