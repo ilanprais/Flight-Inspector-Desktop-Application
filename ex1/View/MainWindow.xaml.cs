@@ -41,10 +41,6 @@ namespace ex1
                 vm.LoadFile(openFileDialog.FileName);
                 filePathTextBox.Text = openFileDialog.FileName;
             }
-            //String path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
-            //vm.LoadFile(path);
-            //filePathTextBox.Text = path;
-
         }
     }
 }

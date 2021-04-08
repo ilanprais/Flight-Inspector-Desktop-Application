@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ex1.View
 {
@@ -20,6 +8,8 @@ namespace ex1.View
     /// </summary>
     public partial class PlaybackWindow : UserControl
     {
+        private bool _renderStarted = false;
+
         public static PlaybackWindow Current;
 
         public bool IsPlaying { get; set; }
@@ -36,12 +26,21 @@ namespace ex1.View
         {
             if (!IsPlaying)
             {
-                if (slider.Value == slider.Maximum)
+                if (!_renderStarted)
                 {
-                    slider.Value = 0;
+                    MainWindow.vm.Render();
+                    _renderStarted = true;
+                }
+                else
+                {
+                    if (slider.Value == slider.Maximum)
+                    {
+                        slider.Value = 0;
+                    }
+
+                    MainWindow.vm.ResumeRendering();
                 }
 
-                MainWindow.vm.Render();
                 playBtn.Content = "Pause";
                 IsPlaying = true;
             }

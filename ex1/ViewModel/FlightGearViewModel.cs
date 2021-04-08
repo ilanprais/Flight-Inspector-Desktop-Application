@@ -89,6 +89,7 @@ namespace ex1.ViewModel
             }
 
             NotifyPropertyChanged(nameof(FramesNumber));
+            _model.CurrentFramePosition = 0;
         }
 
         public async void Render()
@@ -98,8 +99,12 @@ namespace ex1.ViewModel
                 _isConnected = true;
             }
 
-            _model.RenderingStopped = false;
             _model.Render();
+        }
+
+        public void ResumeRendering()
+        {
+            _model.RenderingStopped = false;
         }
 
         public void PauseRendering()
