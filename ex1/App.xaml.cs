@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using ex1.Model;
+using ex1.ViewModel;
 
 namespace ex1
 {
@@ -13,5 +9,19 @@ namespace ex1
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            var model = new FlightGearModel(new AsyncTcpFGClient());
+
+            GeneralVM = new GeneralViewModel(model);
+            PlayBackVM = new PlayBackViewModel(model);
+            RudderVM = new RudderViewModel(model);
+            StatisticsVM = new StatisticsViewModel(model);
+        }
+
+        public GeneralViewModel GeneralVM { get; set; }
+        public PlayBackViewModel PlayBackVM { get; set; }
+        public RudderViewModel RudderVM { get; set; }
+        public StatisticsViewModel StatisticsVM { get; set; }
     }
 }

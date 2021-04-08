@@ -11,10 +11,11 @@ namespace ex1.Model
     {
         private IAsyncFGClient _fgClient;
 
+        private List<Frame> _frames = null;
         private volatile int _currentFramePosition = 0;
+
         private volatile bool _renderingStopped = false;
         private double _velocity = 1;
-
         private readonly int _frameRate = 20;
 
         public FlightGearModel(IAsyncFGClient fgClient)
@@ -22,7 +23,15 @@ namespace ex1.Model
             _fgClient = fgClient;
         }
 
-        public List<Frame> Frames { get; set; }
+        public List<Frame> Frames
+        {
+            get => _frames;
+            set
+            {
+                _frames = value;
+                NotifyPropertyChanged(nameof(Frames));
+            }
+        }
         public int CurrentFramePosition
         {
             get => _currentFramePosition;
@@ -60,7 +69,7 @@ namespace ex1.Model
                 {
                     var task = _fgClient.Send(CurrentFrame.ToString());
 
-                    if (!RenderingStopped)
+                    if (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                     {
                         ++CurrentFramePosition;
                     }

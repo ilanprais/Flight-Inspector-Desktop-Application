@@ -21,7 +21,7 @@ namespace ex1.View
         public RudderWindow()
         {
             InitializeComponent();
-            DataContext = MainWindow.vm;
+            DataContext = (Application.Current as App).RudderVM;
         }
     }
 }

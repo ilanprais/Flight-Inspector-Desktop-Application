@@ -20,8 +20,8 @@ namespace ex1.View
     {
         public Statistics()
         {
-            DataContext = MainWindow.vm;
             InitializeComponent();
+            DataContext = (Application.Current as App).StatisticsVM;
         }
     }
 }

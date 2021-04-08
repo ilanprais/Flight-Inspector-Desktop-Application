@@ -23,22 +23,22 @@ namespace ex1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static FlightGearViewModel vm = new FlightGearViewModel(new FlightGearModel(new AsyncTcpFGClient()));
-
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = vm;
+            DataContext = (Application.Current as App).GeneralVM;
         }
 
         private void loadFile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = false;
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            };
             if (openFileDialog.ShowDialog() == true)
             {
-                vm.LoadFile(openFileDialog.FileName);
+                (DataContext as GeneralViewModel).LoadFile(openFileDialog.FileName);
                 filePathTextBox.Text = openFileDialog.FileName;
             }
         }

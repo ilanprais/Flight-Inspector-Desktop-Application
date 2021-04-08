@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using ex1.ViewModel;
 
 namespace ex1.View
 {
@@ -17,7 +18,7 @@ namespace ex1.View
         public PlaybackWindow()
         {
             InitializeComponent();
-            DataContext = MainWindow.vm;
+            DataContext = (Application.Current as App).PlayBackVM;
 
             Current = this;
         }
@@ -28,7 +29,7 @@ namespace ex1.View
             {
                 if (!_renderStarted)
                 {
-                    MainWindow.vm.Render();
+                    (DataContext as PlayBackViewModel).Render();
                     _renderStarted = true;
                 }
                 else
@@ -38,7 +39,7 @@ namespace ex1.View
                         slider.Value = 0;
                     }
 
-                    MainWindow.vm.ResumeRendering();
+                    (DataContext as PlayBackViewModel).ResumeRendering();
                 }
 
                 playBtn.Content = "Pause";
@@ -46,7 +47,7 @@ namespace ex1.View
             }
             else
             {
-                MainWindow.vm.PauseRendering();
+                (DataContext as PlayBackViewModel).PauseRendering();
                 playBtn.Content = "Play";
                 IsPlaying = false;
             }
@@ -54,7 +55,7 @@ namespace ex1.View
 
         private void restart_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.vm.CurrentFramePosition = 0;
+            (DataContext as PlayBackViewModel).CurrentFramePosition = 0;
         }
     }
 }
