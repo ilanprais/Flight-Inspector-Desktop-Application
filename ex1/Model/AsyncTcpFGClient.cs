@@ -21,7 +21,7 @@ namespace ex1.Model
 
         public Task Send(string message)
         {
-            return _tcpClient.GetStream().WriteAsync(Encoding.ASCII.GetBytes(message)).AsTask();
+            return _tcpClient.GetStream().WriteAsync(Encoding.ASCII.GetBytes(message + "\n")).AsTask();
         }
     }
 }
