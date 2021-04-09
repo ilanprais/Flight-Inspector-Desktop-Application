@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:ex1.View"
-        xmlns:local="clr-namespace:ex1"
         mc:Ignorable="d"
         Title="Flight Inspector" Height="450" Width="800">
     <StackPanel>

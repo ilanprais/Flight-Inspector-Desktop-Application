@@ -6,14 +6,14 @@ namespace ex1.Model
 {
     public class FlightGearModel : IFlightGearModel
     {
-        private IAsyncFGClient _fgClient;
+        private readonly IAsyncFGClient _fgClient;
 
         private List<Frame> _frames = null;
         private volatile int _currentFramePosition = 0;
 
         private volatile bool _renderingStopped = false;
         private double _velocity = 1;
-        private readonly int _frameRate = 20;
+        private const int _frameRate = 20;
 
         public FlightGearModel(IAsyncFGClient fgClient)
         {
@@ -64,7 +64,7 @@ namespace ex1.Model
             {
                 while (true)
                 {
-                    //var task = _fgClient.Send(CurrentFrame.ToString());
+                    var task = _fgClient.Send(CurrentFrame.ToString());
 
                     if (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                     {
@@ -72,7 +72,7 @@ namespace ex1.Model
                     }
 
                     await Task.Delay((int)(1000 / ((double)FrameRate * Velocity)));
-                    //await task;
+                    await task;
                 }
             });
         }

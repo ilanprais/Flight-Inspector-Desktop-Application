@@ -5,9 +5,7 @@ namespace ex1.ViewModel
 {
     public class PlayBackViewModel : AbstractNotifier
     {
-        private IFlightGearModel _model;
-
-        private bool _isConnected = false;
+        private readonly IFlightGearModel _model;
 
         public PlayBackViewModel(IFlightGearModel model)
         {
@@ -43,14 +41,8 @@ namespace ex1.ViewModel
             }
         }
 
-        public async void Render()
+        public void Render()
         {
-            if (!_isConnected)
-            {
-                //await _model.ConnectToFG("127.0.0.1", 8081);
-                _isConnected = true;
-            }
-
             _model.Render();
         }
 

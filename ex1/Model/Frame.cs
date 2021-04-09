@@ -23,7 +23,7 @@ namespace ex1.Model
 
             ValuesMap["altimeter"] = Double.Parse(words[25]);
             ValuesMap["airspeed"] = Double.Parse(words[21]);
-            //Direction = Double.Parse(words[19]);
+            ValuesMap["direction"] = Double.Parse(words[19]);
             ValuesMap["pitch"] = Double.Parse(words[18]);
             ValuesMap["roll"] = Double.Parse(words[17]);
             ValuesMap["yaw"] = Double.Parse(words[19]);
@@ -45,6 +45,7 @@ namespace ex1.Model
 
             ValuesMap["altimeter"] = 0;
             ValuesMap["airspeed"] = 0;
+            ValuesMap["direction"] = 0;
             ValuesMap["pitch"] = 0;
             ValuesMap["roll"] = 0;
             ValuesMap["yaw"] = 0;

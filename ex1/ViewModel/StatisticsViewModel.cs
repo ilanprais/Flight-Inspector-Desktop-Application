@@ -5,7 +5,7 @@ namespace ex1.ViewModel
 {
     public class StatisticsViewModel : AbstractNotifier
     {
-        private IFlightGearModel _model;
+        private readonly IFlightGearModel _model;
 
         public StatisticsViewModel(IFlightGearModel model)
         {

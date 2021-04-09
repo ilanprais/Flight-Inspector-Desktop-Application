@@ -7,9 +7,9 @@ namespace ex1.ViewModel
 {
     public class GraphsViewModel : AbstractNotifier
     {
-        private IFlightGearModel _model;
+        private readonly IFlightGearModel _model;
 
-        private readonly Dictionary<string, List<DataPoint>> _fieldValues = new Dictionary<string, List<DataPoint>>();
+        private Dictionary<string, List<DataPoint>> _fieldValues;
         private string _currentField = "altimeter";
 
         public GraphsViewModel(IFlightGearModel model)
@@ -19,6 +19,8 @@ namespace ex1.ViewModel
             {
                 if (e.PropertyName == "Frames")
                 {
+                    _fieldValues = new Dictionary<string, List<DataPoint>>();
+
                     var frame = new Frame();
                     foreach (var item in frame.ValuesMap)
                     {

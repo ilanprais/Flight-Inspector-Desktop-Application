@@ -1,0 +1,24 @@
+﻿<Window x:Class="ex1.View.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ex1.View"
+        mc:Ignorable="d"
+        Title="Connect to Flight Gear" Height="450" Width="800">
+    <Grid>
+        <Button Name="ConnectButton" Content="Connect to FlightGear" HorizontalAlignment="Center" VerticalAlignment="Top" Height="47" Width="168" Click="ConnectButton_Click" Margin="0,234,0,0"/>
+        <TextBlock Name="StatusBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+        <TextBlock HorizontalAlignment="Center" Height="114" Margin="0,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
+            Please open the FlightGear and add the following settings:
+            <LineBreak />
+            <LineBreak />
+            --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
+            <LineBreak />
+            --fdm=null
+            <LineBreak />
+            <LineBreak />
+            After the FlightGear is loaded then connect to the FlightGear
+        </TextBlock>
+    </Grid>
+</Window>

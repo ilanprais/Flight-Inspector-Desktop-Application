@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using ex1.Model;
+using System.Threading.Tasks;
 
 namespace ex1.ViewModel
 {
     public class GeneralViewModel : AbstractNotifier
     {
-        private IFlightGearModel _model;
+        private readonly IFlightGearModel _model;
 
         public GeneralViewModel(IFlightGearModel model)
         {
@@ -42,6 +43,16 @@ namespace ex1.ViewModel
             }
 
             _model.CurrentFramePosition = 0;
+        }
+
+        public Task ConnectToFG(string ip, int port)
+        {
+            return _model.ConnectToFG(ip, port);
+        }
+
+        public Task DisconnectFromFG()
+        {
+            return _model.DisconnectFromFG();
         }
     }
 }
