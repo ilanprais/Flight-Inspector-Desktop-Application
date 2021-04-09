@@ -29,5 +29,10 @@ namespace ex1
                 filePathTextBox.Text = openFileDialog.FileName;
             }
         }
+
+        private void MainWindow_Closing(object sender, RoutedEventArgs e)
+        {
+            (DataContext as GeneralViewModel).DisconnectFromFG();
+        }
     }
 }
