@@ -40,6 +40,10 @@
                 <oxy:Plot.Series>
                     <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues}"/>
                 </oxy:Plot.Series>
+                <oxy:Plot.Axes>
+                    <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
+                    <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                </oxy:Plot.Axes>
             </oxy:Plot>
         </Grid>
     </Border>

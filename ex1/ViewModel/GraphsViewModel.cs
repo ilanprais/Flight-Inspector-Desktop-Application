@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using OxyPlot;
 using ex1.Model;
 
@@ -10,7 +9,7 @@ namespace ex1.ViewModel
     {
         private IFlightGearModel _model;
 
-        private Dictionary<string, ObservableCollection<DataPoint>> _fieldValues = new Dictionary<string, ObservableCollection<DataPoint>>();
+        private Dictionary<string, List<DataPoint>> _fieldValues = new Dictionary<string, List<DataPoint>>();
         private string _currentField = "altimeter";
 
         public GraphsViewModel(IFlightGearModel model)
@@ -23,7 +22,7 @@ namespace ex1.ViewModel
                     var frame = new Frame();
                     foreach (var item in frame.ValuesMap)
                     {
-                        _fieldValues[item.Key] = new ObservableCollection<DataPoint>();
+                        _fieldValues[item.Key] = new List<DataPoint>();
                     }
 
                     for (var i = 0; i < _model.Frames.Count; ++i)
@@ -47,11 +46,11 @@ namespace ex1.ViewModel
             };
         }
 
-        public ObservableCollection<DataPoint> CurrentFieldValues
+        public List<DataPoint> CurrentFieldValues
         {
             get
             {
-                var currentFieldsList = new ObservableCollection<DataPoint>();
+                var currentFieldsList = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
                 {
                     currentFieldsList.Add(_fieldValues[_currentField][i]);
