@@ -38,7 +38,7 @@
             </Border>
             <oxy:Plot Grid.Row="1" Grid.Column="1">
                 <oxy:Plot.Series>
-                    <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues}"/>
+                    <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
                 </oxy:Plot.Series>
                 <oxy:Plot.Axes>
                     <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>

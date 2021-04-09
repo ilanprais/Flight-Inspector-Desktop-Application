@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Data;
 using System.Globalization;
 using System.Windows.Controls;
+using ex1.ViewModel;
 
 namespace ex1.View
 {
@@ -14,6 +15,7 @@ namespace ex1.View
             if (System.Convert.ToInt32(value) == PlaybackWindow.Current.slider.Maximum)
             {
                 PlaybackWindow.Current.IsPlaying = false;
+                (PlaybackWindow.Current.DataContext as PlayBackViewModel).PauseRendering();
 
                 var content = new ContentControl();
                 content.Content = "Play";

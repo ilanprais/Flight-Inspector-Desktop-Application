@@ -9,7 +9,7 @@ namespace ex1.ViewModel
     {
         private IFlightGearModel _model;
 
-        private Dictionary<string, List<DataPoint>> _fieldValues = new Dictionary<string, List<DataPoint>>();
+        private readonly Dictionary<string, List<DataPoint>> _fieldValues = new Dictionary<string, List<DataPoint>>();
         private string _currentField = "altimeter";
 
         public GraphsViewModel(IFlightGearModel model)
@@ -50,13 +50,13 @@ namespace ex1.ViewModel
         {
             get
             {
-                var currentFieldsList = new List<DataPoint>();
+                var currentFieldValues = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
                 {
-                    currentFieldsList.Add(_fieldValues[_currentField][i]);
+                    currentFieldValues.Add(_fieldValues[_currentField][i]);
                 }
 
-                return currentFieldsList;
+                return currentFieldValues;
             }
         }
 

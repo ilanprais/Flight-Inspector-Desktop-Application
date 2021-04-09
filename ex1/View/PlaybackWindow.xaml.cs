@@ -55,7 +55,14 @@ namespace ex1.View
 
         private void restart_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as PlayBackViewModel).CurrentFramePosition = 0;
+            if (slider.Value == slider.Maximum)
+            {
+                playBtn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            else
+            {
+                (DataContext as PlayBackViewModel).CurrentFramePosition = 0;
+            }
         }
     }
 }
