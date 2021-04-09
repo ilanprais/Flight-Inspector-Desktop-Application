@@ -27,11 +27,11 @@ namespace ex1.ViewModel
             };
         }
 
-        public double Altimeter { get => _model.CurrentFrame.Altimeter; }
-        public double AirSpeed { get => _model.CurrentFrame.AirSpeed; }
-        public double Direction { get => _model.CurrentFrame.Direction; }
-        public double Pitch { get => _model.CurrentFrame.Pitch; }
-        public double Roll { get => _model.CurrentFrame.Roll; }
-        public double Yaw { get => _model.CurrentFrame.Yaw; }
+        public double Altimeter { get => _model.CurrentFrame.ValuesMap["altimeter"]; }
+        public double AirSpeed { get => _model.CurrentFrame.ValuesMap["airspeed"]; }
+        public double Direction { get => 0; }
+        public double Pitch { get => _model.CurrentFrame.ValuesMap["pitch"]; }
+        public double Roll { get => _model.CurrentFrame.ValuesMap["roll"]; }
+        public double Yaw { get => _model.CurrentFrame.ValuesMap["yaw"]; }
     }
 }

@@ -25,9 +25,9 @@ namespace ex1.ViewModel
             };
         }
 
-        public double Aileron { get => _model.CurrentFrame.Aileron; }
-        public double Elevator { get => _model.CurrentFrame.Elevator; }
-        public double Rudder { get => _model.CurrentFrame.Rudder; }
-        public double Throttle { get => _model.CurrentFrame.Throttle; }
+        public double Aileron { get => _model.CurrentFrame.ValuesMap["aileron"]; }
+        public double Elevator { get => _model.CurrentFrame.ValuesMap["elevator"]; }
+        public double Rudder { get => _model.CurrentFrame.ValuesMap["rudder"]; }
+        public double Throttle { get => _model.CurrentFrame.ValuesMap["throttle"]; }
     }
 }

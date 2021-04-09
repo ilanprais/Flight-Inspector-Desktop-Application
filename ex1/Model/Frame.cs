@@ -10,52 +10,47 @@ namespace ex1.Model
 
         public Frame(string frameString)
         {
+            ValuesMap = new Dictionary<string, double>();
+
             _stringRepresentation = frameString;
 
             string[] words = frameString.Split(',');
 
-            Aileron = Double.Parse(words[0]);
-            Elevator = Double.Parse(words[1]);
-            Rudder = Double.Parse(words[3]);
-            Throttle = Double.Parse(words[6]) + Double.Parse(words[7]);
+            ValuesMap["aileron"] = Double.Parse(words[0]);
+            ValuesMap["elevator"] = Double.Parse(words[1]);
+            ValuesMap["rudder"] = Double.Parse(words[3]);
+            ValuesMap["throttle"] = Double.Parse(words[6]) + Double.Parse(words[7]);
 
-            Altimeter = Double.Parse(words[25]);
-            AirSpeed = Double.Parse(words[21]);
+            ValuesMap["altimeter"] = Double.Parse(words[25]);
+            ValuesMap["airspeed"] = Double.Parse(words[21]);
             //Direction = Double.Parse(words[19]);
-            Pitch = Double.Parse(words[18]);
-            Roll = Double.Parse(words[17]);
-            Yaw = Double.Parse(words[19]);
+            ValuesMap["pitch"] = Double.Parse(words[18]);
+            ValuesMap["roll"] = Double.Parse(words[17]);
+            ValuesMap["yaw"] = Double.Parse(words[19]);
         }
         public Frame()
         {
+            ValuesMap = new Dictionary<string, double>();
+
             _stringRepresentation = "0";
             for (var i = 0; i < 40; ++i)
             {
                 _stringRepresentation += ",0";
             }
 
-            Aileron = 0;
-            Elevator = 0;
-            Rudder = 0;
-            Throttle = 0;
-            Altimeter = 0;
-            AirSpeed = 0;
-            Direction = 0;
-            Pitch = 0;
-            Roll = 0;
-            Yaw = 0;
+            ValuesMap["aileron"] = 0;
+            ValuesMap["elevator"] = 0;
+            ValuesMap["rudder"] = 0;
+            ValuesMap["throttle"] = 0;
+
+            ValuesMap["altimeter"] = 0;
+            ValuesMap["airspeed"] = 0;
+            ValuesMap["pitch"] = 0;
+            ValuesMap["roll"] = 0;
+            ValuesMap["yaw"] = 0;
         }
 
-        public double Aileron { get; set; }
-        public double Elevator { get; set; }
-        public double Rudder { get; set; }
-        public double Throttle { get; set; }
-        public double Altimeter { get; set; }
-        public double AirSpeed { get; set; }
-        public double Direction { get; set; }
-        public double Pitch { get; set; }
-        public double Roll { get; set; }
-        public double Yaw { get; set; }
+        public Dictionary<string, double> ValuesMap { get; set; }
 
         public override string ToString()
         {

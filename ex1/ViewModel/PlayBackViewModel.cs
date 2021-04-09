@@ -47,7 +47,7 @@ namespace ex1.ViewModel
         {
             if (!_isConnected)
             {
-                await _model.ConnectToFG("127.0.0.1", 8081);
+                //await _model.ConnectToFG("127.0.0.1", 8081);
                 _isConnected = true;
             }
 

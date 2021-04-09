@@ -14,12 +14,14 @@ namespace ex1
             var model = new FlightGearModel(new AsyncTcpFGClient());
 
             GeneralVM = new GeneralViewModel(model);
+            GraphsVM = new GraphsViewModel(model);
             PlayBackVM = new PlayBackViewModel(model);
             RudderVM = new RudderViewModel(model);
             StatisticsVM = new StatisticsViewModel(model);
         }
 
         public GeneralViewModel GeneralVM { get; set; }
+        public GraphsViewModel GraphsVM { get; set; }
         public PlayBackViewModel PlayBackVM { get; set; }
         public RudderViewModel RudderVM { get; set; }
         public StatisticsViewModel StatisticsVM { get; set; }
