@@ -40,7 +40,7 @@ namespace ex1.View
             StatusBox.Text = "Connected! Moving to the application";
             await Task.Delay(2000);
 
-            (new MainWindow()).Show();
+            new MainWindow().Show();
             Close();
         }
     }

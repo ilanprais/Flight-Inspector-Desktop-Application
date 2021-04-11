@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using ex1.ViewModel;
+using System.ComponentModel;
 
 namespace ex1
 {
@@ -30,7 +31,7 @@ namespace ex1
             }
         }
 
-        private void MainWindow_Closing(object sender, RoutedEventArgs e)
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             (DataContext as GeneralViewModel).DisconnectFromFG();
         }
