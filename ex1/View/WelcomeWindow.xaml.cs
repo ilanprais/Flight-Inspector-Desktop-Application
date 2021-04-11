@@ -15,6 +15,12 @@ namespace ex1.View
             DataContext = (Application.Current as App).GeneralVM;
         }
 
+        private void FileButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.loadFile_Click(sender, e);
+        }
+
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             StatusBox.Text = "Connecting";

@@ -5,11 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ex1.View"
         mc:Ignorable="d"
-        Title="Connect to Flight Gear" Height="450" Width="800">
+        Title="Flight Inspector" Height="450" Width="800">
     <Grid>
-        <Button Name="ConnectButton" Content="Connect to FlightGear" HorizontalAlignment="Center" VerticalAlignment="Top" Height="47" Width="168" Click="ConnectButton_Click" Margin="0,234,0,0"/>
-        <TextBlock Name="StatusBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
-        <TextBlock HorizontalAlignment="Center" Height="114" Margin="0,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "*" />
+            <ColumnDefinition Width = "*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "320" />
+            <RowDefinition Height = "*" />
+        </Grid.RowDefinitions>
+        
+        <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="Step 1" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324"/>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
             Please open the FlightGear and add the following settings:
             <LineBreak />
             <LineBreak />
@@ -19,6 +29,36 @@
             <LineBreak />
             <LineBreak />
             After the FlightGear is loaded then connect to the FlightGear
-        </TextBlock>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" Grid.Column="0" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button Name="ConnectButton" Background="White" Content="Connect to FlightGear" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="ConnectButton_Click" />
+                <TextBlock Name="StatusBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <TextBlock Text="Step 2" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324"/>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
+            Import the .csv file for your flight
+            <LineBreak />
+            <LineBreak />
+            Press the following button to choose a file from your directory
+           
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button Name="FileButton" Background="White" Content="Import flight data file" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="FileButton_Click" />
+                <TextBlock Name="PathBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
