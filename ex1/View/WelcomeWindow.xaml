@@ -64,7 +64,7 @@
 
         <Border Grid.Row="1" Grid.Column="2" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <Button Name="FileButton" IsEnabled="False" Background="White" Content="Import flight data file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="FileButton_Click" />
+                <Button Name="FileButton" Background="White" Content="Import flight data file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="FileButton_Click" />
                 <TextBlock Name="PathBox" FontSize="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
             </StackPanel>
         </Border>
@@ -115,18 +115,18 @@
                 <Button x:Name="step3box" Content="3" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,0"/>
                 <Button x:Name="step4box" Content="4" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,10"/>
                 <TextBlock Foreground="White" Width="60" FontSize="7">
-                *You can proceed
+                You can proceed
                  <LineBreak/>
-                 without completing
+                without completing
                  <LineBreak/>
-                 all steps
+                the 4th step
                 </TextBlock>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="4" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <Button Name="ContinueButton" Foreground="White" Background="Black" Content="Continue" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="60" Click="ContinueButton_Click" />
+                <Button Name="ContinueButton" IsEnabled="False" Foreground="White" Background="Black" Content="Continue" Margin="0,15,0,0" HorizontalAlignment="Center" Height="57" Width="60" Click="ContinueButton_Click" />
             </StackPanel>
         </Border>
 

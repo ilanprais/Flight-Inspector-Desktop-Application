@@ -15,6 +15,8 @@ namespace ex1.ViewModel
         private string _currentProperty;
         private string _currentCorelativeProperty;
 
+        public static readonly List<string> Properties = Frame.Properties;
+
         public GraphsViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -109,7 +111,6 @@ namespace ex1.ViewModel
                 }
             }
             
-
             NotifyPropertyChanged(nameof(CurrentPropertyValues));
             NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
         }

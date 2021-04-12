@@ -16,11 +16,28 @@ namespace ex1.View
         {
             InitializeComponent();
             DataContext = _graphsVM;
+
+            foreach (var property in GraphsViewModel.Properties)
+            {
+                var item = new MenuItem();
+                item.Header = property;
+                item.FontSize = 8;
+                item.HorizontalAlignment = HorizontalAlignment.Center;
+                item.Width = 100;
+                item.Click += MenuItem_Click;
+                propertyMenu.Items.Add(item);
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             _graphsVM.ChangeField((sender as MenuItem).Header.ToString());
+
+            foreach (MenuItem item in propertyMenu.Items)
+            {
+                item.Background = Brushes.SlateGray;
+            }
+            (sender as MenuItem).Background = Brushes.Black;
         }
     }
 }

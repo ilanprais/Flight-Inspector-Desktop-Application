@@ -13,10 +13,15 @@ namespace ex1.View
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+        private GeneralViewModel _generalVM = (Application.Current as App).GeneralVM;
+
+        private bool _fgConnected = false;
+        private bool _xmlUploded = false;
+        private bool _csvUploaded = false;
+
         public WelcomeWindow()
         {
             InitializeComponent();
-            DataContext = (Application.Current as App).GeneralVM;
         }
 
         private void ContinueButton_Click(object sender, RoutedEventArgs e)
@@ -24,19 +29,18 @@ namespace ex1.View
             Content = new MainWindow().Content;
         }
 
-
         private void DllButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = false,
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
-            if (openFileDialog.ShowDialog() == true)
-            {
-                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
-                DllPathBox.Text = openFileDialog.FileName;
-            }
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    Multiselect = false,
+            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            //};
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+            //    (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+            //    DllPathBox.Text = openFileDialog.FileName;
+            //}
 
             step4box.Background = Brushes.Green;
         }
@@ -50,16 +54,27 @@ namespace ex1.View
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                (DataContext as GeneralViewModel).LoadXMLFile(openFileDialog.FileName);
+                _generalVM.LoadXMLFile(openFileDialog.FileName);
                 XmlPathBox.Text = openFileDialog.FileName;
             }
 
-            FileButton.IsEnabled = true;
+            //string path = "C:\\Users\\ilandovprais\\Documents\\playback_small.xml";
+            //(DataContext as GeneralViewModel).LoadXMLFile(path);
+            //XmlPathBox.Text = path;
+
+            _xmlUploded = true;
             step3box.Background = Brushes.Green;
+            enableContinueButton();
         }
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!_xmlUploded)
+            {
+                PathBox.Text = "Please uplode the XML file first and then upload the CSV";
+                return;
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Multiselect = false,
@@ -67,11 +82,17 @@ namespace ex1.View
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+                _generalVM.LoadCSVFile(openFileDialog.FileName);
                 PathBox.Text = openFileDialog.FileName;
             }
 
+            //string path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
+            //(DataContext as GeneralViewModel).LoadCSVFile(path);
+            //PathBox.Text = path;
+
+            _csvUploaded = true;
             step2box.Background = Brushes.Green;
+            enableContinueButton();
         }
 
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -81,17 +102,28 @@ namespace ex1.View
 
             try
             {
-                await (Application.Current as App).GeneralVM.ConnectToFG("127.0.0.1", 8081);
+                await _generalVM.ConnectToFG("127.0.0.1", 8081);
             }
-            catch (Exception)
+            catch
             {
                 ConnectButton.IsEnabled = true;
                 StatusBox.Text = "Couldn't connect to FlightGear";
                 return;
             }
 
-            StatusBox.Text = "Connected! Moving to the application";
+            StatusBox.Text = "Connected to FlightGear";
+
+            _fgConnected = true;
             step1box.Background = Brushes.Green;
+            enableContinueButton();
+        }
+
+        private void enableContinueButton()
+        {
+            if (_fgConnected && _xmlUploded && _csvUploaded)
+            {
+                ContinueButton.IsEnabled = true;
+            }
         }
     }
 }

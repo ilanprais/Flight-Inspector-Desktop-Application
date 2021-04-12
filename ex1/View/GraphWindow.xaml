@@ -18,14 +18,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,4,4,0">
-                <Menu Foreground="White" Background="SlateGray">
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="altimeter_indicated-altitude-ft" Click="MenuItem_Click"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="airspeed-indicator_indicated-speed-kt" Click="MenuItem_Click"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="direction" Click="MenuItem_Click"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="pitch-deg" Click="MenuItem_Click"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="roll-deg" Click="MenuItem_Click"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="heading-deg" Click="MenuItem_Click"/>
-                </Menu>
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <Menu Name="propertyMenu" Foreground="White" Background="SlateGray">
+                        <Menu.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </Menu.ItemsPanel>
+                    </Menu>
+                </ScrollViewer>
             </Border>
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="4,0,0,4">
                 <Menu Foreground="White" Background="SlateGray" >
