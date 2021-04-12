@@ -19,13 +19,12 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,4,4,0">
                 <Menu Foreground="White" Background="SlateGray">
-                    <MenuItem Name="altimeter" HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="Altimeter" Click="MenuItem_Click"/>
-                    <MenuItem Name="airspeed" HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="AirSpeed" Click="MenuItem_Click"/>
-                    <MenuItem Name="direction" HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="Direction" Click="MenuItem_Click"/>
-                    <MenuItem Name="pitch" HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="Pitch" Click="MenuItem_Click"/>
-                    <MenuItem Name="roll" HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="Roll" Click="MenuItem_Click"/>
-                    <MenuItem Name="yaw" HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="Yaw" Click="MenuItem_Click"/>
-
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="altimeter_indicated-altitude-ft" Click="MenuItem_Click"/>
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="airspeed-indicator_indicated-speed-kt" Click="MenuItem_Click"/>
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="direction" Click="MenuItem_Click"/>
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="pitch-deg" Click="MenuItem_Click"/>
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" FontSize="12" Header="roll-deg" Click="MenuItem_Click"/>
+                    <MenuItem HorizontalAlignment="Center" Padding="45,5,60,5" Background="#FF4D5964" FontSize="12" Header="heading-deg" Click="MenuItem_Click"/>
                 </Menu>
             </Border>
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="4,0,0,4">
@@ -38,7 +37,7 @@
             </Border>
             <oxy:Plot Grid.Row="1" Grid.Column="1">
                 <oxy:Plot.Series>
-                    <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                    <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
                 </oxy:Plot.Series>
                 <oxy:Plot.Axes>
                     <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>

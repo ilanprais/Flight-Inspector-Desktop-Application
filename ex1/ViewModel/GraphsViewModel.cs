@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using OxyPlot;
 using ex1.Model;
+using System;
 
 namespace ex1.ViewModel
 {
@@ -11,7 +12,7 @@ namespace ex1.ViewModel
 
         private Dictionary<string, RandomVariable> _properties;
 
-        private string _currentProperty = "altimeter_indicated-altitude-ft";
+        private string _currentProperty;
         private string _currentCorelativeProperty;
 
         public GraphsViewModel(IFlightGearModel model)
@@ -53,13 +54,19 @@ namespace ex1.ViewModel
         {
             get
             {
-                var currentFieldValues = new List<DataPoint>();
+                if (_currentProperty == null || !_properties.ContainsKey(_currentProperty))
+                {
+                    return new List<DataPoint>();
+                }
+                var propertyValues = _properties[_currentProperty].Values;
+
+                var currentPropertyValues = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
                 {
-                    currentFieldValues.Add(new DataPoint(i, _properties[_currentProperty].Values[i]));
+                    currentPropertyValues.Add(new DataPoint(i, propertyValues[i]));
                 }
 
-                return currentFieldValues;
+                return currentPropertyValues;
             }
         }
 
@@ -67,20 +74,26 @@ namespace ex1.ViewModel
         {
             get
             {
-                var currentFieldValues = new List<DataPoint>();
+                if (_currentCorelativeProperty == null || !_properties.ContainsKey(_currentCorelativeProperty))
+                {
+                    return new List<DataPoint>();
+                }
+                var corelativePropertyValues = _properties[_currentCorelativeProperty].Values;
+
+                var currentCorelativePropertyValues = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
                 {
-                    currentFieldValues.Add(new DataPoint(i, _properties[_currentCorelativeProperty].Values[i]));
+                    currentCorelativePropertyValues.Add(new DataPoint(i, corelativePropertyValues[i]));
                 }
 
-                return currentFieldValues;
+                return currentCorelativePropertyValues;
             }
         }
 
         public void ChangeField(string field)
         {
             _currentProperty = field;
-
+            
             var biggestPCC = -1;
             foreach (var item in _properties)
             {
@@ -95,6 +108,7 @@ namespace ex1.ViewModel
                     _currentCorelativeProperty = item.Key;
                 }
             }
+            
 
             NotifyPropertyChanged(nameof(CurrentPropertyValues));
             NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));

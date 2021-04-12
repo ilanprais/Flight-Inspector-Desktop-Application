@@ -11,15 +11,16 @@ namespace ex1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GeneralViewModel _generalVM = (Application.Current as App).GeneralVM;
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = (Application.Current as App).GeneralVM;
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            (DataContext as GeneralViewModel).DisconnectFromFG();
+            _generalVM.DisconnectFromFG();
         }
     }
 }

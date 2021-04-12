@@ -7,21 +7,22 @@ namespace ex1.ViewModel
     {
         public RandomVariable(List<double> values)
         {
-            double sum = 0, squaresSum = 0;
+            Values = values;
 
-            for (var i = 0; i < values.Count; ++i)
+            double sum = 0, squaresSum = 0;
+            for (var i = 0; i < Values.Count; ++i)
             {
-                var current = values[i];
+                var current = Values[i];
 
                 sum += current;
                 squaresSum += current * current;
             }
 
-            Average = sum / values.Count;
-            Varience = squaresSum / values.Count - Average * Average;
+            Average = sum / Values.Count;
+            Varience = squaresSum / Values.Count - Average * Average;
         }
 
-        public List<double> Values { get; }
+        public List<double> Values { get; private set; }
         public double Average { get; private set; }
         public double Varience { get; private set; }
 

@@ -10,15 +10,17 @@ namespace ex1.View
     /// </summary>
     public partial class GraphWindow : UserControl
     {
+        private GraphsViewModel _graphsVM = (Application.Current as App).GraphsVM;
+
         public GraphWindow()
         {
             InitializeComponent();
-            DataContext = (Application.Current as App).GraphsVM;
+            DataContext = _graphsVM;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as GraphsViewModel).ChangeField((sender as MenuItem).Name);
+            _graphsVM.ChangeField((sender as MenuItem).Header.ToString());
         }
     }
 }
