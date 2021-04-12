@@ -17,6 +17,7 @@ namespace ex1.View
             InitializeComponent();
             DataContext = _graphsVM;
 
+            bool setDefault = false;
             foreach (var property in GraphsViewModel.Properties)
             {
                 var item = new MenuItem();
@@ -27,8 +28,16 @@ namespace ex1.View
                 item.Width = 100;
                 item.Click += MenuItem_Click;
 
+                if (!setDefault)
+                {
+                    MenuItem_Click(item, null);
+                    setDefault = true;
+                }
+
                 propertyMenu.Items.Add(item);
             }
+
+           
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
