@@ -51,7 +51,6 @@ namespace ex1.ViewModel
                 Frame.Properties.Add(elem["name"].InnerText);
             }
         }
-
         public Task ConnectToFG(string ip, int port)
         {
             return _model.ConnectToFG(ip, port);
@@ -60,6 +59,10 @@ namespace ex1.ViewModel
         public Task DisconnectFromFG()
         {
             return _model.DisconnectFromFG();
+        }
+        public static List<string> getPropertyNames()
+        {
+            return Frame.Properties;
         }
     }
 }
