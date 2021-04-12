@@ -43,6 +43,7 @@ namespace ex1.ViewModel
 
         public void Render()
         {
+            _model.RenderingStopped = false;
             _model.Render();
         }
 

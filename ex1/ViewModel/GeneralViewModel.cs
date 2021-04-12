@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using ex1.Model;
@@ -21,6 +20,19 @@ namespace ex1.ViewModel
             };
         }
 
+        public void LoadXMLFile(string filePath)
+        {
+            Frame.Properties = new List<string>();
+
+            var xml = new XmlDocument();
+            xml.Load(filePath);
+
+            foreach (XmlNode elem in xml.SelectNodes("//input/chunk"))
+            {
+                Frame.Properties.Add(elem["name"].InnerText.Replace('_', '-'));
+            }
+        }
+
         public void LoadCSVFile(string filePath)
         {
             var frames = new List<Frame>();
@@ -40,18 +52,6 @@ namespace ex1.ViewModel
             _model.RenderingStopped = true;
         }
 
-        public void LoadXMLFile(string filePath)
-        {
-            Frame.Properties = new List<string>();
-
-            var xml = new XmlDocument();
-            xml.Load(filePath);
-
-            foreach (XmlNode elem in xml.SelectNodes("//input/chunk"))
-            {
-                Frame.Properties.Add(elem["name"].InnerText);
-            }
-        }
         public Task ConnectToFG(string ip, int port)
         {
             return _model.ConnectToFG(ip, port);

@@ -56,15 +56,11 @@ namespace ex1.View
             {
                 _generalVM.LoadXMLFile(openFileDialog.FileName);
                 XmlPathBox.Text = openFileDialog.FileName;
+
+                _xmlUploded = true;
+                step3box.Background = Brushes.Green;
+                enableContinueButton();
             }
-
-            //string path = "C:\\Users\\ilandovprais\\Documents\\playback_small.xml";
-            //(DataContext as GeneralViewModel).LoadXMLFile(path);
-            //XmlPathBox.Text = path;
-
-            _xmlUploded = true;
-            step3box.Background = Brushes.Green;
-            enableContinueButton();
         }
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
@@ -84,15 +80,11 @@ namespace ex1.View
             {
                 _generalVM.LoadCSVFile(openFileDialog.FileName);
                 PathBox.Text = openFileDialog.FileName;
+
+                _csvUploaded = true;
+                step2box.Background = Brushes.Green;
+                enableContinueButton();
             }
-
-            //string path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
-            //(DataContext as GeneralViewModel).LoadCSVFile(path);
-            //PathBox.Text = path;
-
-            _csvUploaded = true;
-            step2box.Background = Brushes.Green;
-            enableContinueButton();
         }
 
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
