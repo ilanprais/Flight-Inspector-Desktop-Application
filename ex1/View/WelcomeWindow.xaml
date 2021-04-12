@@ -20,7 +20,7 @@
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="Step 1" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324"/>
                 <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
-            Please open the FlightGear and add the following settings:
+            Open the FlightGear and add the following settings:
             <LineBreak />
             <LineBreak />
             --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
@@ -36,7 +36,7 @@
         <Border Grid.Row="1" Grid.Column="0" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <Button Name="ConnectButton" Background="White" Content="Connect to FlightGear" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="ConnectButton_Click" />
-                <TextBlock Name="StatusBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+                <TextBlock x:Name="StatusBox" TextWrapping="Wrap" Width="220"/>
             </StackPanel>
         </Border>
 
@@ -56,7 +56,7 @@
         <Border Grid.Row="1" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <Button Name="FileButton" Background="White" Content="Import flight data file" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="FileButton_Click" />
-                <TextBlock Name="PathBox" HorizontalAlignment="Center" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+                <TextBlock Name="PathBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
             </StackPanel>
         </Border>
 

@@ -21,10 +21,9 @@ namespace ex1.ViewModel
                 {
                     _fieldValues = new Dictionary<string, List<DataPoint>>();
 
-                    var frame = new Frame();
-                    foreach (var item in frame.ValuesMap)
+                    foreach (var item in Frame.Properties)
                     {
-                        _fieldValues[item.Key] = new List<DataPoint>();
+                        _fieldValues[item] = new List<DataPoint>();
                     }
 
                     for (var i = 0; i < _model.Frames.Count; ++i)

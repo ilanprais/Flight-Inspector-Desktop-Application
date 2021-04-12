@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Threading.Tasks;
+using Microsoft.Win32;
+using ex1.ViewModel;
 
 namespace ex1.View
 {
@@ -17,8 +19,19 @@ namespace ex1.View
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.loadFile_Click(sender, e);
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+                PathBox.Text = openFileDialog.FileName;
+            }
+
+            new MainWindow().Show();
+            Close();
         }
 
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -28,7 +41,7 @@ namespace ex1.View
 
             try
             {
-                await (Application.Current as App).GeneralVM.ConnectToFG("127.0.0.1", 8081);
+                //await (Application.Current as App).GeneralVM.ConnectToFG("127.0.0.1", 8081);
             }
             catch (Exception)
             {
@@ -39,9 +52,6 @@ namespace ex1.View
 
             StatusBox.Text = "Connected! Moving to the application";
             await Task.Delay(2000);
-
-            new MainWindow().Show();
-            Close();
         }
     }
 }

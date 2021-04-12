@@ -17,23 +17,6 @@ namespace ex1
             DataContext = (Application.Current as App).GeneralVM;
         }
 
-        public void loadFile_Click(object sender, RoutedEventArgs e)
-        {
-            //OpenFileDialog openFileDialog = new OpenFileDialog
-            //{
-            //    Multiselect = false,
-            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            //};
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    (DataContext as GeneralViewModel).LoadFile(openFileDialog.FileName);
-            //    filePathTextBox.Text = openFileDialog.FileName;
-            //}
-            string path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
-            (DataContext as GeneralViewModel).LoadFile(path);
-            filePathTextBox.Text = path;
-        }
-
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             (DataContext as GeneralViewModel).DisconnectFromFG();

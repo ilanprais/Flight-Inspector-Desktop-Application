@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using ex1.Model;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ex1.ViewModel
 {
@@ -20,7 +21,7 @@ namespace ex1.ViewModel
             };
         }
 
-        public void LoadFile(string filePath)
+        public void LoadCSVFile(string filePath)
         {
             var frames = new List<Frame>();
 
@@ -43,6 +44,19 @@ namespace ex1.ViewModel
             }
 
             _model.CurrentFramePosition = 0;
+        }
+
+        public void LoadXMLFile(string filePath)
+        {
+            Frame.Properties = new List<string>();
+
+            var xml = new XmlDocument();
+            xml.Load(filePath);
+
+            foreach (XmlNode elem in xml.SelectSingleNode("//input").SelectNodes("//chunk"))
+            {
+                Frame.Properties.Add(elem["name"].InnerText);
+            }
         }
 
         public Task ConnectToFG(string ip, int port)

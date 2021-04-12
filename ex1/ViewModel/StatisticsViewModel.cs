@@ -1,4 +1,5 @@
 ﻿using ex1.Model;
+using System;
 using System.ComponentModel;
 
 namespace ex1.ViewModel
@@ -27,11 +28,89 @@ namespace ex1.ViewModel
             };
         }
 
-        public double Altimeter { get => _model.CurrentFrame.ValuesMap["altimeter"]; }
-        public double AirSpeed { get => _model.CurrentFrame.ValuesMap["airspeed"]; }
-        public double Direction { get => 0; }
-        public double Pitch { get => _model.CurrentFrame.ValuesMap["pitch"]; }
-        public double Roll { get => _model.CurrentFrame.ValuesMap["roll"]; }
-        public double Yaw { get => _model.CurrentFrame.ValuesMap["yaw"]; }
+        public double Altimeter 
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["altimeter_indicated-altitude-ft"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double AirSpeed
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["airspeed-indicator_indicated-speed-kt"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Direction
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["direction"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Pitch
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["pitch-deg"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Roll
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["roll-deg"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Yaw
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["heading-deg"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }

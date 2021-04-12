@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -43,13 +44,13 @@ namespace ex1.Model
         {
             get
             {
-                if (Frames == null)
-                {
-                    return new Frame();
-                }
-                else
+                try
                 {
                     return Frames[CurrentFramePosition];
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }
