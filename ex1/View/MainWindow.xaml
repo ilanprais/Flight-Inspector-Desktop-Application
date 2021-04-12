@@ -10,7 +10,7 @@
         <StackPanel Orientation="Horizontal">
             <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
                 <MenuItem Foreground="White" Background="SlateGray" Header="_Import">
-                    <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data"/>
+                    <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data" Click="FileButton_Click"/>
                     <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
                 </MenuItem>
             </Menu>
