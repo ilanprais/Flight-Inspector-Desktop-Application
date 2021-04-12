@@ -28,23 +28,59 @@
                     </Menu>
                 </ScrollViewer>
             </Border>
+            
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="4,0,0,4">
-                <Menu Foreground="White" Background="SlateGray" >
-                    
-                    <MenuItem HorizontalAlignment="Center" Padding="30,5,30,3" FontSize="12" Header="Standard Graph"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="30,5,30,3" Background="#FF4D5964" FontSize="12" Header="Pearson Graph"/>
-                    <MenuItem HorizontalAlignment="Center" Padding="30,5,30,3" FontSize="12" Header="Regression Graph"/>
-                </Menu>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width = "280"/>
+                        <ColumnDefinition Width = "*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="graphName" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Name="corName" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+                </Grid>
             </Border>
-            <oxy:Plot Grid.Row="1" Grid.Column="1">
-                <oxy:Plot.Series>
-                    <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
-                </oxy:Plot.Series>
-                <oxy:Plot.Axes>
-                    <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
-                    <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
-                </oxy:Plot.Axes>
-            </oxy:Plot>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width = "280"/>
+                    <ColumnDefinition Width = "*"/>
+                </Grid.ColumnDefinitions>
+                <oxy:Plot Grid.Column="0">
+                    <oxy:Plot.Series>
+                        <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                    </oxy:Plot.Series>
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
+                        <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                    </oxy:Plot.Axes>
+                </oxy:Plot>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "*"/>
+                        <RowDefinition Height = "*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <oxy:Plot Grid.Row="0">
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                        </oxy:Plot.Series>
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                        </oxy:Plot.Axes>
+                    </oxy:Plot>
+
+                    <oxy:Plot Grid.Row="1">
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                        </oxy:Plot.Series>
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                        </oxy:Plot.Axes>
+                    </oxy:Plot>
+                    
+                </Grid>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>
