@@ -10,6 +10,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width = "*" />
             <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "*" />
+            <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "80"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height = "320" />
@@ -18,12 +21,14 @@
         
         <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="Step 1" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
+                <TextBlock Text="Step 1" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock Foreground="White" FontSize="11" HorizontalAlignment="Center" Height="140" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
             Open the FlightGear and add the following settings:
             <LineBreak />
             <LineBreak />
-            --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
+            --generic=socket,in,10,127.0.0.1
+            <LineBreak />
+             ,5400,tcp,playback_small
             <LineBreak />
             --fdm=null
             <LineBreak />
@@ -35,30 +40,96 @@
         
         <Border Grid.Row="1" Grid.Column="0" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <Button Name="ConnectButton" Background="White" Content="Connect to FlightGear" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="ConnectButton_Click" />
-                <TextBlock x:Name="StatusBox" TextWrapping="Wrap" Width="220"/>
+                <Button Name="ConnectButton" Background="White" Content="Connect to FlightGear" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="ConnectButton_Click" />
+                <TextBlock x:Name="StatusBox" FontSize="8" TextWrapping="Wrap" Width="130"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="2" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <TextBlock Text="Step 3" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="150" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+            Import the .csv file for your flight
+            <LineBreak />
+            <LineBreak />
+            Press the following button to choose a file from your directory
+                </TextBlock>
+                <TextBlock Foreground="LightGray" FontSize="9" Margin="10,0,10,0">
+                    Note: Can only import after
+                    <LineBreak/>
+                    step 2 (settings xml file) is complete
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="2" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button Name="FileButton" IsEnabled="False" Background="White" Content="Import flight data file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="FileButton_Click" />
+                <TextBlock Name="PathBox" FontSize="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="0" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <TextBlock Text="Step 2" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324">
-            Import the .csv file for your flight
+                <TextBlock Text="Step 2" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+            Import the .xml file for your flight
             <LineBreak />
             <LineBreak />
             Press the following button to choose a file from your directory
-           
+
                 </TextBlock>
             </StackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <Button Name="FileButton" Background="White" Content="Import flight data file" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="168" Click="FileButton_Click" />
-                <TextBlock Name="PathBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="220"/>
+                <Button Name="XmlButton" Background="White" Content="Import xml settings file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="XmlButton_Click" />
+                <TextBlock Name="XmlPathBox" FontSize="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
             </StackPanel>
         </Border>
+
+        <Border Grid.Row="0" Grid.Column="3" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <TextBlock Text="Step 4" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+            Import the anomonly algorithm dll file
+            <LineBreak />
+            <LineBreak />
+            Press the following button to choose a file from your directory
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="3" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button Name="DllButton" Background="White" Content="Import anomoly dll file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="DllButton_Click" />
+                <TextBlock Name="DllPathBox" FontSize="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="4" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button x:Name="step1box" Content="1" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,50,5,0"/>
+                <Button x:Name="step2box" Content="2" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,0"/>
+                <Button x:Name="step3box" Content="3" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,0"/>
+                <Button x:Name="step4box" Content="4" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,10"/>
+                <TextBlock Foreground="White" Width="60" FontSize="7">
+                *You can proceed
+                 <LineBreak/>
+                 without completing
+                 <LineBreak/>
+                 all steps
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="4" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
+            <StackPanel>
+                <Button Name="ContinueButton" Foreground="White" Background="Black" Content="Continue" Margin="0,15,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="47" Width="60" Click="ContinueButton_Click" />
+            </StackPanel>
+        </Border>
+
 
     </Grid>
 </Window>
