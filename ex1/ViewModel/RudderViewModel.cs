@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using ex1.Model;
 
 namespace ex1.ViewModel
@@ -25,9 +26,61 @@ namespace ex1.ViewModel
             };
         }
 
-        public double Aileron { get => _model.CurrentFrame.ValuesMap["aileron"]; }
-        public double Elevator { get => _model.CurrentFrame.ValuesMap["elevator"]; }
-        public double Rudder { get => _model.CurrentFrame.ValuesMap["rudder"]; }
-        public double Throttle { get => _model.CurrentFrame.ValuesMap["throttle"]; }
+        public double Aileron
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["aileron"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Elevator
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["elevator"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Rudder
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["rudder"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
+        public double Throttle
+        {
+            get
+            {
+                try
+                {
+                    return _model.CurrentFrame.ValuesMap["throttle"];
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+            }
+        }
     }
 }
