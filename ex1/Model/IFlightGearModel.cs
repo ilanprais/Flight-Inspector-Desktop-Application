@@ -19,5 +19,8 @@ namespace ex1.Model
         public Task ConnectToFG(string ip, int port);
         public Task DisconnectFromFG();
         public Task Render();
+
+        public RandomVariable FindMostCorelative(RandomVariable variable, List<RandomVariable> variables);
+        public (double, double) LinearRegression(RandomVariable first, RandomVariable second);
     }
 }

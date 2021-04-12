@@ -34,7 +34,7 @@
                         <ColumnDefinition Width = "280"/>
                         <ColumnDefinition Width = "*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Name="graphName" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Name="graphName" Grid.Column="0" Text="{Binding CurrentProperty}" VerticalAlignment="Center" TextAlignment="Center"/>
                     <TextBlock Name="corName" FontSize="8" Text="{Binding CurrentCorelativeProperty}" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Grid>
             </Border>
@@ -70,7 +70,8 @@
 
                     <oxy:Plot Grid.Row="1">
                         <oxy:Plot.Series>
-                            <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
+                            <oxy:LineSeries ItemsSource="{Binding LinearRegressionPoints, Mode=OneWay}" LineStyle="None" MarkerType="Circle" MarkerSize="1.7" MarkerFill="Black"/>
+                            <oxy:LineSeries ItemsSource="{Binding LinearRegressionLine, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>

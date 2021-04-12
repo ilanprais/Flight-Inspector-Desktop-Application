@@ -9,6 +9,8 @@ namespace ex1.View
     /// </summary>
     public partial class PlaybackWindow : UserControl
     {
+        private PlayBackViewModel _playBackVM = (Application.Current as App).PlayBackVM;
+
         private bool _renderStarted = false;
 
         public static PlaybackWindow Current;
@@ -18,7 +20,7 @@ namespace ex1.View
         public PlaybackWindow()
         {
             InitializeComponent();
-            DataContext = (Application.Current as App).PlayBackVM;
+            DataContext = _playBackVM;
 
             Current = this;
         }
@@ -29,7 +31,7 @@ namespace ex1.View
             {
                 if (!_renderStarted)
                 {
-                    (DataContext as PlayBackViewModel).Render();
+                    _playBackVM.Render();
                     _renderStarted = true;
                 }
                 else
@@ -39,7 +41,7 @@ namespace ex1.View
                         slider.Value = 0;
                     }
 
-                    (DataContext as PlayBackViewModel).ResumeRendering();
+                    _playBackVM.ResumeRendering();
                 }
 
                 playBtn.Content = "Pause";
@@ -47,7 +49,7 @@ namespace ex1.View
             }
             else
             {
-                (DataContext as PlayBackViewModel).PauseRendering();
+                _playBackVM.PauseRendering();
                 playBtn.Content = "Play";
                 IsPlaying = false;
             }
@@ -61,7 +63,7 @@ namespace ex1.View
             }
             else
             {
-                (DataContext as PlayBackViewModel).CurrentFramePosition = 0;
+                _playBackVM.CurrentFramePosition = 0;
             }
         }
     }

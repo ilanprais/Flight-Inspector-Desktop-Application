@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Collections.Generic;
 using OxyPlot;
-using ex1.Model;
+using OxyPlot.Series;
+using System.Linq;
 using System;
+using ex1.Model;
 
 namespace ex1.ViewModel
 {
@@ -11,7 +13,6 @@ namespace ex1.ViewModel
         private readonly IFlightGearModel _model;
 
         private Dictionary<string, RandomVariable> _properties;
-        private string _currentProperty;
 
         public static readonly List<string> Properties = Frame.Properties;
 
@@ -35,13 +36,14 @@ namespace ex1.ViewModel
                         _properties[property] = new RandomVariable(values);
                     }
 
-                    _currentProperty = null;
+                    CurrentProperty = null;
                     CurrentCorelativeProperty = null;
                 }
                 else if (e.PropertyName == "CurrentFramePosition")
                 {
                     NotifyPropertyChanged(nameof(CurrentPropertyValues));
                     NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+                    NotifyPropertyChanged(nameof(LinearRegressionPoints));
                 }
                 else
                 {
@@ -50,6 +52,7 @@ namespace ex1.ViewModel
             };
         }
 
+        public string CurrentProperty { get; private set; }
         public string CurrentCorelativeProperty { get; private set; }
 
         public List<DataPoint> CurrentPropertyValues
@@ -58,9 +61,9 @@ namespace ex1.ViewModel
             {
                 var currentPropertyValues = new List<DataPoint>();
 
-                if (_currentProperty != null && _properties.ContainsKey(_currentProperty))
+                if (CurrentProperty != null && _properties.ContainsKey(CurrentProperty))
                 {
-                    var propertyValues = _properties[_currentProperty].Values;
+                    var propertyValues = _properties[CurrentProperty].Values;
 
                     for (var i = 0; i < _model.CurrentFramePosition; ++i)
                     {
@@ -71,7 +74,6 @@ namespace ex1.ViewModel
                 return currentPropertyValues;
             }
         }
-
         public List<DataPoint> CurrentCorelativePropertyValues
         {
             get
@@ -92,29 +94,54 @@ namespace ex1.ViewModel
             }
         }
 
-        public void ChangeField(string field)
+        public List<DataPoint> LinearRegressionLine
         {
-            _currentProperty = field;
-            
-            var biggestPCC = -1.0;
-            foreach (var item in _properties)
+            get
             {
-                if (item.Key == _currentProperty)
+                if (_model.CurrentFramePosition == 0)
                 {
-                    continue;
+                    return new List<DataPoint>();
                 }
 
-                var pcc = RandomVariable.PCC(_properties[_currentProperty], item.Value);
-                if (pcc > biggestPCC)
-                {
-                    CurrentCorelativeProperty = item.Key;
-                    biggestPCC = pcc;
-                }
+                var ab = _model.LinearRegression(_properties[CurrentProperty], _properties[CurrentCorelativeProperty]);
+                return new List<DataPoint> { new DataPoint(0, ab.Item2), new DataPoint(1, ab.Item1 + ab.Item2) };
             }
+        }
+        public List<DataPoint> LinearRegressionPoints
+        {
+            get
+            {
+                var points = new List<DataPoint>();
+
+                var maxFrameIndex = Math.Min(_model.Frames.Count, _model.CurrentFramePosition + 30 * _model.FrameRate);
+                for (var i = _model.CurrentFramePosition; i < maxFrameIndex; i += 15)
+                {
+                    points.Add(new DataPoint(_properties[CurrentProperty].Values[i], _properties[CurrentCorelativeProperty].Values[i]));
+                }
+
+                return points;
+            }
+        }
+
+        public double MaximumCurrentPropertyValue { get => _properties[CurrentProperty].Values.Max() * 2; }
+        public double MaximumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Max() * 2; }
+
+        public void ChangeField(string field)
+        {
+            CurrentProperty = field;
+
+            var mostCorelative = _model.FindMostCorelative(_properties[CurrentProperty], _properties.Values.ToList());
+            CurrentCorelativeProperty = _properties.FirstOrDefault(x => x.Value == mostCorelative).Key;
             
             NotifyPropertyChanged(nameof(CurrentPropertyValues));
             NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+            NotifyPropertyChanged(nameof(CurrentProperty));
             NotifyPropertyChanged(nameof(CurrentCorelativeProperty));
+
+            NotifyPropertyChanged(nameof(LinearRegressionLine));
+            NotifyPropertyChanged(nameof(LinearRegressionPoints));
+            NotifyPropertyChanged(nameof(MaximumCurrentPropertyValue));
+            NotifyPropertyChanged(nameof(MaximumCurrentCorelativePropertyValue));
         }
     }
 }

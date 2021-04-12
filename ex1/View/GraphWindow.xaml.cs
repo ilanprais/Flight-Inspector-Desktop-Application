@@ -49,8 +49,6 @@ namespace ex1.View
                 item.Background = Brushes.SlateGray;
             }
             (sender as MenuItem).Background = Brushes.Black;
-
-            graphName.Text = (sender as MenuItem).Header.ToString();
         }
     }
 }

@@ -88,6 +88,15 @@ namespace ex1.Model
             return _fgClient.Disconnect();
         }
 
+        public RandomVariable FindMostCorelative(RandomVariable variable, List<RandomVariable> variables)
+        {
+            return variable.FindMostCorelative(variables);
+        }
+        public (double, double) LinearRegression(RandomVariable first, RandomVariable second)
+        {
+            return first.LinearRegression(second);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged(string propertyName)
