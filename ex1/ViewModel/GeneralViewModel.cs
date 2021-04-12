@@ -37,6 +37,7 @@ namespace ex1.ViewModel
             _model.Frames = frames;
 
             _model.CurrentFramePosition = 0;
+            _model.RenderingStopped = true;
         }
 
         public void LoadXMLFile(string filePath)
