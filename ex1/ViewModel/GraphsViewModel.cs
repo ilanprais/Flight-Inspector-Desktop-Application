@@ -13,7 +13,6 @@ namespace ex1.ViewModel
         private Dictionary<string, RandomVariable> _properties;
 
         private string _currentProperty;
-        private string _currentCorelativeProperty;
 
         public static readonly List<string> Properties = Frame.Properties;
 
@@ -34,7 +33,7 @@ namespace ex1.ViewModel
                             values.Add(frame.ValuesMap[property]);
                         }
 
-                        _properties[property] = new RandomVariable(values); 
+                        _properties[property] = new RandomVariable(values);
                     }
 
                     NotifyPropertyChanged(nameof(CurrentPropertyValues));
@@ -51,6 +50,8 @@ namespace ex1.ViewModel
                 }
             };
         }
+
+        public string CurrentCorelativeProperty { get; private set; }
 
         public List<DataPoint> CurrentPropertyValues
         {
@@ -76,11 +77,11 @@ namespace ex1.ViewModel
         {
             get
             {
-                if (_currentCorelativeProperty == null || !_properties.ContainsKey(_currentCorelativeProperty))
+                if (CurrentCorelativeProperty == null || !_properties.ContainsKey(CurrentCorelativeProperty))
                 {
                     return new List<DataPoint>();
                 }
-                var corelativePropertyValues = _properties[_currentCorelativeProperty].Values;
+                var corelativePropertyValues = _properties[CurrentCorelativeProperty].Values;
 
                 var currentCorelativePropertyValues = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
@@ -107,7 +108,7 @@ namespace ex1.ViewModel
                 var pcc = RandomVariable.PCC(_properties[_currentProperty], item.Value);
                 if (pcc > biggestPCC)
                 {
-                    _currentCorelativeProperty = item.Key;
+                    CurrentCorelativeProperty = item.Key;
                 }
             }
             
