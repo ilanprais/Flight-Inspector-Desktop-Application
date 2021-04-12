@@ -54,7 +54,7 @@ namespace ex1.View
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+                (DataContext as GeneralViewModel).LoadXMLFile(openFileDialog.FileName);
                 XmlPathBox.Text = openFileDialog.FileName;
             }
 
@@ -83,6 +83,7 @@ namespace ex1.View
             //(DataContext as GeneralViewModel).LoadCSVFile(path);
             //PathBox.Text = path;
 
+            
             step2box.Background = Brushes.Green;
         }
 
@@ -93,7 +94,7 @@ namespace ex1.View
 
             try
             {
-                await (Application.Current as App).GeneralVM.ConnectToFG("127.0.0.1", 8081);
+                await (Application.Current as App).GeneralVM.ConnectToFG("192.168.68.112", 8081);
             }
             catch (Exception)
             {
