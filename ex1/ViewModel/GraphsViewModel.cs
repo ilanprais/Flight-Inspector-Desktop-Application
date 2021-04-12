@@ -38,11 +38,13 @@ namespace ex1.ViewModel
 
                     NotifyPropertyChanged(nameof(CurrentPropertyValues));
                     NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+                    NotifyPropertyChanged(nameof(CurrentCorelativeProperty));
                 }
                 else if (e.PropertyName == "CurrentFramePosition")
                 {
                     NotifyPropertyChanged(nameof(CurrentPropertyValues));
                     NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+                    NotifyPropertyChanged(nameof(CurrentCorelativeProperty));
                 }
                 else
                 {
@@ -97,7 +99,7 @@ namespace ex1.ViewModel
         {
             _currentProperty = field;
             
-            var biggestPCC = -1;
+            var biggestPCC = -1.0;
             foreach (var item in _properties)
             {
                 if (item.Key == _currentProperty)
@@ -109,11 +111,13 @@ namespace ex1.ViewModel
                 if (pcc > biggestPCC)
                 {
                     CurrentCorelativeProperty = item.Key;
+                    biggestPCC = pcc;
                 }
             }
             
             NotifyPropertyChanged(nameof(CurrentPropertyValues));
             NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+            NotifyPropertyChanged(nameof(CurrentCorelativeProperty));
         }
     }
 }

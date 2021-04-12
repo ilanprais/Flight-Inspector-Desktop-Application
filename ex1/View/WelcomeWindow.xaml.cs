@@ -102,7 +102,7 @@ namespace ex1.View
 
             try
             {
-                await _generalVM.ConnectToFG("127.0.0.1", 8081);
+                //await _generalVM.ConnectToFG("127.0.0.1", 8081);
             }
             catch
             {

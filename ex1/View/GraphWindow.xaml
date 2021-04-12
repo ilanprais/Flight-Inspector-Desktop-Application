@@ -36,7 +36,7 @@
                         <ColumnDefinition Width = "*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Name="graphName" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
-                    <TextBlock Name="corName" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Name="corName" Text="{Binding CurrentCorelativeProperty}" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Grid>
             </Border>
             <Grid Grid.Row="1" Grid.Column="1">
@@ -46,7 +46,7 @@
                 </Grid.ColumnDefinitions>
                 <oxy:Plot Grid.Column="0">
                     <oxy:Plot.Series>
-                        <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                        <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
                     </oxy:Plot.Series>
                     <oxy:Plot.Axes>
                         <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
@@ -61,7 +61,7 @@
                     
                     <oxy:Plot Grid.Row="0">
                         <oxy:Plot.Series>
-                            <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                            <oxy:LineSeries ItemsSource="{Binding CurrentCorelativePropertyValues, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
@@ -71,7 +71,7 @@
 
                     <oxy:Plot Grid.Row="1">
                         <oxy:Plot.Series>
-                            <oxy:LineSeries ItemsSource="{Binding CurrentFieldValues, Mode=OneWay}"/>
+                            <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>

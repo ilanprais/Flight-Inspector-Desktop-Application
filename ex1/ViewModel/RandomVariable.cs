@@ -39,6 +39,11 @@ namespace ex1.ViewModel
         }
         public static double PCC(RandomVariable first, RandomVariable second)
         {
+            if (first.Varience == 0 || second.Varience == 0)
+            {
+                return 0;
+            }
+
             return Covarience(first, second) / (Math.Sqrt(first.Varience) * Math.Sqrt(second.Varience));
         }
     }

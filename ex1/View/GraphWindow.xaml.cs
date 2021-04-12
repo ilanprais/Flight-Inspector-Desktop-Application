@@ -20,11 +20,13 @@ namespace ex1.View
             foreach (var property in GraphsViewModel.Properties)
             {
                 var item = new MenuItem();
+
                 item.Header = property;
                 item.FontSize = 8;
                 item.HorizontalAlignment = HorizontalAlignment.Center;
                 item.Width = 100;
                 item.Click += MenuItem_Click;
+
                 propertyMenu.Items.Add(item);
             }
         }
@@ -40,7 +42,6 @@ namespace ex1.View
             (sender as MenuItem).Background = Brushes.Black;
 
             graphName.Text = (sender as MenuItem).Header.ToString();
-            //corName.Text = currentCoralitiveProperty;
         }
     }
 }
