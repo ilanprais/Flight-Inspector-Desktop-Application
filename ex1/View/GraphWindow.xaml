@@ -35,7 +35,7 @@
                         <ColumnDefinition Width = "*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Name="graphName" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center"/>
-                    <TextBlock Name="corName" Text="{Binding CurrentCorelativeProperty}" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock Name="corName" FontSize="8" Text="{Binding CurrentCorelativeProperty}" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Grid>
             </Border>
             <Grid Grid.Row="1" Grid.Column="1">
