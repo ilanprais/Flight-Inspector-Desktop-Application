@@ -25,23 +25,16 @@ namespace ex1.ViewModel
         {
             var frames = new List<Frame>();
 
-            try
+            using (StreamReader file = new StreamReader(filePath))
             {
-                using (StreamReader file = new StreamReader(filePath))
+                string line;
+                while ((line = file.ReadLine()) != null)
                 {
-                    string line;
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        frames.Add(new Frame(line));
-                    }
+                    frames.Add(new Frame(line));
                 }
+            }
 
-                _model.Frames = frames;
-            }
-            catch (Exception e)
-            {
-                // need to handle exception
-            }
+            _model.Frames = frames;
 
             _model.CurrentFramePosition = 0;
         }
@@ -53,7 +46,7 @@ namespace ex1.ViewModel
             var xml = new XmlDocument();
             xml.Load(filePath);
 
-            foreach (XmlNode elem in xml.SelectSingleNode("//input").SelectNodes("//chunk"))
+            foreach (XmlNode elem in xml.SelectNodes("//input/chunk"))
             {
                 Frame.Properties.Add(elem["name"].InnerText);
             }

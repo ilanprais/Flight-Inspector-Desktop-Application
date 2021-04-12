@@ -27,20 +27,16 @@ namespace ex1.View
 
         private void DllButton_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog
-            //{
-            //    Multiselect = false,
-            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            //};
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
-            //    DllPathBox.Text = openFileDialog.FileName;
-            //}
-
-            //string path = "C:\\Users\\ilandovprais\\Documents\\playback_small.xml";
-            //(DataContext as GeneralViewModel).LoadXMLFile(path);
-            //DllPathBox.Text = path;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+                DllPathBox.Text = openFileDialog.FileName;
+            }
 
             step4box.Background = Brushes.Green;
         }
@@ -57,10 +53,6 @@ namespace ex1.View
                 (DataContext as GeneralViewModel).LoadXMLFile(openFileDialog.FileName);
                 XmlPathBox.Text = openFileDialog.FileName;
             }
-
-            //string path = "C:\\Users\\ilandovprais\\Documents\\playback_small.xml";
-            //(DataContext as GeneralViewModel).LoadXMLFile(path);
-            //XmlPathBox.Text = path;
 
             FileButton.IsEnabled = true;
             step3box.Background = Brushes.Green;
@@ -79,11 +71,6 @@ namespace ex1.View
                 PathBox.Text = openFileDialog.FileName;
             }
 
-            //string path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
-            //(DataContext as GeneralViewModel).LoadCSVFile(path);
-            //PathBox.Text = path;
-
-            
             step2box.Background = Brushes.Green;
         }
 
@@ -94,7 +81,7 @@ namespace ex1.View
 
             try
             {
-                await (Application.Current as App).GeneralVM.ConnectToFG("192.168.68.112", 8081);
+                await (Application.Current as App).GeneralVM.ConnectToFG("127.0.0.1", 8081);
             }
             catch (Exception)
             {
@@ -105,7 +92,6 @@ namespace ex1.View
 
             StatusBox.Text = "Connected! Moving to the application";
             step1box.Background = Brushes.Green;
-            await Task.Delay(2000);
         }
     }
 }

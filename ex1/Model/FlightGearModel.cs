@@ -65,7 +65,7 @@ namespace ex1.Model
             {
                 while (true)
                 {
-                    var task = _fgClient.Send(CurrentFrame.ToString());
+                    //var task = _fgClient.Send(CurrentFrame.ToString());
 
                     if (!RenderingStopped && CurrentFramePosition < Frames.Count - 1)
                     {
@@ -73,7 +73,7 @@ namespace ex1.Model
                     }
 
                     await Task.Delay((int)(1000 / ((double)FrameRate * Velocity)));
-                    await task;
+                    //await task;
                 }
             });
         }

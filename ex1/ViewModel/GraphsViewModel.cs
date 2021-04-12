@@ -9,8 +9,10 @@ namespace ex1.ViewModel
     {
         private readonly IFlightGearModel _model;
 
-        private Dictionary<string, List<DataPoint>> _fieldValues;
-        private string _currentField = "altimeter";
+        private Dictionary<string, RandomVariable> _properties;
+
+        private string _currentProperty = "altimeter_indicated-altitude-ft";
+        private string _currentCorelativeProperty;
 
         public GraphsViewModel(IFlightGearModel model)
         {
@@ -19,26 +21,26 @@ namespace ex1.ViewModel
             {
                 if (e.PropertyName == "Frames")
                 {
-                    _fieldValues = new Dictionary<string, List<DataPoint>>();
+                    _properties = new Dictionary<string, RandomVariable>();
 
-                    foreach (var item in Frame.Properties)
+                    foreach (var property in Frame.Properties)
                     {
-                        _fieldValues[item] = new List<DataPoint>();
-                    }
-
-                    for (var i = 0; i < _model.Frames.Count; ++i)
-                    {
-                        foreach (var item in _model.Frames[i].ValuesMap)
+                        var values = new List<double>();
+                        foreach (var frame in _model.Frames)
                         {
-                            _fieldValues[item.Key].Add(new DataPoint(i, item.Value));
+                            values.Add(frame.ValuesMap[property]);
                         }
+
+                        _properties[property] = new RandomVariable(values); 
                     }
 
-                    NotifyPropertyChanged(nameof(CurrentFieldValues));
+                    NotifyPropertyChanged(nameof(CurrentPropertyValues));
+                    NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
                 }
                 else if (e.PropertyName == "CurrentFramePosition")
                 {
-                    NotifyPropertyChanged(nameof(CurrentFieldValues));
+                    NotifyPropertyChanged(nameof(CurrentPropertyValues));
+                    NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
                 }
                 else
                 {
@@ -47,14 +49,28 @@ namespace ex1.ViewModel
             };
         }
 
-        public List<DataPoint> CurrentFieldValues
+        public List<DataPoint> CurrentPropertyValues
         {
             get
             {
                 var currentFieldValues = new List<DataPoint>();
                 for (var i = 0; i < _model.CurrentFramePosition; ++i)
                 {
-                    currentFieldValues.Add(_fieldValues[_currentField][i]);
+                    currentFieldValues.Add(new DataPoint(i, _properties[_currentProperty].Values[i]));
+                }
+
+                return currentFieldValues;
+            }
+        }
+
+        public List<DataPoint> CurrentCorelativePropertyValues
+        {
+            get
+            {
+                var currentFieldValues = new List<DataPoint>();
+                for (var i = 0; i < _model.CurrentFramePosition; ++i)
+                {
+                    currentFieldValues.Add(new DataPoint(i, _properties[_currentCorelativeProperty].Values[i]));
                 }
 
                 return currentFieldValues;
@@ -63,8 +79,25 @@ namespace ex1.ViewModel
 
         public void ChangeField(string field)
         {
-            _currentField = field;
-            NotifyPropertyChanged(nameof(CurrentFieldValues));
+            _currentProperty = field;
+
+            var biggestPCC = -1;
+            foreach (var item in _properties)
+            {
+                if (item.Key == _currentProperty)
+                {
+                    continue;
+                }
+
+                var pcc = RandomVariable.PCC(_properties[_currentProperty], item.Value);
+                if (pcc > biggestPCC)
+                {
+                    _currentCorelativeProperty = item.Key;
+                }
+            }
+
+            NotifyPropertyChanged(nameof(CurrentPropertyValues));
+            NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
         }
     }
 }
