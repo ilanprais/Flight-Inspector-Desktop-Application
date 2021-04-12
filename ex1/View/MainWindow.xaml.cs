@@ -32,14 +32,9 @@ namespace ex1
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
+                _generalVM.LoadCSVFile(openFileDialog.FileName);
                 filePathTextBox.Text = openFileDialog.FileName;
             }
-
-            //string path = "C:\\Users\\ilandovprais\\Documents\\reg_flight.csv";
-            //(DataContext as GeneralViewModel).LoadCSVFile(path);
-            //filePathTextBox.Text = path;
-
         }
     }
 }
