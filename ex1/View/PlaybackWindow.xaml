@@ -45,7 +45,6 @@
                     </Grid>
                     <Grid Name="sliderGrid" Grid.Row="1">
                         <Slider Name="slider" Value="{Binding CurrentFramePosition}" Maximum="{Binding FramesNumber}" Minimum="0" Margin="10,0,10,0"  />
-                        
                     </Grid>
                     
                 </Grid>

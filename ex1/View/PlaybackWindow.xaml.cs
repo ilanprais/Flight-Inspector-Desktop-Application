@@ -26,23 +26,36 @@ namespace ex1.View
 
             Current = this;
 
-            Rectangle rect = new Rectangle();
-            rect.Width = 7;
-            rect.Height = 7;
-            rect.Fill = Brushes.Red;
+            foreach(var frame in _playBackVM.AnomalyList)
+            {
+                Rectangle rect = new Rectangle();
+                rect.Width = 7;
+                rect.Height = 7;
+                rect.Fill = Brushes.Red;
 
-            rect.Margin = new Thickness(-450 + ((double)(_playBackVM.FramesNumber / 2)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
+                rect.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
 
-            Button btn = new Button();
-            btn.Width = 10;
-            btn.Height = 10;
-            btn.Background = Brushes.Transparent;
-            btn.BorderThickness = new Thickness(0);
+                Button btn = new Button();
+                btn.Width = 10;
+                btn.Height = 10;
+                btn.Background = Brushes.Transparent;
+                btn.BorderThickness = new Thickness(0);
+                btn.Click += redBtn_Click;
 
-            btn.Margin = new Thickness(-450 + ((double)(_playBackVM.FramesNumber/2))/_playBackVM.FramesNumber*900,5,0,0);
+                btn.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
 
-            sliderGrid.Children.Add(rect);
-            sliderGrid.Children.Add(btn);
+                sliderGrid.Children.Add(rect);
+                sliderGrid.Children.Add(btn);
+            }
+
+        }
+
+        private void redBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _playBackVM.CurrentFramePosition =(int)((((sender as Button).Margin.Left + 450) / 900)*_playBackVM.FramesNumber);
+            _playBackVM.PauseRendering();
+            playBtn.Content = "Play";
+            IsPlaying = false;
         }
 
         private void play_Click(object sender, RoutedEventArgs e)
