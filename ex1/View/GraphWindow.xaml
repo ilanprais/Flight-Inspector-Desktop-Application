@@ -74,8 +74,8 @@
                             <oxy:LineSeries ItemsSource="{Binding LinearRegressionLine, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
-                            <oxy:LinearAxis Maximum="{Binding MaximumCurrentCorelativePropertyValue}" Minimum="0" Position="Left" IsAxisVisible="False"/>
-                            <oxy:LinearAxis Maximum="{Binding MaximumCurrentPropertyValue}" Minimum="0"  Position="Bottom" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Maximum="{Binding MaximumCurrentCorelativePropertyValue}" Minimum="{Binding MinimumCurrentCorelativePropertyValue}" Position="Left" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Maximum="{Binding MaximumCurrentPropertyValue}" Minimum="{Binding MinimumCurrentPropertyValue}"  Position="Bottom" IsAxisVisible="False"/>
                         </oxy:Plot.Axes>
                     </oxy:Plot>
                     
