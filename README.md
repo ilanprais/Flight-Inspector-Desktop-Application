@@ -12,9 +12,8 @@ the application show the data of that time point. From the scrollbar, the user c
 **Statistics window** that shows some important data like altimeter, airspeed and more.  
 **Graphs window** that shows 3 graphs about the data property that the user has chosen:
 Graph of that data property, graph of the data property with is most corelative to the current data property, and graph that shows the linear regression between those two data properties.  
-//photo  
 **Rudder window** that contains the joystick and the rudder and throttle measures.  
-//photo  
+![Screenshot](stuff_window.png)  
 
 **The FlightGear application shows the flight video, while the flight inspector application shows and analyzes the data.**  
   
