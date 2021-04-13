@@ -46,11 +46,12 @@ namespace ex1.View
 
         private void XmlButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = false,
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    Multiselect = false,
+            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            //};
+            OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 try
@@ -79,11 +80,12 @@ namespace ex1.View
                 return;
             }
 
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = false,
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
+            //OpenFileDialog openFileDialog = new OpenFileDialog
+            //{
+            //    Multiselect = false,
+            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            //};
+            OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 try
