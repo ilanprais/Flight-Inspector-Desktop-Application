@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Collections.Generic;
 using OxyPlot;
-using OxyPlot.Series;
 using System.Linq;
 using System;
 using ex1.Model;
@@ -43,6 +42,7 @@ namespace ex1.ViewModel
                 {
                     NotifyPropertyChanged(nameof(CurrentPropertyValues));
                     NotifyPropertyChanged(nameof(CurrentCorelativePropertyValues));
+                    NotifyPropertyChanged(nameof(LinearRegressionLine));
                     NotifyPropertyChanged(nameof(LinearRegressionPoints));
                 }
                 else
@@ -104,8 +104,11 @@ namespace ex1.ViewModel
                 }
 
                 var ab = _model.LinearRegression(_properties[CurrentProperty], _properties[CurrentCorelativeProperty]);
-                return new List<DataPoint> { new DataPoint(MinimumCurrentPropertyValue, ab.Item1*MinimumCurrentPropertyValue + ab.Item2)
-                    , new DataPoint(MaximumCurrentPropertyValue, ab.Item1 * MaximumCurrentPropertyValue + ab.Item2) };
+                return new List<DataPoint>
+                {
+                    new DataPoint(MinimumCurrentPropertyValue, ab.Item1 * MinimumCurrentPropertyValue + ab.Item2),
+                    new DataPoint(MaximumCurrentPropertyValue, ab.Item1 * MaximumCurrentPropertyValue + ab.Item2)
+                };
             }
         }
         public List<DataPoint> LinearRegressionPoints
@@ -114,30 +117,23 @@ namespace ex1.ViewModel
             {
                 var points = new List<DataPoint>();
 
-                var maxFrameIndex = Math.Min(_model.Frames.Count, _model.CurrentFramePosition + 30 * _model.FrameRate);
-                for (var i = _model.CurrentFramePosition; i < maxFrameIndex; i += 15)
+                if (_model.CurrentFramePosition != 0)
                 {
-                    points.Add(new DataPoint(_properties[CurrentProperty].Values[i], _properties[CurrentCorelativeProperty].Values[i]));
+                    var maxFrameIndex = Math.Min(_model.Frames.Count, _model.CurrentFramePosition + 30 * _model.FrameRate);
+                    for (var i = _model.CurrentFramePosition; i < maxFrameIndex; i += 15)
+                    {
+                        points.Add(new DataPoint(_properties[CurrentProperty].Values[i], _properties[CurrentCorelativeProperty].Values[i]));
+                    }
                 }
 
                 return points;
             }
         }
 
-        public double MaximumCurrentPropertyValue {
-            get => _properties[CurrentProperty].Values.Max(); 
-        }
-        public double MaximumCurrentCorelativePropertyValue {
-            get => _properties[CurrentCorelativeProperty].Values.Max(); 
-        }
-        public double MinimumCurrentPropertyValue
-        {
-            get => _properties[CurrentProperty].Values.Min();
-        }
-        public double MinimumCurrentCorelativePropertyValue
-        {
-            get => _properties[CurrentCorelativeProperty].Values.Min();
-        }
+        public double MaximumCurrentPropertyValue { get => _properties[CurrentProperty].Values.Max(); }
+        public double MinimumCurrentPropertyValue { get => _properties[CurrentProperty].Values.Min(); }
+        public double MaximumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Max(); }
+        public double MinimumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Min(); }
 
         public void ChangeField(string field)
         {
@@ -154,8 +150,8 @@ namespace ex1.ViewModel
             NotifyPropertyChanged(nameof(LinearRegressionLine));
             NotifyPropertyChanged(nameof(LinearRegressionPoints));
             NotifyPropertyChanged(nameof(MaximumCurrentPropertyValue));
-            NotifyPropertyChanged(nameof(MaximumCurrentCorelativePropertyValue));
             NotifyPropertyChanged(nameof(MinimumCurrentPropertyValue));
+            NotifyPropertyChanged(nameof(MaximumCurrentCorelativePropertyValue));
             NotifyPropertyChanged(nameof(MinimumCurrentCorelativePropertyValue));
         }
     }

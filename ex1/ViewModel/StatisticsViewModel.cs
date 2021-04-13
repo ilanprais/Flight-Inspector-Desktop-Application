@@ -34,7 +34,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["altimeter_indicated-altitude-ft"];
+                    return _model.CurrentFrame.ValuesMap["altimeter-indicated-altitude-ft"];
                 }
                 catch (Exception)
                 {
@@ -48,7 +48,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["airspeed-indicator_indicated-speed-kt"];
+                    return _model.CurrentFrame.ValuesMap["airspeed-indicator-indicated-speed-kt"];
                 }
                 catch (Exception)
                 {
@@ -62,7 +62,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["direction"];
+                    return _model.CurrentFrame.ValuesMap["side-slip-deg"];
                 }
                 catch (Exception)
                 {

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Data;
 using System.Globalization;
 using System.Windows.Controls;
 using ex1.ViewModel;
 
-namespace ex1.View
+namespace ex1.View.ValueConverters
 {
     class PlayButtonTextConverter : IValueConverter
     {
