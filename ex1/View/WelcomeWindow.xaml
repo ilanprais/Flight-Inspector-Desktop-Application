@@ -74,12 +74,23 @@
         <Border Grid.Row="0" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <TextBlock Text="Step 2" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="115" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
             Import the .xml file for your flight
             <LineBreak />
             <LineBreak />
             Press the following button to choose a file from your directory
-
+            <LineBreak />
+            </TextBlock>
+                <TextBlock Foreground="LightGray" FontSize="9" Margin="10,0,10,0">
+             Note: As well as importing the
+             <LineBreak />
+                    .xml file here, copy the .xml
+             <LineBreak />
+                     file to the directory data/protocol
+             <LineBreak />
+                     inside the root folder of 
+             <LineBreak />
+                your flightgear
                 </TextBlock>
             </StackPanel>
         </Border>
@@ -121,7 +132,7 @@
                  <LineBreak/>
                 without completing
                  <LineBreak/>
-                the 4th step
+                step 4
                 </TextBlock>
             </StackPanel>
         </Border>
