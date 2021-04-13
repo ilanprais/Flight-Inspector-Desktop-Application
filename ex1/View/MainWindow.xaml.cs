@@ -25,15 +25,22 @@ namespace ex1
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Multiselect = false,
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
+            OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                _generalVM.LoadCSVFile(openFileDialog.FileName);
+                try
+                {
+                    _generalVM.LoadCSVFile(openFileDialog.FileName);
+                }
+                catch (FormatException)
+                {
+                    filePathTextBox.Text = "Invalid CSV file";
+                    return;
+                }
+
                 filePathTextBox.Text = openFileDialog.FileName;
+
+
             }
         }
     }

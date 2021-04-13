@@ -11,7 +11,7 @@ namespace ex1.View.ValueConverters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            foreach(int frame in (values[1] as List<int>))
+            foreach(int frame in (values[1] as Dictionary<int, List<string>>).Keys)
             {
                 if(frame == (int)values[0])
                 {

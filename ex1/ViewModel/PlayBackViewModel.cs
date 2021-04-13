@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using ex1.Model;
 
 namespace ex1.ViewModel
@@ -23,6 +24,32 @@ namespace ex1.ViewModel
             };
         }
 
+        public Dictionary<int, List<string>> AnomalyDict
+        {
+            get
+            {
+                Dictionary<int, List<string>> dict = new Dictionary<int, List<string>>();
+                dict[FramesNumber / 2] = new List<string>();
+                dict[FramesNumber / 2].Add("aileron");
+                dict[FramesNumber / 2].Add("altitude");
+
+                dict[FramesNumber / 3] = new List<string>();
+                dict[FramesNumber / 3].Add("speed");
+                dict[FramesNumber / 3].Add("bob");
+
+                dict[FramesNumber / 4] = new List<string>();
+                dict[FramesNumber / 4].Add("speed");
+                dict[FramesNumber / 4].Add("bob");
+
+                dict[FramesNumber] = new List<string>();
+                dict[FramesNumber].Add("yaw");
+                dict[FramesNumber].Add("pitch");
+                dict[FramesNumber].Add("roll");
+
+                return dict;
+
+            }
+        }
         public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
         public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
         public int FrameRate { get => _model.FrameRate; }

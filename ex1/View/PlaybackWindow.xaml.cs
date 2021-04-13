@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using ex1.ViewModel;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Controls.Primitives;
 
 namespace ex1.View
 {
@@ -26,7 +27,7 @@ namespace ex1.View
 
             Current = this;
 
-            foreach(var frame in _playBackVM.AnomalyList)
+            foreach(var frame in _playBackVM.AnomalyDict.Keys)
             {
                 Rectangle rect = new Rectangle();
                 rect.Width = 7;
@@ -41,6 +42,8 @@ namespace ex1.View
                 btn.Background = Brushes.Transparent;
                 btn.BorderThickness = new Thickness(0);
                 btn.Click += redBtn_Click;
+                btn.MouseEnter += redBtn_Hover;
+                btn.MouseLeave += redBtn_Leave;
 
                 btn.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
 
@@ -48,6 +51,42 @@ namespace ex1.View
                 sliderGrid.Children.Add(btn);
             }
 
+        }
+
+        private void redBtn_Hover(object sender, RoutedEventArgs e)
+        {
+            Popup info = new Popup();
+            int frameNumber = (int)((((sender as Button).Margin.Left + 450) / 900) * _playBackVM.FramesNumber);
+            string txt = "";
+            foreach (string property in _playBackVM.AnomalyDict[frameNumber])
+            {
+                txt += property + "\n";
+            }
+            TextBlock tb = new TextBlock();
+            tb.Background = Brushes.Black;
+            tb.Foreground = Brushes.White;
+            tb.Text = txt;
+            info.Child = tb;
+            info.HorizontalAlignment = HorizontalAlignment.Center;
+
+            StackPanel sp = new StackPanel();
+            sp.Margin = new Thickness((450 + (sender as Button).Margin.Left)/2, 10, 0, 0);
+            sp.Children.Add(info);
+
+            sliderGrid.Children.Add(sp);
+            info.IsOpen = true;
+            
+        }
+
+        private void redBtn_Leave(object sender, RoutedEventArgs e)
+        {
+            foreach(var elm in sliderGrid.Children)
+            {
+                if(elm is StackPanel)
+                {
+                    ((elm as StackPanel).Children[0] as Popup).IsOpen = false;
+                }
+            }  
         }
 
         private void redBtn_Click(object sender, RoutedEventArgs e)

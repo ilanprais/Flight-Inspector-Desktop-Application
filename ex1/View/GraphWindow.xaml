@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="cmbProperties" SelectionChanged="cmbProperties_SelectionChanged">
+            <ComboBox Grid.Row="0" Grid.Column="0" Name="cmbProperties" SelectionChanged="cmbProperties_SelectionChanged">
             </ComboBox>
 
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="4,0,0,4">
