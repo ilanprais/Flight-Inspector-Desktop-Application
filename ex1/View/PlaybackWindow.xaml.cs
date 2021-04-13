@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using ex1.ViewModel;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace ex1.View
 {
@@ -23,6 +25,22 @@ namespace ex1.View
             DataContext = _playBackVM;
 
             Current = this;
+
+            Rectangle rect = new Rectangle();
+            rect.Width = 7;
+            rect.Height = 7;
+            rect.Fill = Brushes.Red;
+
+            Button btn = new Button();
+            btn.Width = 10;
+            btn.Height = 10;
+            btn.Background = Brushes.Transparent;
+            btn.BorderThickness = new Thickness(0);
+
+            btn.Margin = new Thickness(-450 + ((double)(_playBackVM.FramesNumber/2))/_playBackVM.FramesNumber*900,5,0,0);
+
+            sliderGrid.Children.Add(rect);
+            sliderGrid.Children.Add(btn);
         }
 
         private void play_Click(object sender, RoutedEventArgs e)
