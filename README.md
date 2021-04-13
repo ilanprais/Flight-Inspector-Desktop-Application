@@ -45,8 +45,7 @@ the code manualy and run in a *.NETCORE 3.0* environment. Notice that the *OxyPl
 *How to run the application in Visual Studio ?*  
 **First**, install the Visual Studio and **clone this repository**.  
 **Second**, install the *OxyPlot* plugin. In Visual Studio: **Project -> Manage NuGet Packages -> Browse -> Search "OxyPlot Wpf" -> Install OxyPlot.Wpf**  
-**Then**, run the application by pressing the green run button in the Visual Studio. The *Opening window* will be opened, and the instructions will be showed there.  
-Then open the *FlightGear* application and do the instructions which are showed in our application.  
+**Then**, run the application by pressing the green run button in the Visual Studio. The *Opening window* will be opened, and the instructions will be showed there. Then open the *FlightGear* application and do the instructions which are showed in our application.  
 
 
 
