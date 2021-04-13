@@ -48,8 +48,8 @@
                         <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
                     </oxy:Plot.Series>
                     <oxy:Plot.Axes>
-                        <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
-                        <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                        <oxy:LinearAxis Position="Left" />
+                        <oxy:LinearAxis Position="Bottom" />
                     </oxy:Plot.Axes>
                 </oxy:Plot>
                 <Grid Grid.Column="1">
@@ -63,8 +63,8 @@
                             <oxy:LineSeries ItemsSource="{Binding CurrentCorelativePropertyValues, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
-                            <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
-                            <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Position="Left" />
+                            <oxy:LinearAxis Position="Bottom" />
                         </oxy:Plot.Axes>
                     </oxy:Plot>
 
@@ -74,8 +74,8 @@
                             <oxy:LineSeries ItemsSource="{Binding LinearRegressionLine, Mode=OneWay}"/>
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
-                            <oxy:LinearAxis Position="Left" IsAxisVisible="False"/>
-                            <oxy:LinearAxis Position="Bottom" IsAxisVisible="False"/>
+                            <oxy:LinearAxis Minimum="{Binding  MinimumCurrentCorelativePropertyValue}" Maximum="{Binding MaximumCurrentCorelativePropertyValue}" Position="Left"/>
+                            <oxy:LinearAxis Minimum="{Binding  MinimumCurrentPropertyValue}" Maximum="{Binding  MaximumCurrentPropertyValue}" Position="Bottom"/>
                         </oxy:Plot.Axes>
                     </oxy:Plot>
                     

@@ -104,7 +104,8 @@ namespace ex1.ViewModel
                 }
 
                 var ab = _model.LinearRegression(_properties[CurrentProperty], _properties[CurrentCorelativeProperty]);
-                return new List<DataPoint> { new DataPoint(0, ab.Item2), new DataPoint(1, ab.Item1 + ab.Item2) };
+                return new List<DataPoint> { new DataPoint(MinimumCurrentPropertyValue, ab.Item1*MinimumCurrentPropertyValue + ab.Item2)
+                    , new DataPoint(MaximumCurrentPropertyValue, ab.Item1 * MaximumCurrentPropertyValue + ab.Item2) };
             }
         }
         public List<DataPoint> LinearRegressionPoints
@@ -123,8 +124,20 @@ namespace ex1.ViewModel
             }
         }
 
-        public double MaximumCurrentPropertyValue { get => _properties[CurrentProperty].Values.Max() * 2; }
-        public double MaximumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Max() * 2; }
+        public double MaximumCurrentPropertyValue {
+            get => _properties[CurrentProperty].Values.Max(); 
+        }
+        public double MaximumCurrentCorelativePropertyValue {
+            get => _properties[CurrentCorelativeProperty].Values.Max(); 
+        }
+        public double MinimumCurrentPropertyValue
+        {
+            get => _properties[CurrentProperty].Values.Min();
+        }
+        public double MinimumCurrentCorelativePropertyValue
+        {
+            get => _properties[CurrentCorelativeProperty].Values.Min();
+        }
 
         public void ChangeField(string field)
         {
@@ -142,6 +155,8 @@ namespace ex1.ViewModel
             NotifyPropertyChanged(nameof(LinearRegressionPoints));
             NotifyPropertyChanged(nameof(MaximumCurrentPropertyValue));
             NotifyPropertyChanged(nameof(MaximumCurrentCorelativePropertyValue));
+            NotifyPropertyChanged(nameof(MinimumCurrentPropertyValue));
+            NotifyPropertyChanged(nameof(MinimumCurrentCorelativePropertyValue));
         }
     }
 }
