@@ -2,12 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ex1.View"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:valueconverters="clr-namespace:ex1.View.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="90">
     <UserControl.Resources>
-        <local:ControllerValuesConverter x:Key="controllerValuesConverter" />
+        <valueconverters:ControllerValuesConverter x:Key="controllerValuesConverter" />
     </UserControl.Resources>
     <Grid>
         <Ellipse Fill="Black"/>
