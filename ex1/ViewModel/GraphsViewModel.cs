@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Collections.Generic;
 using OxyPlot;
-using OxyPlot.Series;
 using System.Linq;
 using System;
 using ex1.Model;

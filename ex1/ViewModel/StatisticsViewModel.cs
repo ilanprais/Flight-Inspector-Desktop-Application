@@ -62,7 +62,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["direction"];
+                    return _model.CurrentFrame.ValuesMap["side-slip-deg"];
                 }
                 catch (Exception)
                 {
