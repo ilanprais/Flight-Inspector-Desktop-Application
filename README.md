@@ -4,7 +4,7 @@ About the application
 This is a flight inspector desktop application. The application works as following:  
   
 In the **Opening screen**, the user insetrs the .csv file with the flight data and the .xml file with the flight data settings, connects to the FlightGear application, which should be opened by the user, and inserts an algorithm to detect anomaly (optional). Then, the application moves to the **Main screen**.    
-// opening screen photo  
+![Screenshot](welcome_window.png) 
 The **Main screen** contains the following:  
 **Scrollbar** that indicates the current time of the flight video, which is controlled by the user. The user can move the scrollbar to the exact time point that he wants to make 
 the application show the data of that time point. From the scrollbar, the user can pause, play and increase the speed of the flight video.  
