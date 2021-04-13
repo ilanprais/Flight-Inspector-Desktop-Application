@@ -4,12 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ex1.View"
+             xmlns:valueconverters="clr-namespace:ex1.View.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="45" d:DesignWidth="120">
+    <UserControl.Resources>
+        <valueconverters:AnomalyBackgroundConverter x:Key="anomalyBackgroundConverter" />
+        <valueconverters:AnomalyTextConverter x:Key="anomalyTextConverter" />
+    </UserControl.Resources>
     <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4">
-        <Grid Background="Green">
-            <TextBlock Text="No Anomaly Detected" Foreground="white"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+        <Grid>
+            <Grid.Background>
+                <MultiBinding Converter="{StaticResource anomalyBackgroundConverter}">
+                    <Binding Path="CurrentFramePosition"/>
+                    <Binding Path="AnomalyList"/>
+                </MultiBinding>
+            </Grid.Background>
+            <TextBlock Foreground="white"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource anomalyTextConverter}">
+                        <Binding Path="CurrentFramePosition"/>
+                        <Binding Path="AnomalyList"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </Grid>
     </Border>
 </UserControl>

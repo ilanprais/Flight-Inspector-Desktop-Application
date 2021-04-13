@@ -16,18 +16,9 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,4,4,0">
-                <ScrollViewer VerticalScrollBarVisibility="Visible">
-                    <Menu Name="propertyMenu" Foreground="White" Background="SlateGray">
-                        <Menu.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </Menu.ItemsPanel>
-                    </Menu>
-                </ScrollViewer>
-            </Border>
-            
+            <ComboBox Name="cmbProperties" SelectionChanged="cmbProperties_SelectionChanged">
+            </ComboBox>
+
             <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="4,0,0,4">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -40,10 +31,10 @@
             </Border>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width = "280"/>
-                    <ColumnDefinition Width = "*"/>
+                    <ColumnDefinition Width = "278"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <oxy:Plot Grid.Column="0">
+                <oxy:Plot Grid.Column="0" Margin="-117,0,0,0">
                     <oxy:Plot.Series>
                         <oxy:LineSeries ItemsSource="{Binding CurrentPropertyValues, Mode=OneWay}"/>
                     </oxy:Plot.Series>
@@ -57,7 +48,7 @@
                         <RowDefinition Height = "*"/>
                         <RowDefinition Height = "*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <oxy:Plot Grid.Row="0">
                         <oxy:Plot.Series>
                             <oxy:LineSeries ItemsSource="{Binding CurrentCorelativePropertyValues, Mode=OneWay}"/>
@@ -78,7 +69,7 @@
                             <oxy:LinearAxis Minimum="{Binding  MinimumCurrentPropertyValue}" Maximum="{Binding  MaximumCurrentPropertyValue}" Position="Bottom" IsAxisVisible="False"/>
                         </oxy:Plot.Axes>
                     </oxy:Plot>
-                    
+
                 </Grid>
             </Grid>
         </Grid>

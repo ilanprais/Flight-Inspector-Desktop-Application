@@ -43,7 +43,10 @@
 
                         <ToggleButton Background="Black" Foreground="White" Name="speed" VerticalContentAlignment="Center" FontSize="6" Content="Speed" Grid.Column="2"/>
                     </Grid>
-                    <Slider Name="slider" Value="{Binding CurrentFramePosition}" Maximum="{Binding FramesNumber}" Minimum="0" Margin="10,0,10,0" Grid.Row="1" />
+                    <Grid Name="sliderGrid" Grid.Row="1">
+                        <Slider Name="slider" Value="{Binding CurrentFramePosition}" Maximum="{Binding FramesNumber}" Minimum="0" Margin="10,0,10,0"  />
+                    </Grid>
+                    
                 </Grid>
                 
                 <Border Grid.Column="1" Margin="5,5,15,5" Background="black" BorderBrush="black" BorderThickness="2">
