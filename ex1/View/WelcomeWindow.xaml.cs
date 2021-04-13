@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Threading.Tasks;
+using System.Windows.Media;
 using Microsoft.Win32;
 using ex1.ViewModel;
-using System.Windows.Media;
 
 
 namespace ex1.View
@@ -54,7 +53,16 @@ namespace ex1.View
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                _generalVM.LoadXMLFile(openFileDialog.FileName);
+                try
+                {
+                    _generalVM.LoadXMLFile(openFileDialog.FileName);
+                }
+                catch (System.Xml.XmlException)
+                {
+                    XmlPathBox.Text = "Invalid XML file";
+                    return;
+                }
+
                 XmlPathBox.Text = openFileDialog.FileName;
 
                 _xmlUploded = true;
@@ -67,7 +75,7 @@ namespace ex1.View
         {
             if (!_xmlUploded)
             {
-                PathBox.Text = "Please uplode the XML file first and then upload the CSV";
+                PathBox.Text = "Please uplode the XML file first and then upload the CSV file";
                 return;
             }
 
@@ -78,7 +86,16 @@ namespace ex1.View
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                _generalVM.LoadCSVFile(openFileDialog.FileName);
+                try
+                {
+                    _generalVM.LoadCSVFile(openFileDialog.FileName);
+                }
+                catch (FormatException)
+                {
+                    PathBox.Text = "Invalid CSV file";
+                    return;
+                }
+
                 PathBox.Text = openFileDialog.FileName;
 
                 _csvUploaded = true;
