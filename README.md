@@ -21,6 +21,10 @@ Graph of that data property, graph of the data property with is most corelative 
 ![Screenshot](stuff_window.png)  
   
 **The FlightGear application shows the flight video, while the flight inspector application shows and analyzes the data.**  
+
+  
+![Screenshot](fg_window.png)  
+  
   
 About the project structure
 ---------------------------
