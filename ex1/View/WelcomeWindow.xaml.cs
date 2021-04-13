@@ -67,7 +67,7 @@ namespace ex1.View
                 XmlPathBox.Text = openFileDialog.FileName;
 
                 _xmlUploded = true;
-                step3box.Background = Brushes.Green;
+                step2box.Background = Brushes.Green;
                 enableContinueButton();
             }
         }
@@ -101,7 +101,7 @@ namespace ex1.View
                 PathBox.Text = openFileDialog.FileName;
 
                 _csvUploaded = true;
-                step2box.Background = Brushes.Green;
+                step3box.Background = Brushes.Green;
                 enableContinueButton();
             }
         }

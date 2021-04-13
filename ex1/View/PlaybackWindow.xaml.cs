@@ -31,6 +31,8 @@ namespace ex1.View
             rect.Height = 7;
             rect.Fill = Brushes.Red;
 
+            rect.Margin = new Thickness(-450 + ((double)(_playBackVM.FramesNumber / 2)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
+
             Button btn = new Button();
             btn.Width = 10;
             btn.Height = 10;

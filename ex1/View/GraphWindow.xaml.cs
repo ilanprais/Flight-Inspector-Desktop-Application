@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Controls;
 using ex1.ViewModel;
+using System.Collections.Generic;
 
 namespace ex1.View
 {
@@ -17,38 +18,18 @@ namespace ex1.View
             InitializeComponent();
             DataContext = _graphsVM;
 
-            bool setDefault = false;
+            List<string> ls = new List<string>();
             foreach (var property in GraphsViewModel.Properties)
             {
-                var item = new MenuItem();
-
-                item.Header = property;
-                item.FontSize = 8;
-                item.HorizontalAlignment = HorizontalAlignment.Center;
-                item.Width = 100;
-                item.Click += MenuItem_Click;
-
-                if (!setDefault)
-                {
-                    MenuItem_Click(item, null);
-                    setDefault = true;
-                }
-
-                propertyMenu.Items.Add(item);
+                ls.Add(property);
             }
-
-           
+            cmbProperties.ItemsSource = ls;
+            cmbProperties.SelectedIndex = 0;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void cmbProperties_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _graphsVM.ChangeField((sender as MenuItem).Header.ToString());
-
-            foreach (MenuItem item in propertyMenu.Items)
-            {
-                item.Background = Brushes.SlateGray;
-            }
-            (sender as MenuItem).Background = Brushes.Black;
+            _graphsVM.ChangeField(cmbProperties.SelectedItem.ToString());
         }
     }
 }
