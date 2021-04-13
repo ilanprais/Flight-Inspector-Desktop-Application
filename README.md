@@ -10,6 +10,7 @@ In the **Opening screen**, the user insetrs the .csv file with the flight data a
 The **Main screen** contains the following:  
 **Scrollbar** that indicates the current time of the flight video, which is controlled by the user. The user can move the scrollbar to the exact time point that he wants to make 
 the application show the data of that time point. From the scrollbar, the user can pause, play and increase the speed of the flight video.  
+The red pointes indicate the time where an anomaly has happaned.  
   
 ![Screenshot](captures/scrollbar_window.png)  
   
