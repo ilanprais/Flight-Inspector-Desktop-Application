@@ -39,16 +39,11 @@
                 <Controls:RudderWindow Grid.Row="1"/>
             </Grid>
             <Canvas>
-                <Controls:GraphWindow Grid.Row="0" Grid.Column="0" Height="350" Width="580"/>
-                
-                
-
+                <Controls:GraphWindow x:Name="graphs" Grid.Row="0" Grid.Column="0" Height="350" Width="580"/>
             </Canvas>
             
             <Controls:PlaybackWindow x:Name="playback" Height="45" Grid.Row="1" Grid.Column="0"/>
             <Controls:StatusWindow Height="45" Grid.Row="1" Grid.Column="1"/>
-            
-
         </Grid>
     </StackPanel>
 

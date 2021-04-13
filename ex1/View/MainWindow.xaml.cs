@@ -40,7 +40,9 @@ namespace ex1
 
                 filePathTextBox.Text = openFileDialog.FileName;
 
-
+                graphs.cmbProperties.SelectedIndex = 0;
+                playback.playBtn.Content = "Start";
+                playback.IsPlaying = false;
             }
         }
     }

@@ -98,7 +98,7 @@ namespace ex1.ViewModel
         {
             get
             {
-                if (_model.CurrentFramePosition == 0)
+                if (_model.CurrentFramePosition == 0 || CurrentProperty == null || CurrentCorelativeProperty == null)
                 {
                     return new List<DataPoint>();
                 }
@@ -117,7 +117,7 @@ namespace ex1.ViewModel
             {
                 var points = new List<DataPoint>();
 
-                if (_model.CurrentFramePosition != 0)
+                if (_model.CurrentFramePosition != 0 && CurrentProperty != null && CurrentCorelativeProperty != null)
                 {
                     var maxFrameIndex = Math.Min(_model.Frames.Count, _model.CurrentFramePosition + 30 * _model.FrameRate);
                     for (var i = _model.CurrentFramePosition; i < maxFrameIndex; i += 15)
