@@ -27,14 +27,14 @@ In this way, the *IFlightGearModel* and *IAsyncFGClient* interfaces are built to
 ***ViewModel directory*** which contains a ViewModel for every user control, for example - the *PlayBackViewModel* is a ViewModel for the playback scrollbar, which gets from the 
 model the data which is relevant to the scrollbar (like the flight video speed), and decorates the relevant operations of the model for the scrollbar, like *Render* which starts 
 the rendering of the flight data. There is a data binding between every ViewModel to its user control.  
-***View directory*** which contains the .xaml file and the C# code behind for every user controls and window. The directory contains 2 windows - **Welcome window**, and **Main window**, and all of the user controls which exist in those windows.  
+***View directory*** which contains the .xaml file and the C# code behind for every user controls and window. The directory contains 2 windows - *Opening window*, and *Main window*, and all of the user controls which exist in those windows.  
 
 Required installations
 ----------------------
 The application is written in **WPF .NETCORE 3.0**.  
 To run the application you should have the following:  
 **.NETCORE 3.0 environment**. The *.NETCORE* version should be at least 3.0, because this is the first version which supports *WPF*.  
-**OxyPlot plugin for WPF**. *OxyPlot* plugin is used to produce and show the graphs of the flight data. 
+**OxyPlot plugin for WPF**. *OxyPlot* plugin is used to produce and show the graphs of the flight data.  
 **FlightGear application**. The *FlightGear* application is used to show a video of the flight. We recommand to use the last version of the *FlightGear*, which can be downloaded in the link **www.flightgear.org**.  
 
 Required installations
