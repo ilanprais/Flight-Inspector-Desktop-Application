@@ -1,4 +1,5 @@
 # Flight Inspector Desktop Application
+//application photo
 About the application
 ---------------------
 This is a flight inspector desktop application. The application works as following:  
@@ -20,7 +21,12 @@ Graph of that data property, graph of the data property with is most corelative 
   
 About the project structure
 ---------------------------
-The project contains 3 directories:  
+The project implements the **MVVM architectural pattern**. Accordingly, the project files are splitted into three folders - **Model**, **View**, and **ViewModel**.  
+The responsility **Model** is to analyze the given flight data .csv file, communicate with the *FlightGear*, and do all of the calculations like finding linear regression between two flight data properties.  
+The **View** is responsibe on showing the flight data to the user in an interactive way - data like the graphs and the anomaly. The View is also responsible on getting commands from the user - commands like pause the rendering and increase the rendering speed.  
+The **ViewModel** is responsible on connecting between the **Model** and the **View**, while making an *abstraction* of the **Model** for the **View**.  
+  
+About the directories:  
 ***Model directory*** which contains the class that are related to the model. *FlightGearModel* is the facade model class, which implements the *IFlightGearModel* interface.  
 This class contains an instance of an object that implements the *IAsyncFGClient* interface, and uses that object to communicate with the FlightGear asynchronously.  
 In this way, the *IFlightGearModel* and *IAsyncFGClient* interfaces are built together in the *Strategy design pattern*, which allows you to combine a *FlightGearModel* with every *AsyncFGClient* which implements the *IAsyncFGClient* interface. In the project, we implemented the *AsyncTcpFGClient*, which helps the *FlightGearModel* to communicate with the *FlightGear* in TCP protocol.  
