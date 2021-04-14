@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text;
+using System.Runtime.InteropServices;
 
 namespace ex1.Model
 {
     public class FlightGearModel : IFlightGearModel
     {
         private readonly IAsyncFGClient _fgClient;
+        private readonly IFlightAnomalyDetector _anomalyDetector;
 
         private string _flightDataFilePath;
 
         private List<Frame> _frames = null;
+        private Dictionary<int, List<string>> _anomalyDetails = null;
+
         private volatile int _currentFramePosition = 0;
 
         private volatile bool _renderingStopped = false;
         private double _velocity = 1;
         private const int _frameRate = 20;
 
-        public FlightGearModel(IAsyncFGClient fgClient)
+        public FlightGearModel(IAsyncFGClient fgClient, IFlightAnomalyDetector anomalyDetector)
         {
             _fgClient = fgClient;
+            _anomalyDetector = anomalyDetector;
         }
 
         public string FlightDataFilePath
@@ -55,6 +61,16 @@ namespace ex1.Model
                 NotifyPropertyChanged(nameof(Frames));
             }
         }
+        public Dictionary<int, List<string>> AnomalyDetails
+        {
+            get => _anomalyDetails;
+            set
+            {
+                _anomalyDetails = value;
+                NotifyPropertyChanged(nameof(AnomalyDetails));
+            }
+        }
+
         public int CurrentFramePosition
         {
             get => _currentFramePosition;
@@ -64,7 +80,6 @@ namespace ex1.Model
                 NotifyPropertyChanged(nameof(CurrentFramePosition));
             }
         }
-        
         public Frame CurrentFrame
         {
             get
@@ -102,15 +117,18 @@ namespace ex1.Model
                 }
             });
         }
-
         public Task ConnectToFG(string ip, int port)
         {
             return _fgClient.Connect(ip, port);
         }
-
         public Task DisconnectFromFG()
         {
             return _fgClient.Disconnect();
+        }
+
+        public void DetectAnomaly()
+        {
+            AnomalyDetails = _anomalyDetector.DetectAnomaly(FlightDataFilePath);
         }
 
         public RandomVariable FindMostCorelative(RandomVariable variable, List<RandomVariable> variables)

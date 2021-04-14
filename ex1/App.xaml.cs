@@ -11,7 +11,7 @@ namespace ex1
     {
         public App()
         {
-            var model = new FlightGearModel(new AsyncTcpFGClient());
+            var model = new FlightGearModel(new AsyncTcpFGClient(), new PluginFlightAnomalyDetector());
 
             GeneralVM = new GeneralViewModel(model);
             GraphsVM = new GraphsViewModel(model);

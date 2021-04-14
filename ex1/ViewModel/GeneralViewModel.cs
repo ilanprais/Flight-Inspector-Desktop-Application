@@ -43,18 +43,10 @@ namespace ex1.ViewModel
             _model.RenderingStopped = true;
         }
 
-        [DllImport(@"..\..\..\View\Resources\anomalyDetector.dll")]
-        public static extern void g(StringBuilder str, int len, string normal, string anomaly);
         public void LoadDLLFile(string filePath)
         {
-            string path = filePath;
-            
-            string path2 = @"..\..\..\View\Resources\anomalyDetector.dll";
-            
-            File.Copy(path, path2, true);
-            StringBuilder sb = new StringBuilder(10000000);
-            g(sb, sb.Capacity, @"..\..\..\View\Resources\reg_flight.csv", _model.FlightDataFilePath);
-            string str = sb.ToString();
+            File.Copy(filePath, @"..\..\..\View\Resources\anomalyDetector.dll", true);
+            _model.DetectAnomaly();
         }
 
         public Task ConnectToFG(string ip, int port)
