@@ -8,6 +8,7 @@ namespace ex1.View
     /// </summary>
     public partial class RudderWindow : UserControl
     {
+            //Window Initializer
         public RudderWindow()
         {
             InitializeComponent();
