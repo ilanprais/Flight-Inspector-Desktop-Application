@@ -43,6 +43,10 @@ namespace ex1.ViewModel
 
         public void LoadDLLFile(string filePath)
         {
+            if (File.Exists(@"..\..\..\Resources\anomalyDetector.dll"))
+            {
+                System.IO.File.Move(@"..\..\..\Resources\anomalyDetector.dll", @"..\..\..\Resources\tmp\"+System.Guid.NewGuid().ToString());
+            }
             File.Copy(filePath, @"..\..\..\Resources\anomalyDetector.dll", true);
             _model.DetectAnomaly();
         }

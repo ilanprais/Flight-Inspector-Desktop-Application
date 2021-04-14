@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using ex1.ViewModel;
 using System.ComponentModel;
+using System.IO;
 
 namespace ex1
 {
@@ -15,12 +16,19 @@ namespace ex1
 
         public MainWindow()
         {
+            Closing += MainWindow_Closing;
             InitializeComponent();
+            if (Directory.Exists(@"..\..\..\Resources\tmp"))
+            {
+                Directory.CreateDirectory(@"..\..\..\Resources\tmp");
+            }
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             _generalVM.DisconnectFromFG();
+            Directory.Delete(@"..\..\..\Resources\tmp", true);
+
         }
 
         private void FileButton_Click(object sender, RoutedEventArgs e)
@@ -63,7 +71,6 @@ namespace ex1
                 }
 
                 filePathTextBox.Text = openFileDialog.FileName;
-                DllImport.Visibility = Visibility.Hidden;
             }
         }
     }
