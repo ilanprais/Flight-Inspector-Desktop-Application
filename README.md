@@ -69,8 +69,9 @@ The application supports inserting anomaly detection algorithm plugin dynamicall
 **To use your own plugin**, your plugin should contain a function with the signature:  
 **Detect(StringBuilder str, int len, string normalDataFilePath, string anomalyDataFilePath)**  
 ***str*** - a string builder that will finally hold the string that represents the anomaly. This string format will be as following:  
-Every line of the string will be in the pattern **FrameNumber:FirstAnomalyProperty1-SecondAnomalyProperty1,FirstAnomalyProperty2-SecondAnomalyProperty2,...,**
-where **FirstAnomalyProperty** and **SecondAnomalyProperty** are the indices of the corelative anomaly properties.  
+Every line of the string will be in the pattern:  
+*FrameNumber:FirstAnomalyProperty1-SecondAnomalyProperty1,FirstAnomalyProperty2-SecondAnomalyProperty2,...,*  
+where *FirstAnomalyProperty* and *SecondAnomalyProperty* are the indices of the corelative anomaly properties.  
 ***len*** - the length of the string that the parameter ***str*** represents.  
 ***normalDataFilePath** - the path to the .csv file with the normal flight data.  
 ***anomalyDataFilePath*** - the path to the .csv file with the anomaly flight data.  
