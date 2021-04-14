@@ -4,6 +4,8 @@ using System.IO;
 using ex1.Model;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace ex1.ViewModel
 {
@@ -69,18 +71,29 @@ namespace ex1.ViewModel
                 }
             }
         }
+        [DllImport(@"..\..\..\View\Resources\anomalyDetector.dll")]
+        public static extern void g(StringBuilder str, int len, string normal, string anomaly);
         public void LoadDLLFile(string filePath)
         {
             //File.Copy(Path.Combine(@"C: \Users\danbi\Downloads","meshek_hamaim_israek.pptx"), Path.Combine(@"C: \Users\danbi\Downloads","185383.pptx"));
-            if (File.Exists(@"View\Resources\anomalyDetector.dll"))
-            {
-                File.Delete(@"View\Resources\anomalyDetector.dll");
-            }
+            //if (File.Exists(@"..\..\..\View\Resources\anomalyDetector.dll"))
+            //{
+            //    File.Delete(@"..\..\..\View\Resources\anomalyDetector.dll");
+            //}
+            //var directory = new DirectoryInfo(@"..\..\..\View\Resources\anomalyDetector.dll");
+            //if (directory.Exists)
+            //{
+            //    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(@"..\..\..\View\Resources\anomalyDetector.dll", Microsoft.VisualBasic.FileIO.DeleteDirectoryOption.DeleteAllContents);
+            //}
             string path = filePath;
             
-            string path2 = @"View\Resources\anomalyDetector.dll";
+            string path2 = @"..\..\..\View\Resources\anomalyDetector.dll";
             
-            Copy(path, path2);
+            //Copy(path, path2);
+            File.Copy(path, path2, true);
+            StringBuilder sb = new StringBuilder(10000000);
+            //Console.WriteLine(AttemptAdd(a, 10));
+            g(sb, sb.Capacity, "C:\\Users\\danbi\\Downloads\\reg_flight.csv", "C:\\Users\\danbi\\Downloads\\anomaly_flight.csv");
 
             //using (StreamReader file = new StreamReader(filePath))
             //{
