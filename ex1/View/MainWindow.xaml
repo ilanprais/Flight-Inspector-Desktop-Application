@@ -11,7 +11,7 @@
             <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
                 <MenuItem Foreground="White" Background="SlateGray" Header="_Import">
                     <MenuItem Foreground="White" Background="SlateGray" Header="Flight Data" Click="FileButton_Click"/>
-                    <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm"/>
+                    <MenuItem Foreground="White" Background="SlateGray" Header="Anomoly Algorithm" Click="DllButton_Click"/>
                 </MenuItem>
             </Menu>
             <Border Width="750" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,0,4,0">

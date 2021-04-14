@@ -45,5 +45,26 @@ namespace ex1
                 playback.IsPlaying = false;
             }
         }
+
+        private void DllButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    _generalVM.LoadDLLFile(openFileDialog.FileName);
+                }
+                catch (FormatException)
+                {
+                    filePathTextBox.Text = "Invalid dll file";
+                    return;
+                }
+
+                filePathTextBox.Text = openFileDialog.FileName;
+
+                
+            }
+        }
     }
 }

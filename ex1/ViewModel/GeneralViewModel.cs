@@ -51,6 +51,51 @@ namespace ex1.ViewModel
             _model.CurrentFramePosition = 0;
             _model.RenderingStopped = true;
         }
+        public static void Copy(string inputFilePath, string outputFilePath)
+        {
+            int bufferSize = 1024 * 1024;
+
+            using (FileStream fileStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
+            //using (FileStream fs = File.Open(<file-path>, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                FileStream fs = new FileStream(inputFilePath, FileMode.Open, FileAccess.ReadWrite);
+                fileStream.SetLength(fs.Length);
+                int bytesRead = -1;
+                byte[] bytes = new byte[bufferSize];
+
+                while ((bytesRead = fs.Read(bytes, 0, bufferSize)) > 0)
+                {
+                    fileStream.Write(bytes, 0, bytesRead);
+                }
+            }
+        }
+        public void LoadDLLFile(string filePath)
+        {
+            //File.Copy(Path.Combine(@"C: \Users\danbi\Downloads","meshek_hamaim_israek.pptx"), Path.Combine(@"C: \Users\danbi\Downloads","185383.pptx"));
+            if (File.Exists(@"View\Resources\anomalyDetector.dll"))
+            {
+                File.Delete(@"View\Resources\anomalyDetector.dll");
+            }
+            string path = filePath;
+            
+            string path2 = @"View\Resources\anomalyDetector.dll";
+            
+            Copy(path, path2);
+
+            //using (StreamReader file = new StreamReader(filePath))
+            //{
+            //    string line;
+            //    while ((line = file.ReadLine()) != null)
+            //    {
+            //        frames.Add(new Frame(line));
+            //    }
+            //}
+
+            //_model.Frames = frames;
+
+            //_model.CurrentFramePosition = 0;
+            //_model.RenderingStopped = true;
+        }
 
         public Task ConnectToFG(string ip, int port)
         {
