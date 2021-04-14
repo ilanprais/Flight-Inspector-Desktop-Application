@@ -26,7 +26,14 @@ namespace ex1.Model
             {
                 int frameNum = int.Parse(row.Split(":")[0]);
                 string reportsStr = row.Split(":")[1];
-                List<string> reports = new List<string>(reportsStr.Split(","));
+                List<string> reportsIndexes = new List<string>(reportsStr.Split(","));
+                reportsIndexes.Remove("");
+                List<string> reports = new List<string>();
+                foreach(string report in reportsIndexes)
+                {
+                    reports.Add(Frame.Properties[int.Parse(report.Split("-")[0])]+"-"+ Frame.Properties[int.Parse(report.Split("-")[1])]+"\n");
+                }
+                
                 result.Add(frameNum, reports);
             }
             return result;
