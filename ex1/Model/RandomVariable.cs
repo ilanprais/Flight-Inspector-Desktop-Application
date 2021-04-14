@@ -5,6 +5,7 @@ namespace ex1.Model
 {
     public class RandomVariable
     {
+                //Constructor
         public RandomVariable(List<double> values)
         {
             Values = values;
@@ -22,10 +23,12 @@ namespace ex1.Model
             Varience = squaresSum / Values.Count - Average * Average;
         }
 
+                //Properties
         public List<double> Values { get; private set; }
         public double Average { get; private set; }
         public double Varience { get; private set; }
 
+                //Calculates the Covariance
         public double Covarience(RandomVariable other)
         {
             double sum = 0;
@@ -37,6 +40,8 @@ namespace ex1.Model
 
             return sum / Values.Count - Average * other.Average;
         }
+        
+                //Calculates the PCC
         public double PCC(RandomVariable other)
         {
             if (Varience == 0 || other.Varience == 0)
@@ -47,6 +52,7 @@ namespace ex1.Model
             return Covarience(other) / (Math.Sqrt(Varience) * Math.Sqrt(other.Varience));
         }
 
+                //Finds the most corelative variable
         public RandomVariable FindMostCorelative(List<RandomVariable> variables)
         {
             RandomVariable mostCorelative = null;
@@ -70,6 +76,7 @@ namespace ex1.Model
             return mostCorelative;
         }
 
+                //Calculates the linear regression
         public (double, double) LinearRegression(RandomVariable other)
         {
             return (Covarience(other) / Varience, other.Average - (Covarience(other) / Varience) * Average);
