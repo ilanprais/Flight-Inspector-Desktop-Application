@@ -73,7 +73,7 @@ Every line of the string will be in the pattern:
 *FrameNumber:FirstAnomalyProperty1-SecondAnomalyProperty1,FirstAnomalyProperty2-SecondAnomalyProperty2,...,*  
 where *FirstAnomalyProperty* and *SecondAnomalyProperty* are the indices of the corelative anomaly properties.  
 ***len*** - the length of the string that the parameter ***str*** represents.  
-***normalDataFilePath** - the path to the .csv file with the normal flight data.  
+***normalDataFilePath*** - the path to the .csv file with the normal flight data.  
 ***anomalyDataFilePath*** - the path to the .csv file with the anomaly flight data.  
 
 **Note** that the anomaly detection algorithm plugin can be written in every language that can implement the function with the signature above, like C++, C#, and Java, but we tested the application only with plugins that were written in C++.  
