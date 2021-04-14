@@ -18,7 +18,7 @@ namespace ex1
         {
             Closing += MainWindow_Closing;
             InitializeComponent();
-            if (Directory.Exists(@"..\..\..\Resources\tmp"))
+            if (!Directory.Exists(@"..\..\..\Resources\tmp"))
             {
                 Directory.CreateDirectory(@"..\..\..\Resources\tmp");
             }
