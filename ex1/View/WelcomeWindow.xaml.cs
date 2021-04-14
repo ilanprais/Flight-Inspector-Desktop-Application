@@ -28,22 +28,6 @@ namespace ex1.View
             Content = new MainWindow().Content;
         }
 
-        private void DllButton_Click(object sender, RoutedEventArgs e)
-        {
-            //OpenFileDialog openFileDialog = new OpenFileDialog
-            //{
-            //    Multiselect = false,
-            //    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            //};
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    (DataContext as GeneralViewModel).LoadCSVFile(openFileDialog.FileName);
-            //    DllPathBox.Text = openFileDialog.FileName;
-            //}
-
-            step4box.Background = Brushes.Green;
-        }
-
         private void XmlButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ex1.View"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Flight Inspector" Height="450" Width="800"
@@ -13,18 +12,17 @@
             <ColumnDefinition Width = "*" />
             <ColumnDefinition Width = "*"/>
             <ColumnDefinition Width = "*" />
-            <ColumnDefinition Width = "*"/>
             <ColumnDefinition Width = "80"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height = "320" />
             <RowDefinition Height = "*" />
         </Grid.RowDefinitions>
-        
+
         <Border Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="Step 1" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock Foreground="White" FontSize="11" HorizontalAlignment="Center" Height="140" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+                <TextBlock Foreground="White" FontSize="11" HorizontalAlignment="Center" Height="140" Margin="0,37,0,0" TextWrapping="Wrap" Width="204">
             Open the FlightGear and add the following settings:
             <LineBreak />
             <LineBreak />
@@ -39,7 +37,7 @@
                 </TextBlock>
             </StackPanel>
         </Border>
-        
+
         <Border Grid.Row="1" Grid.Column="0" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <Button Name="ConnectButton" Background="White" Content="Connect to FlightGear" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="ConnectButton_Click" />
@@ -50,7 +48,7 @@
         <Border Grid.Row="0" Grid.Column="2" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <TextBlock Text="Step 3" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="150" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="150" Margin="0,37,0,0" TextWrapping="Wrap" Width="211">
             Import the .csv file for your flight
             <LineBreak />
             <LineBreak />
@@ -74,13 +72,13 @@
         <Border Grid.Row="0" Grid.Column="1" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
                 <TextBlock Text="Step 2" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="115" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="115" Margin="0,37,0,0" TextWrapping="Wrap" Width="211">
             Import the .xml file for your flight
             <LineBreak />
             <LineBreak />
             Press the following button to choose a file from your directory
             <LineBreak />
-            </TextBlock>
+                </TextBlock>
                 <TextBlock Foreground="LightGray" FontSize="9" Margin="10,0,10,0">
              Note: As well as importing the
              <LineBreak />
@@ -102,38 +100,11 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="3" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
-            <StackPanel>
-                <TextBlock Text="Step 4" FontSize="30" Foreground="White" HorizontalAlignment="Center" Height="50" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" Height="114" Margin="0,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160">
-            Import the anomonly algorithm dll file
-            <LineBreak />
-            <LineBreak />
-            Press the following button to choose a file from your directory
-                </TextBlock>
-            </StackPanel>
-        </Border>
-
-        <Border Grid.Row="1" Grid.Column="3" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
-            <StackPanel>
-                <Button Name="DllButton" Background="White" Content="Import anomoly dll file" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140" Click="DllButton_Click" />
-                <TextBlock Name="DllPathBox" FontSize="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            </StackPanel>
-        </Border>
-
         <Border Grid.Row="0" Grid.Column="4" Background="LightSlateGray" BorderBrush="Black" BorderThickness="4,4,4,4">
             <StackPanel>
-                <Button x:Name="step1box" Content="1" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,50,5,0"/>
+                <Button x:Name="step1box" Content="1" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,100,5,0"/>
                 <Button x:Name="step2box" Content="2" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,0"/>
                 <Button x:Name="step3box" Content="3" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,0"/>
-                <Button x:Name="step4box" Content="4" Foreground="White" BorderBrush="White" Background="Transparent" Height="30" Margin="5,25,5,10"/>
-                <TextBlock Foreground="White" Width="60" FontSize="7">
-                You can proceed
-                 <LineBreak/>
-                without completing
-                 <LineBreak/>
-                step 4
-                </TextBlock>
             </StackPanel>
         </Border>
 
