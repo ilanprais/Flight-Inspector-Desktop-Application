@@ -6,8 +6,10 @@ namespace ex1.ViewModel
 {
     public class StatisticsViewModel : AbstractNotifier
     {
+            //Member Field
         private readonly IFlightGearModel _model;
 
+        //Constructor
         public StatisticsViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -28,6 +30,7 @@ namespace ex1.ViewModel
             };
         }
 
+        //Properties
         public double Altimeter 
         {
             get
