@@ -94,7 +94,7 @@ namespace ex1.ViewModel
             StringBuilder sb = new StringBuilder(10000000);
             //Console.WriteLine(AttemptAdd(a, 10));
             g(sb, sb.Capacity, "C:\\Users\\danbi\\Downloads\\reg_flight.csv", "C:\\Users\\danbi\\Downloads\\anomaly_flight.csv");
-
+            string str = sb.ToString();
             //using (StreamReader file = new StreamReader(filePath))
             //{
             //    string line;

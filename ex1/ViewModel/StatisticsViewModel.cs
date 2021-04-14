@@ -62,7 +62,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["side-slip-deg"];
+                    return _model.CurrentFrame.ValuesMap["heading-deg"];
                 }
                 catch (Exception)
                 {
@@ -104,7 +104,7 @@ namespace ex1.ViewModel
             {
                 try
                 {
-                    return _model.CurrentFrame.ValuesMap["heading-deg"];
+                    return _model.CurrentFrame.ValuesMap["side-slip-deg"];
                 }
                 catch (Exception)
                 {
