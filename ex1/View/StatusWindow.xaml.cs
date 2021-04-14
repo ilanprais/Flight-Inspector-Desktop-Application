@@ -19,7 +19,9 @@ namespace ex1.View
     /// </summary>
     public partial class StatusWindow : UserControl
     {
+        //Member Field
         private PlayBackViewModel _playBackVM = (Application.Current as App).PlayBackVM;
+        //Window Initializer
         public StatusWindow()
         {
             InitializeComponent();
