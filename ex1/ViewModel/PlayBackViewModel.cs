@@ -6,8 +6,10 @@ namespace ex1.ViewModel
 {
     public class PlayBackViewModel : AbstractNotifier
     {
+            //Member Field
         private readonly IFlightGearModel _model;
 
+        //Constructor
         public PlayBackViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -24,6 +26,7 @@ namespace ex1.ViewModel
             };
         }
 
+        //Properties
         public Dictionary<int, List<string>> AnomalyDetails
         {
             get
@@ -54,17 +57,20 @@ namespace ex1.ViewModel
             }
         }
 
+        //Renders the model
         public void Render()
         {
             _model.RenderingStopped = false;
             _model.Render();
         }
 
+        //Pauses the rendering
         public void PauseRendering()
         {
             _model.RenderingStopped = true;
         }
 
+        //Resumes the rendering
         public void ResumeRendering()
         {
             _model.RenderingStopped = false;
