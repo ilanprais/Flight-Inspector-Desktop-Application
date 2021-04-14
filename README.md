@@ -3,7 +3,7 @@ About the application
 ---------------------
 This is a flight inspector desktop application. The application works as following:  
   
-In the **Opening screen**, the user insetrs the .csv file with the flight data and the .xml file with the flight data settings, connects to the FlightGear application, which should be opened by the user, and inserts an algorithm to detect anomaly (optional). Then, the application moves to the **Main screen**.    
+In the **Opening screen**, the user insetrs the .csv file with the flight data and the .xml file with the flight data settings, connects to the FlightGear application, which should be opened by the user, and inserts an anomaly detection algorithm (optional). Then, the application moves to the **Main screen**.    
   
 ![Screenshot](captures/welcome_window.png) 
   
@@ -42,6 +42,7 @@ In this way, the *IFlightGearModel* and *IAsyncFGClient* interfaces are built to
 model the data which is relevant to the scrollbar (like the flight video speed), and decorates the relevant operations of the model for the scrollbar, like *Render* which starts 
 the rendering of the flight data. There is a data binding between every ViewModel to its user control.  
 ***View directory*** which contains the .xaml file and the C# code behind for every user controls and window. The directory contains 2 windows - *Opening window*, and *Main window*, and all of the user controls which exist in those windows.  
+**Plugins directory** which contains two anomaly algorithm plugins.  
 
 Required installations
 ----------------------
@@ -61,8 +62,20 @@ the code manualy and run in a *.NETCORE 3.0* environment. Notice that the *OxyPl
 **Second**, install the *OxyPlot* plugin. In Visual Studio: **Project -> Manage NuGet Packages -> Browse -> Search "OxyPlot Wpf" -> Install OxyPlot.Wpf**  
 **Then**, run the application by pressing the green run button in the Visual Studio. The *Opening window* will be opened, and the instructions will be showed there. Then open the *FlightGear* application and do the instructions which are showed in our application.  
 
+About the plugin
+----------------
+The application supports inserting anomaly detection algorithm plugin dynamically. In the *Plugins* directory, there are two anomaly detection algorithm plugins that you can insert to the application. Those plugins are written in C++.  
 
+**To use your own plugin**, your plugin should contain a function with the signature:  
+**Detect(StringBuilder str, int len, string normalDataFilePath, string anomalyDataFilePath)**  
+***str*** - a string builder that will finally hold the string that represents the anomaly. This string format will be as following:  
+Every line of the string will be in the pattern **FrameNumber:FirstAnomalyProperty1-SecondAnomalyProperty1,FirstAnomalyProperty2-SecondAnomalyProperty2,...,**
+where **FirstAnomalyProperty** and **SecondAnomalyProperty** are the indices of the corelative anomaly properties.  
+***len*** - the length of the string that the parameter ***str*** represents.  
+***normalDataFilePath** - the path to the .csv file with the normal flight data.  
+***anomalyDataFilePath*** - the path to the .csv file with the anomaly flight data.  
 
+**Note** that the anomaly detection algorithm plugin can be written in every language that can implement the function with the signature above, like C++, C#, and Java, but we tested the application only with plugins that were written in C++.  
 
 
 
