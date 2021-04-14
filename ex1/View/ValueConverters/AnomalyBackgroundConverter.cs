@@ -9,6 +9,7 @@ namespace ex1.View.ValueConverters
 {
     class AnomalyBackgroundConverter : IMultiValueConverter
     {
+            //Returns the fitting color for the anomaly status window background
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             foreach(int frame in (values[1] as Dictionary<int, List<string>>).Keys)
@@ -21,6 +22,7 @@ namespace ex1.View.ValueConverters
             return Brushes.Green;
         }
 
+        //Converts back
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
