@@ -78,8 +78,9 @@ where *FirstAnomalyProperty* and *SecondAnomalyProperty* are the indices of the 
 
 **Note** that the anomaly detection algorithm plugin can be written in every language that can implement the function with the signature above, like C++, C#, and Java, but we tested the application only with plugins that were written in C++.  
 
-
-
+Demonstration Video
+----------------
+https://youtu.be/2U8jjl2nS5c
 
 
 
