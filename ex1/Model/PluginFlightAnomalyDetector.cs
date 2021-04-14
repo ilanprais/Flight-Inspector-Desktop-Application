@@ -6,8 +6,8 @@ namespace ex1.Model
 {
     public class PluginFlightAnomalyDetector : IFlightAnomalyDetector
     {
-        private const string AnomalyDetectionPluginPath = @"..\..\..\View\Resources\anomalyDetector.dll";
-        private const string NormalFlightDataFilePath = @"..\..\..\View\Resources\reg_flight.csv";
+        private const string AnomalyDetectionPluginPath = @"..\..\..\Resources\anomalyDetector.dll";
+        private const string NormalFlightDataFilePath = @"..\..\..\Resources\reg_flight.csv";
 
         [DllImport(AnomalyDetectionPluginPath)]
         public static extern void g(StringBuilder str, int len, string normal, string anomaly);
