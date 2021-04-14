@@ -63,6 +63,7 @@ namespace ex1
                 }
 
                 filePathTextBox.Text = openFileDialog.FileName;
+                DllImport.Visibility = Visibility.Hidden;
             }
         }
     }

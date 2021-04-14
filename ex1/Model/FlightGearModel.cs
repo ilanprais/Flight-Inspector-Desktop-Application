@@ -47,7 +47,10 @@ namespace ex1.Model
                 }
 
                 Frames = frames;
-                AnomalyDetails = null;
+                if (AnomalyDetails != null)
+                {
+                    DetectAnomaly();
+                }
             }
         }
 
