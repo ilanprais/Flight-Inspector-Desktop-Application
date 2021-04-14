@@ -4,8 +4,6 @@ using System.IO;
 using ex1.Model;
 using System.Threading.Tasks;
 using System.Xml;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace ex1.ViewModel
 {

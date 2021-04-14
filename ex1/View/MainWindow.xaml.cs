@@ -56,15 +56,13 @@ namespace ex1
                 {
                     _generalVM.LoadDLLFile(openFileDialog.FileName);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
                     filePathTextBox.Text = "Invalid dll file";
                     return;
                 }
 
                 filePathTextBox.Text = openFileDialog.FileName;
-
-                
             }
         }
     }
