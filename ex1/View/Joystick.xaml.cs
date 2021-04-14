@@ -18,6 +18,7 @@ namespace ex1.View
     /// </summary>
     public partial class Joystick : UserControl
     {
+        //Window Initializer
         public Joystick()
         {
             InitializeComponent();
