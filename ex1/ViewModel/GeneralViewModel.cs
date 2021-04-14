@@ -37,6 +37,8 @@ namespace ex1.ViewModel
 
         public void LoadCSVFile(string filePath)
         {
+            _model.FlightDataFilePath = filePath;
+
             var frames = new List<Frame>();
 
             using (StreamReader file = new StreamReader(filePath))
@@ -53,61 +55,19 @@ namespace ex1.ViewModel
             _model.CurrentFramePosition = 0;
             _model.RenderingStopped = true;
         }
-        public static void Copy(string inputFilePath, string outputFilePath)
-        {
-            int bufferSize = 1024 * 1024;
 
-            using (FileStream fileStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
-            //using (FileStream fs = File.Open(<file-path>, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                FileStream fs = new FileStream(inputFilePath, FileMode.Open, FileAccess.ReadWrite);
-                fileStream.SetLength(fs.Length);
-                int bytesRead = -1;
-                byte[] bytes = new byte[bufferSize];
-
-                while ((bytesRead = fs.Read(bytes, 0, bufferSize)) > 0)
-                {
-                    fileStream.Write(bytes, 0, bytesRead);
-                }
-            }
-        }
         [DllImport(@"..\..\..\View\Resources\anomalyDetector.dll")]
         public static extern void g(StringBuilder str, int len, string normal, string anomaly);
         public void LoadDLLFile(string filePath)
         {
-            //File.Copy(Path.Combine(@"C: \Users\danbi\Downloads","meshek_hamaim_israek.pptx"), Path.Combine(@"C: \Users\danbi\Downloads","185383.pptx"));
-            //if (File.Exists(@"..\..\..\View\Resources\anomalyDetector.dll"))
-            //{
-            //    File.Delete(@"..\..\..\View\Resources\anomalyDetector.dll");
-            //}
-            //var directory = new DirectoryInfo(@"..\..\..\View\Resources\anomalyDetector.dll");
-            //if (directory.Exists)
-            //{
-            //    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(@"..\..\..\View\Resources\anomalyDetector.dll", Microsoft.VisualBasic.FileIO.DeleteDirectoryOption.DeleteAllContents);
-            //}
             string path = filePath;
             
             string path2 = @"..\..\..\View\Resources\anomalyDetector.dll";
             
-            //Copy(path, path2);
             File.Copy(path, path2, true);
             StringBuilder sb = new StringBuilder(10000000);
-            //Console.WriteLine(AttemptAdd(a, 10));
-            g(sb, sb.Capacity, "C:\\Users\\danbi\\Downloads\\reg_flight.csv", "C:\\Users\\danbi\\Downloads\\anomaly_flight.csv");
+            g(sb, sb.Capacity, @"..\..\..\View\Resources\reg_flight.csv", _model.FlightDataFilePath);
             string str = sb.ToString();
-            //using (StreamReader file = new StreamReader(filePath))
-            //{
-            //    string line;
-            //    while ((line = file.ReadLine()) != null)
-            //    {
-            //        frames.Add(new Frame(line));
-            //    }
-            //}
-
-            //_model.Frames = frames;
-
-            //_model.CurrentFramePosition = 0;
-            //_model.RenderingStopped = true;
         }
 
         public Task ConnectToFG(string ip, int port)

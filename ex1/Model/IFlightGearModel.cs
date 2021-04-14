@@ -8,6 +8,7 @@ namespace ex1.Model
 {
     public interface IFlightGearModel : INotifyPropertyChanged
     {
+        public string FlightDataFilePath { get; set; }
         public List<Frame> Frames { get; set; }
         public int CurrentFramePosition { get; set; }
         public Frame CurrentFrame { get; }

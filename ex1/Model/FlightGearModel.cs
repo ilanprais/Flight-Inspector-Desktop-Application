@@ -21,6 +21,8 @@ namespace ex1.Model
             _fgClient = fgClient;
         }
 
+        public string FlightDataFilePath { get; set; }
+
         public List<Frame> Frames
         {
             get => _frames;
