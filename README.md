@@ -3,7 +3,8 @@ About the application
 ---------------------
 This is a flight inspector desktop application. The application works as following:  
   
-In the **Opening screen**, the user insetrs the .csv file with the flight data and the .xml file with the flight data settings, connects to the FlightGear application, which should be opened by the user, and inserts an anomaly detection algorithm (optional). Then, the application moves to the **Main screen**.    
+In the **Opening screen**, the user insetrs the .csv file with the flight data and the .xml file with the flight data settings, connects to the FlightGear application, 
+which should be opened by the user. Then, the application moves to the **Main screen**.    
   
 ![Screenshot](captures/welcome_window.png) 
   
@@ -18,6 +19,7 @@ The red pointes indicate the time where an anomaly has happaned.
 **Graphs window** that shows 3 graphs about the data property that the user has chosen:
 Graph of that data property, graph of the data property with is most corelative to the current data property, and graph that shows the linear regression between those two data properties.  
 **Rudder window** that contains the joystick and the rudder and throttle measures.  
+**Import button** which makes the user able to upload a new flight data .csv file, and a new anomaly detection algorithm .dll plugin.
   
 ![Screenshot](captures/stuff_window.png)  
   
