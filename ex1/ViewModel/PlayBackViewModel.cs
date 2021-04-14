@@ -24,7 +24,7 @@ namespace ex1.ViewModel
             };
         }
 
-        public Dictionary<int, List<string>> AnomalyDict
+        public Dictionary<int, List<string>> AnomalyDetails
         {
             get
             {

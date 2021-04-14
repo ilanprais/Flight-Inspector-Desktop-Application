@@ -16,7 +16,7 @@
             <Grid.Background>
                 <MultiBinding Converter="{StaticResource anomalyBackgroundConverter}">
                     <Binding Path="CurrentFramePosition"/>
-                    <Binding Path="AnomalyDict"/>
+                    <Binding Path="AnomalyDetails"/>
                 </MultiBinding>
             </Grid.Background>
             <TextBlock Foreground="white"
@@ -24,7 +24,7 @@
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource anomalyTextConverter}">
                         <Binding Path="CurrentFramePosition"/>
-                        <Binding Path="AnomalyDict"/>
+                        <Binding Path="AnomalyDetails"/>
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>

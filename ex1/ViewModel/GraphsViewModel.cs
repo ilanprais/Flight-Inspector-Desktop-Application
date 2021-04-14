@@ -34,9 +34,6 @@ namespace ex1.ViewModel
 
                         _properties[property] = new RandomVariable(values);
                     }
-
-                    CurrentProperty = null;
-                    CurrentCorelativeProperty = null;
                 }
                 else if (e.PropertyName == "CurrentFramePosition")
                 {

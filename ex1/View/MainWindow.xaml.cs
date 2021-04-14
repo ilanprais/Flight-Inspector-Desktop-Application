@@ -31,6 +31,7 @@ namespace ex1
                 try
                 {
                     _generalVM.LoadCSVFile(openFileDialog.FileName);
+                    graphs._graphsVM.ChangeField(GraphsViewModel.Properties[0]);
                 }
                 catch (Exception)
                 {

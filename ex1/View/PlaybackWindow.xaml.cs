@@ -4,6 +4,8 @@ using ex1.ViewModel;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace ex1.View
 {
@@ -27,30 +29,49 @@ namespace ex1.View
 
             Current = this;
 
-            foreach(var frame in _playBackVM.AnomalyDict.Keys)
+            _playBackVM.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
-                Rectangle rect = new Rectangle();
-                rect.Width = 7;
-                rect.Height = 7;
-                rect.Fill = Brushes.Red;
+                if (e.PropertyName == "AnomalyDetails")
+                {
+                    var remove = new List<UIElement>();
+                    foreach (var element in sliderGrid.Children)
+                    {
+                        if (element is Rectangle || element is Button)
+                        {
+                            remove.Add(element as UIElement);
+                        }
+                    }
+                    foreach (var element in remove)
+                    {
+                        sliderGrid.Children.Remove(element);
+                    }
+                    
 
-                rect.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
+                    foreach (var frame in _playBackVM.AnomalyDetails.Keys)
+                    {
+                        Rectangle rect = new Rectangle();
+                        rect.Width = 7;
+                        rect.Height = 7;
+                        rect.Fill = Brushes.Red;
 
-                Button btn = new Button();
-                btn.Width = 10;
-                btn.Height = 10;
-                btn.Background = Brushes.Transparent;
-                btn.BorderThickness = new Thickness(0);
-                btn.Click += redBtn_Click;
-                btn.MouseEnter += redBtn_Hover;
-                btn.MouseLeave += redBtn_Leave;
+                        rect.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
 
-                btn.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
+                        Button btn = new Button();
+                        btn.Width = 10;
+                        btn.Height = 10;
+                        btn.Background = Brushes.Transparent;
+                        btn.BorderThickness = new Thickness(0);
+                        btn.Click += redBtn_Click;
+                        btn.MouseEnter += redBtn_Hover;
+                        btn.MouseLeave += redBtn_Leave;
 
-                sliderGrid.Children.Add(rect);
-                sliderGrid.Children.Add(btn);
-            }
+                        btn.Margin = new Thickness(-450 + ((double)(frame)) / _playBackVM.FramesNumber * 900, 5, 0, 0);
 
+                        sliderGrid.Children.Add(rect);
+                        sliderGrid.Children.Add(btn);
+                    }
+                }
+            };
         }
 
         private void redBtn_Hover(object sender, RoutedEventArgs e)
@@ -58,7 +79,7 @@ namespace ex1.View
             Popup info = new Popup();
             int frameNumber = (int)((((sender as Button).Margin.Left + 450) / 900) * _playBackVM.FramesNumber);
             string txt = "";
-            foreach (string property in _playBackVM.AnomalyDict[frameNumber])
+            foreach (string property in _playBackVM.AnomalyDetails[frameNumber])
             {
                 txt += property + "\n";
             }

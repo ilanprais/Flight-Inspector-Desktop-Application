@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.IO;
-using System.Text;
-using System.Runtime.InteropServices;
 
 namespace ex1.Model
 {
@@ -49,6 +47,7 @@ namespace ex1.Model
                 }
 
                 Frames = frames;
+                AnomalyDetails = null;
             }
         }
 
