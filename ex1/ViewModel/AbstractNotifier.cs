@@ -7,8 +7,10 @@ namespace ex1.ViewModel
 {
     public class AbstractNotifier : INotifyPropertyChanged
     {
+            //Member Field
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Notifies if a property is changed
         protected void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
