@@ -8,6 +8,7 @@ namespace ex1.View.ValueConverters
 {
     class PlayButtonTextConverter : IValueConverter
     {
+            //Returns the fitting content control
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (System.Convert.ToInt32(value) == PlaybackWindow.Current.slider.Maximum)
@@ -28,7 +29,8 @@ namespace ex1.View.ValueConverters
 
             return PlaybackWindow.Current.playBtn.Content;
         }
-
+        
+        //Converts back
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
