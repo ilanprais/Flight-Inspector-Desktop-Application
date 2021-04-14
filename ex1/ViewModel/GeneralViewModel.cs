@@ -39,19 +39,6 @@ namespace ex1.ViewModel
         {
             _model.FlightDataFilePath = filePath;
 
-            var frames = new List<Frame>();
-
-            using (StreamReader file = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = file.ReadLine()) != null)
-                {
-                    frames.Add(new Frame(line));
-                }
-            }
-
-            _model.Frames = frames;
-
             _model.CurrentFramePosition = 0;
             _model.RenderingStopped = true;
         }

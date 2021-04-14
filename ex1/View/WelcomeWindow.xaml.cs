@@ -53,7 +53,7 @@ namespace ex1.View
                 {
                     _generalVM.LoadXMLFile(openFileDialog.FileName);
                 }
-                catch (System.Xml.XmlException)
+                catch (Exception)
                 {
                     XmlPathBox.Text = "Invalid XML file";
                     return;
@@ -82,7 +82,7 @@ namespace ex1.View
                 {
                     _generalVM.LoadCSVFile(openFileDialog.FileName);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
                     PathBox.Text = "Invalid CSV file";
                     return;

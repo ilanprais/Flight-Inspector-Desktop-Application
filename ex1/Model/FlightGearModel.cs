@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ex1.Model
 {
     public class FlightGearModel : IFlightGearModel
     {
         private readonly IAsyncFGClient _fgClient;
+
+        private string _flightDataFilePath;
 
         private List<Frame> _frames = null;
         private volatile int _currentFramePosition = 0;
@@ -21,12 +24,32 @@ namespace ex1.Model
             _fgClient = fgClient;
         }
 
-        public string FlightDataFilePath { get; set; }
+        public string FlightDataFilePath
+        {
+            get => _flightDataFilePath;
+            set
+            {
+                _flightDataFilePath = value;
+
+                var frames = new List<Frame>();
+
+                using (StreamReader file = new StreamReader(value))
+                {
+                    string line;
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        frames.Add(new Frame(line));
+                    }
+                }
+
+                Frames = frames;
+            }
+        }
 
         public List<Frame> Frames
         {
             get => _frames;
-            set
+            private set
             {
                 _frames = value;
                 NotifyPropertyChanged(nameof(Frames));

@@ -32,7 +32,7 @@ namespace ex1
                 {
                     _generalVM.LoadCSVFile(openFileDialog.FileName);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
                     filePathTextBox.Text = "Invalid CSV file";
                     return;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -9,7 +7,7 @@ namespace ex1.Model
     public interface IFlightGearModel : INotifyPropertyChanged
     {
         public string FlightDataFilePath { get; set; }
-        public List<Frame> Frames { get; set; }
+        public List<Frame> Frames { get; }
         public int CurrentFramePosition { get; set; }
         public Frame CurrentFrame { get; }
 
