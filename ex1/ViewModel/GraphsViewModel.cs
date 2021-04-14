@@ -9,12 +9,14 @@ namespace ex1.ViewModel
 {
     public class GraphsViewModel : AbstractNotifier
     {
+            //Member Fields
         private readonly IFlightGearModel _model;
 
         private Dictionary<string, RandomVariable> _properties;
 
         public static readonly List<string> Properties = Frame.Properties;
 
+        //Constructor
         public GraphsViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -49,6 +51,7 @@ namespace ex1.ViewModel
             };
         }
 
+        //Properties
         public string CurrentProperty { get; private set; }
         public string CurrentCorelativeProperty { get; private set; }
 
@@ -132,6 +135,7 @@ namespace ex1.ViewModel
         public double MaximumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Max(); }
         public double MinimumCurrentCorelativePropertyValue { get => _properties[CurrentCorelativeProperty].Values.Min(); }
 
+        //Changes the value of the specified field
         public void ChangeField(string field)
         {
             CurrentProperty = field;
