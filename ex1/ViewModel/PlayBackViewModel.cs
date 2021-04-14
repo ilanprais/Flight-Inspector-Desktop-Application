@@ -24,7 +24,18 @@ namespace ex1.ViewModel
             };
         }
 
-        public Dictionary<int, List<string>> AnomalyDict { get => _model.AnomalyDetails; }
+        public Dictionary<int, List<string>> AnomalyDict
+        {
+            get
+            {
+                if (_model.AnomalyDetails == null)
+                {
+                    return new Dictionary<int, List<string>>();
+                }
+
+                return _model.AnomalyDetails;
+            }
+        }
         public int CurrentFramePosition { get => _model.CurrentFramePosition; set => _model.CurrentFramePosition = value; }
         public double Velocity { get => _model.Velocity; set => _model.Velocity = value; }
         public int FrameRate { get => _model.FrameRate; }
