@@ -25,12 +25,6 @@ namespace ex1
             }
         }
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-            _generalVM.DisconnectFromFG();
-            Directory.Delete(@"..\..\..\Resources\tmp", true);
-
-        }
         //On Click method for the file button
         private void FileButton_Click(object sender, RoutedEventArgs e)
         {

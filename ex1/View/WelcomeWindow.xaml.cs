@@ -13,7 +13,7 @@ namespace ex1.View
     /// </summary>
     public partial class WelcomeWindow : Window
     {
-            //Member fields
+        //Member fields
         private GeneralViewModel _generalVM = (Application.Current as App).GeneralVM;
 
         private bool _fgConnected = false;
@@ -33,13 +33,20 @@ namespace ex1.View
         }
         private void OnClosing(object sender, CancelEventArgs e)
         {
-            _generalVM.DisconnectFromFG();
+            try
+            {
+                _generalVM.DisconnectFromFG();
+            }
+            catch
+            {
+                ;
+            }
 
             try
             {
                 Directory.Delete(TempFilesDirectory, true);
             }
-            catch (Exception)
+            catch
             {
                 ;
             }

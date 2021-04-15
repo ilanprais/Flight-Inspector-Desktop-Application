@@ -69,7 +69,7 @@ About the plugin
 The application supports inserting anomaly detection algorithm plugin dynamically. In the *Plugins* directory, there are two anomaly detection algorithm plugins that you can insert to the application. Those plugins are written in C++.  
 
 **To use your own plugin**, your plugin should contain a function with the signature:  
-**Detect(StringBuilder str, int len, string normalDataFilePath, string anomalyDataFilePath)**  
+**g(StringBuilder str, int len, string normalDataFilePath, string anomalyDataFilePath)**  
 ***str*** - a string builder that will finally hold the string that represents the anomaly. This string format will be as following:  
 Every line of the string will be in the pattern:  
 *FrameNumber:FirstAnomalyProperty1-SecondAnomalyProperty1,FirstAnomalyProperty2-SecondAnomalyProperty2,...,*  
