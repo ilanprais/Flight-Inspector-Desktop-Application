@@ -9,8 +9,10 @@ namespace ex1.ViewModel
 {
     public class GeneralViewModel : AbstractNotifier
     {
-            //Member Field
+        //Member Field
         private readonly IFlightGearModel _model;
+
+        private string _flightDataFilePath;
 
         private const string AnomalyDetectionPluginPath = @"..\..\..\Resources\anomalyDetector.dll";
 
@@ -40,7 +42,24 @@ namespace ex1.ViewModel
         //Method to load the CSV file in the provided filepath
         public void LoadCSVFile(string filePath)
         {
-            _model.FlightDataFilePath = filePath;
+            _flightDataFilePath = filePath;
+
+            var frames = new List<Frame>();
+
+            using (StreamReader file = new StreamReader(_flightDataFilePath))
+            {
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    frames.Add(new Frame(line));
+                }
+            }
+
+            _model.Frames = frames;
+            if (_model.AnomalyDetails != null)
+            {
+                _model.DetectAnomaly(_flightDataFilePath);
+            }
 
             _model.CurrentFramePosition = 0;
             _model.RenderingStopped = true;
@@ -55,7 +74,7 @@ namespace ex1.ViewModel
             }
 
             File.Copy(filePath, AnomalyDetectionPluginPath, true);
-            _model.DetectAnomaly();
+            _model.DetectAnomaly(_flightDataFilePath);
 
             _model.CurrentFramePosition = 0;
             _model.RenderingStopped = true;

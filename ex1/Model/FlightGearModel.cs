@@ -8,11 +8,9 @@ namespace ex1.Model
 {
     public class FlightGearModel : IFlightGearModel
     {
-            //Member Fields
+        //Member Fields
         private readonly IAsyncFGClient _fgClient;
         private readonly IFlightAnomalyDetector _anomalyDetector;
-
-        private string _flightDataFilePath;
 
         private List<Frame> _frames = null;
         private Dictionary<int, List<string>> _anomalyDetails = null;
@@ -31,36 +29,11 @@ namespace ex1.Model
         }
 
         //Properties
-        public string FlightDataFilePath
-        {
-            get => _flightDataFilePath;
-            set
-            {
-                _flightDataFilePath = value;
-
-                var frames = new List<Frame>();
-
-                using (StreamReader file = new StreamReader(value))
-                {
-                    string line;
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        frames.Add(new Frame(line));
-                    }
-                }
-
-                Frames = frames;
-                if (AnomalyDetails != null)
-                {
-                    DetectAnomaly();
-                }
-            }
-        }
 
         public List<Frame> Frames
         {
             get => _frames;
-            private set
+            set
             {
                 _frames = value;
                 NotifyPropertyChanged(nameof(Frames));
@@ -136,9 +109,9 @@ namespace ex1.Model
         }
 
         //Checks if there is an anomaly
-        public void DetectAnomaly()
+        public void DetectAnomaly(string flightDataFilePath)
         {
-            AnomalyDetails = _anomalyDetector.DetectAnomaly(FlightDataFilePath);
+            AnomalyDetails = _anomalyDetector.DetectAnomaly(flightDataFilePath);
         }
 
         //Finds the most corelative variable
