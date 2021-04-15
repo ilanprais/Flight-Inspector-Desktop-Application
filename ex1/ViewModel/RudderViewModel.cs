@@ -6,8 +6,10 @@ namespace ex1.ViewModel
 {
     public class RudderViewModel : AbstractNotifier
     {
+            //Member Field
         private readonly IFlightGearModel _model;
 
+        //Constructor
         public RudderViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -26,6 +28,7 @@ namespace ex1.ViewModel
             };
         }
 
+        //Properties
         public double Aileron
         {
             get

@@ -13,6 +13,7 @@ namespace ex1.View
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+            //Member fields
         private GeneralViewModel _generalVM = (Application.Current as App).GeneralVM;
 
         private bool _fgConnected = false;
@@ -44,11 +45,13 @@ namespace ex1.View
             }
         }
 
+        //Onclick method for the continue button
         private void ContinueButton_Click(object sender, RoutedEventArgs e)
         {
             Content = new MainWindow().Content;
         }
 
+        //Onclick method for the XML uploading button
         private void XmlButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -72,6 +75,7 @@ namespace ex1.View
             }
         }
 
+        //Onclick method for the file uploading button
         private void FileButton_Click(object sender, RoutedEventArgs e)
         {
             if (!_xmlUploded)
@@ -101,6 +105,7 @@ namespace ex1.View
             }
         }
 
+        //Onclick method for the Connect to flightgear button
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             StatusBox.Text = "Connecting";
@@ -124,6 +129,7 @@ namespace ex1.View
             enableContinueButton();
         }
 
+        //Method to enable the continue button
         private void enableContinueButton()
         {
             if (_fgConnected && _xmlUploded && _csvUploaded)

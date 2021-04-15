@@ -11,8 +11,10 @@ namespace ex1.View
     /// </summary>
     public partial class GraphWindow : UserControl
     {
+        //Member Field
         public GraphsViewModel _graphsVM = (Application.Current as App).GraphsVM;
 
+        //Window Initializer
         public GraphWindow()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace ex1.View
             cmbProperties.ItemsSource = ls;
             cmbProperties.SelectedIndex = 0;
         }
-
+        //Method for when the selection was changed in the cmbProperties drop down list (Combobox control)
         private void cmbProperties_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _graphsVM.ChangeField(cmbProperties.SelectedItem.ToString());

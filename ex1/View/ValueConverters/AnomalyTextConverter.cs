@@ -9,6 +9,7 @@ namespace ex1.View.ValueConverters
 {
     class AnomalyTextConverter : IMultiValueConverter
     {
+            //Returns the fitting text for the anomaly status window
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             foreach (int frame in (values[1] as Dictionary<int, List<string>>).Keys)
@@ -21,6 +22,7 @@ namespace ex1.View.ValueConverters
             return "No Anomaly Detected";
         }
 
+        //Converts back
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;

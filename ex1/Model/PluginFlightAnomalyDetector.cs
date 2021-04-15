@@ -6,12 +6,15 @@ namespace ex1.Model
 {
     public class PluginFlightAnomalyDetector : IFlightAnomalyDetector
     {
+            //Member Fields
         private const string AnomalyDetectionPluginPath = @"..\..\..\Resources\anomalyDetector.dll";
         private const string NormalFlightDataFilePath = @"..\..\..\Resources\reg_flight.csv";
 
+        //Plugin
         [DllImport(AnomalyDetectionPluginPath)]
         public static extern void g(StringBuilder str, int len, string normal, string anomaly);
 
+        //Returns a dictionary with the anomaly frame number and the properties in which the anomaly occured in
         public Dictionary<int, List<string>> DetectAnomaly(string flightDataFilePath)
         {
             StringBuilder sb = new StringBuilder(10000000);

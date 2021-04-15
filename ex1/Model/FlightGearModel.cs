@@ -8,6 +8,7 @@ namespace ex1.Model
 {
     public class FlightGearModel : IFlightGearModel
     {
+            //Member Fields
         private readonly IAsyncFGClient _fgClient;
         private readonly IFlightAnomalyDetector _anomalyDetector;
 
@@ -22,12 +23,14 @@ namespace ex1.Model
         private double _velocity = 1;
         private const int _frameRate = 20;
 
+        //Constructor
         public FlightGearModel(IAsyncFGClient fgClient, IFlightAnomalyDetector anomalyDetector)
         {
             _fgClient = fgClient;
             _anomalyDetector = anomalyDetector;
         }
 
+        //Properties
         public string FlightDataFilePath
         {
             get => _flightDataFilePath;
@@ -101,6 +104,7 @@ namespace ex1.Model
         public bool RenderingStopped { get => _renderingStopped; set => _renderingStopped = value; }
         public int FrameRate { get => _frameRate; }
 
+        //Renders the model
         public Task Render()
         {
             return Task.Run(async () =>
@@ -119,31 +123,40 @@ namespace ex1.Model
                 }
             });
         }
+                //Connects to the flightgear
         public Task ConnectToFG(string ip, int port)
         {
             return _fgClient.Connect(ip, port);
         }
+        
+                //Disconnects from the flightgear
         public Task DisconnectFromFG()
         {
             return _fgClient.Disconnect();
         }
 
+        //Checks if there is an anomaly
         public void DetectAnomaly()
         {
             AnomalyDetails = _anomalyDetector.DetectAnomaly(FlightDataFilePath);
         }
 
+        //Finds the most corelative variable
         public RandomVariable FindMostCorelative(RandomVariable variable, List<RandomVariable> variables)
         {
             return variable.FindMostCorelative(variables);
         }
+        
+                //Calculates the linear regression
         public (double, double) LinearRegression(RandomVariable first, RandomVariable second)
         {
             return first.LinearRegression(second);
         }
 
+        //Event handler for when a property is changes
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Notifies the given property that it was changed an updates it
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

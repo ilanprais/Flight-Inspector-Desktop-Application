@@ -18,6 +18,7 @@ namespace ex1.View
     /// </summary>
     public partial class Statistics : UserControl
     {
+            //Window Initializer
         public Statistics()
         {
             InitializeComponent();

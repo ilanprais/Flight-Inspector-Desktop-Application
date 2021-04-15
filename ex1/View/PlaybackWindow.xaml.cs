@@ -14,14 +14,17 @@ namespace ex1.View
     /// </summary>
     public partial class PlaybackWindow : UserControl
     {
+            //Member Fields
         private PlayBackViewModel _playBackVM = (Application.Current as App).PlayBackVM;
 
         private bool _renderStarted = false;
 
         public static PlaybackWindow Current;
 
+        //Property
         public bool IsPlaying { get; set; }
 
+        //Window Initializer
         public PlaybackWindow()
         {
             InitializeComponent();
@@ -74,6 +77,7 @@ namespace ex1.View
             };
         }
 
+        //On Hover method for the redBtn button
         private void redBtn_Hover(object sender, RoutedEventArgs e)
         {
             Popup info = new Popup();
@@ -99,6 +103,7 @@ namespace ex1.View
             
         }
 
+        //On Leave method for the redBtn button
         private void redBtn_Leave(object sender, RoutedEventArgs e)
         {
             foreach(var elm in sliderGrid.Children)
@@ -110,6 +115,7 @@ namespace ex1.View
             }  
         }
 
+        //On Click method for the redBtn button
         private void redBtn_Click(object sender, RoutedEventArgs e)
         {
             _playBackVM.CurrentFramePosition =(int)((((sender as Button).Margin.Left + 450) / 900)*_playBackVM.FramesNumber);
@@ -118,6 +124,7 @@ namespace ex1.View
             IsPlaying = false;
         }
 
+        //On Click method for the play button
         private void play_Click(object sender, RoutedEventArgs e)
         {
             if (!IsPlaying)
@@ -148,6 +155,7 @@ namespace ex1.View
             }
         }
 
+        //On Click method for the restart button
         private void restart_Click(object sender, RoutedEventArgs e)
         {
             if (slider.Value == slider.Maximum)
