@@ -3,7 +3,8 @@ using System.Windows;
 using System.Windows.Media;
 using Microsoft.Win32;
 using ex1.ViewModel;
-
+using System.ComponentModel;
+using System.IO;
 
 namespace ex1.View
 {
@@ -18,9 +19,29 @@ namespace ex1.View
         private bool _xmlUploded = false;
         private bool _csvUploaded = false;
 
+        private const string TempFilesDirectory = @"..\..\..\Resources\tmp";
+
         public WelcomeWindow()
         {
             InitializeComponent();
+
+            if (!Directory.Exists(TempFilesDirectory))
+            {
+                Directory.CreateDirectory(TempFilesDirectory);
+            }
+        }
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            _generalVM.DisconnectFromFG();
+
+            try
+            {
+                Directory.Delete(TempFilesDirectory, true);
+            }
+            catch (Exception)
+            {
+                ;
+            }
         }
 
         private void ContinueButton_Click(object sender, RoutedEventArgs e)

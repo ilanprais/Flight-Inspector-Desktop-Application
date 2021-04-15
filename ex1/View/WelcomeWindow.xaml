@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Flight Inspector" Height="450" Width="800"
+        Title="Flight Inspector" Height="450" Width="800" Closing="OnClosing"
         >
     <Grid>
         <Grid.ColumnDefinitions>

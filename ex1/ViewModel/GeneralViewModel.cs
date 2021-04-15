@@ -11,6 +11,8 @@ namespace ex1.ViewModel
     {
         private readonly IFlightGearModel _model;
 
+        private const string AnomalyDetectionPluginPath = @"..\..\..\Resources\anomalyDetector.dll";
+
         public GeneralViewModel(IFlightGearModel model)
         {
             _model = model;
@@ -43,12 +45,16 @@ namespace ex1.ViewModel
 
         public void LoadDLLFile(string filePath)
         {
-            if (File.Exists(@"..\..\..\Resources\anomalyDetector.dll"))
+            if (File.Exists(AnomalyDetectionPluginPath))
             {
-                System.IO.File.Move(@"..\..\..\Resources\anomalyDetector.dll", @"..\..\..\Resources\tmp\"+System.Guid.NewGuid().ToString());
+                File.Move(AnomalyDetectionPluginPath, @"..\..\..\Resources\tmp\" + System.Guid.NewGuid().ToString());
             }
-            File.Copy(filePath, @"..\..\..\Resources\anomalyDetector.dll", true);
+
+            File.Copy(filePath, AnomalyDetectionPluginPath, true);
             _model.DetectAnomaly();
+
+            _model.CurrentFramePosition = 0;
+            _model.RenderingStopped = true;
         }
 
         public Task ConnectToFG(string ip, int port)

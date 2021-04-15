@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:ex1.View"
         mc:Ignorable="d"
-        Title="Flight Inspector" Height="450" Width="800" Closing="MainWindow_Closing">
+        Title="Flight Inspector" Height="450" Width="800">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <Menu Foreground="White" Background="SlateGray" DockPanel.Dock="Top">
